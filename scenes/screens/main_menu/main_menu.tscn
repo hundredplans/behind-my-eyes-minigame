@@ -57,6 +57,7 @@ label_settings = ExtResource("3_25jul")
 [node name="DefaultButton" type="Node" parent="HBoxContainer/SettingsButton" unique_id=1673305772 node_paths=PackedStringArray("MainTarget")]
 script = ExtResource("4_0fmn3")
 MainTarget = NodePath("..")
+autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
 [node name="ExitButton" type="Label" parent="HBoxContainer" unique_id=1996759237]
@@ -67,6 +68,7 @@ label_settings = ExtResource("3_25jul")
 [node name="DefaultButton" type="Node" parent="HBoxContainer/ExitButton" unique_id=335872276 node_paths=PackedStringArray("MainTarget")]
 script = ExtResource("4_0fmn3")
 MainTarget = NodePath("..")
+autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
 [connection signal="pressed" from="HBoxContainer/PlayButton/DefaultButton" to="." method="onPlayPressed"]

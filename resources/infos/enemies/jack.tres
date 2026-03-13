@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyInfo" format=3 uid="uid://c17dakqhh6i1h"]
+
+[ext_resource type="Script" uid="uid://btac8mls6jhox" path="res://scripts/common/deck_card.gd" id="1_8jr8u"]
+[ext_resource type="Script" uid="uid://ddxp12xcjub11" path="res://scripts/infos/enemies/enemy_info.gd" id="2_wkq57"]
+
+[resource]
+script = ExtResource("2_wkq57")
+name = "Jack"
+id = 1
+metadata/_custom_type_script = "uid://ddxp12xcjub11"

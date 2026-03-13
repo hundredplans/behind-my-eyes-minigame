@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://bg5xgpi3gorum" path="res://scenes/screens/play_screen/play_screen.gd" id="1_fefi0"]
 [ext_resource type="PackedScene" uid="uid://d3ueb0vmfsofs" path="res://scenes/screens/play_screen/pause_menu/pause_menu.tscn" id="2_52dmg"]
 [ext_resource type="Script" uid="uid://btac8mls6jhox" path="res://scripts/common/deck_card.gd" id="3_5f840"]
+[ext_resource type="PackedScene" uid="uid://cgk8mnf70jwns" path="res://scenes/resource_objects/cards/card_ui/card_ui.tscn" id="3_e1r2e"]
 [ext_resource type="Texture2D" uid="uid://ejd4xtfseh6b" path="res://assets/backgrounds/temp_pixel_art_wallpaper.png" id="3_k8syp"]
+[ext_resource type="StyleBox" uid="uid://bvyjrrrh0cbej" path="res://resources/ui/styleboxes/flat_border_two.tres" id="6_64bgq"]
+[ext_resource type="StyleBox" uid="uid://buw0l2eayxjtq" path="res://resources/ui/styleboxes/flat_border_four.tres" id="7_iron8"]
 
 [sub_resource type="Resource" id="Resource_e1r2e"]
 script = ExtResource("3_5f840")
@@ -39,6 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fefi0")
 PauseMenuPacked = ExtResource("2_52dmg")
+CardUIPacked = ExtResource("3_e1r2e")
 deck = Array[ExtResource("3_5f840")]([SubResource("Resource_e1r2e"), SubResource("Resource_64bgq"), SubResource("Resource_iron8"), SubResource("Resource_eebmm"), SubResource("Resource_i1kik")])
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
 
@@ -51,3 +55,61 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_k8syp")
 expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1521661746]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -105.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="CardsContainer" type="HBoxContainer" parent="MarginContainer" unique_id=460358469]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="CardSlot" type="PanelContainer" parent="." unique_id=2132778506]
+self_modulate = Color(1, 1, 1, 0.3647059)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.5
+offset_top = -69.75
+offset_right = 57.5
+offset_bottom = 69.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("6_64bgq")
+
+[node name="EnemyPanel" type="PanelContainer" parent="." unique_id=972901351]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.5
+offset_top = 6.0
+offset_right = 126.5
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("7_iron8")
+
+[node name="MarginContainer" type="MarginContainer" parent="EnemyPanel" unique_id=1025685466]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="EnemyPanel/MarginContainer" unique_id=1958436331]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("6_64bgq")

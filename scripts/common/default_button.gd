@@ -50,6 +50,6 @@ func onFlash() -> void:
 	if !flash: return
 	if FlashTween: FlashTween.kill()
 	FlashTween = create_tween()
-	FlashTween.tween_property(self, "self_modulate", flash_color, flash_duration)
-	FlashTween.tween_property(self, "self_modulate", Color.WHITE, flash_duration)
+	FlashTween.tween_property(MainTarget, "self_modulate", flash_color, flash_duration)
+	FlashTween.tween_property(MainTarget, "self_modulate", Color.WHITE, flash_duration)
 	FlashTween.finished.connect(onFlash)
