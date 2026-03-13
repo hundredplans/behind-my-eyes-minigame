@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AdminDatastore" format=3 uid="uid://csonldo24ukuu"]
+
+[ext_resource type="Script" uid="uid://ftup66myrd8g" path="res://scripts/test/admin_datastore.gd" id="1_axuri"]
+
+[resource]
+script = ExtResource("1_axuri")
+metadata/_custom_type_script = "uid://ftup66myrd8g"

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://b5lbeif85mfb7"]
+
+[ext_resource type="Script" uid="uid://bg5xgpi3gorum" path="res://scenes/screens/play_screen/play_screen.gd" id="1_fefi0"]
+[ext_resource type="PackedScene" uid="uid://d3ueb0vmfsofs" path="res://scenes/screens/play_screen/pause_menu/pause_menu.tscn" id="2_52dmg"]
+[ext_resource type="Script" uid="uid://btac8mls6jhox" path="res://scripts/common/deck_card.gd" id="3_5f840"]
+[ext_resource type="Texture2D" uid="uid://ejd4xtfseh6b" path="res://assets/backgrounds/temp_pixel_art_wallpaper.png" id="3_k8syp"]
+
+[sub_resource type="Resource" id="Resource_e1r2e"]
+script = ExtResource("3_5f840")
+id = 1
+metadata/_custom_type_script = "uid://btac8mls6jhox"
+
+[sub_resource type="Resource" id="Resource_64bgq"]
+script = ExtResource("3_5f840")
+id = 2
+metadata/_custom_type_script = "uid://btac8mls6jhox"
+
+[sub_resource type="Resource" id="Resource_iron8"]
+script = ExtResource("3_5f840")
+id = 3
+metadata/_custom_type_script = "uid://btac8mls6jhox"
+
+[sub_resource type="Resource" id="Resource_eebmm"]
+script = ExtResource("3_5f840")
+id = 4
+metadata/_custom_type_script = "uid://btac8mls6jhox"
+
+[sub_resource type="Resource" id="Resource_i1kik"]
+script = ExtResource("3_5f840")
+id = 5
+metadata/_custom_type_script = "uid://btac8mls6jhox"
+
+[node name="PlayScreen" type="Control" unique_id=746952712]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fefi0")
+PauseMenuPacked = ExtResource("2_52dmg")
+deck = Array[ExtResource("3_5f840")]([SubResource("Resource_e1r2e"), SubResource("Resource_64bgq"), SubResource("Resource_iron8"), SubResource("Resource_eebmm"), SubResource("Resource_i1kik")])
+metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=136554596]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_k8syp")
+expand_mode = 3

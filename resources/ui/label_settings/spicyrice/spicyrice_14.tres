@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://ck0lqulfkea03"]
+
+[ext_resource type="FontFile" uid="uid://cqa37uan6p5xi" path="res://assets/fonts/spicyrice.ttf" id="1_7cdvq"]
+
+[resource]
+font = ExtResource("1_7cdvq")
+font_size = 14
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)

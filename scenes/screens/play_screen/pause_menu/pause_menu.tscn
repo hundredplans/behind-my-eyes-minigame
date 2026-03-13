@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://d3ueb0vmfsofs"]
+
+[ext_resource type="Script" uid="uid://8g55ekffcnj2" path="res://scenes/screens/play_screen/pause_menu/pause_menu.gd" id="1_mkbq7"]
+[ext_resource type="LabelSettings" uid="uid://ndl676j006tj" path="res://resources/ui/label_settings/spicyrice/spicyrice_48.tres" id="2_kbs6d"]
+[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/default_button.gd" id="3_pn633"]
+
+[node name="PauseMenu" type="Control" unique_id=568991233]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mkbq7")
+start_color = Color(0, 0, 0, 0)
+scale_in_end_alpha = 0.9
+
+[node name="BackgroundRect" type="ColorRect" parent="." unique_id=1692788822]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="." unique_id=1681047978]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ResumeButton" type="Label" parent="ButtonsContainer" unique_id=1474294133]
+layout_mode = 2
+text = "Resume"
+label_settings = ExtResource("2_kbs6d")
+horizontal_alignment = 1
+
+[node name="ResumeDefaultButton" type="Node" parent="ButtonsContainer/ResumeButton" unique_id=2104897714 node_paths=PackedStringArray("MainTarget")]
+unique_name_in_owner = true
+script = ExtResource("3_pn633")
+MainTarget = NodePath("..")
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="SettingsButton" type="Label" parent="ButtonsContainer" unique_id=1130122623]
+layout_mode = 2
+text = "Settings"
+label_settings = ExtResource("2_kbs6d")
+horizontal_alignment = 1
+
+[node name="SettingsDefaultButton" type="Node" parent="ButtonsContainer/SettingsButton" unique_id=1477047801 node_paths=PackedStringArray("MainTarget")]
+unique_name_in_owner = true
+script = ExtResource("3_pn633")
+MainTarget = NodePath("..")
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="ExitButton" type="Label" parent="ButtonsContainer" unique_id=872279398]
+layout_mode = 2
+text = "Exit"
+label_settings = ExtResource("2_kbs6d")
+horizontal_alignment = 1
+
+[node name="ExitDefaultButton" type="Node" parent="ButtonsContainer/ExitButton" unique_id=2009583095 node_paths=PackedStringArray("MainTarget")]
+unique_name_in_owner = true
+script = ExtResource("3_pn633")
+MainTarget = NodePath("..")
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[connection signal="pressed" from="ButtonsContainer/ResumeButton/ResumeDefaultButton" to="." method="onResumeButtonPressed"]
+[connection signal="pressed" from="ButtonsContainer/SettingsButton/SettingsDefaultButton" to="." method="onSettingsButtonPressed"]
+[connection signal="pressed" from="ButtonsContainer/ExitButton/ExitDefaultButton" to="." method="onExitButtonPressed"]

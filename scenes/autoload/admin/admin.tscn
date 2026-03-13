@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ibfumr52qdjx"]
+
+[ext_resource type="Script" uid="uid://3db1x1kysom6" path="res://scenes/autoload/admin/admin.gd" id="1_i0h07"]
+
+[node name="Admin" type="Node" unique_id=121658276]
+script = ExtResource("1_i0h07")

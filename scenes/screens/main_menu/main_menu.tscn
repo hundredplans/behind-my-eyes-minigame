@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bac1cqlkmcjsl"]
+
+[ext_resource type="Script" uid="uid://dregtbydnyyrb" path="res://scenes/screens/main_menu/main_menu.gd" id="1_wf0jh"]
+[ext_resource type="LabelSettings" uid="uid://d1xk6kfdu767s" path="res://resources/ui/label_settings/roboto/roboto_48.tres" id="2_xf7w6"]
+[ext_resource type="LabelSettings" uid="uid://ndl676j006tj" path="res://resources/ui/label_settings/spicyrice/spicyrice_48.tres" id="3_25jul"]
+[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/default_button.gd" id="4_0fmn3"]
+
+[node name="MainMenu" type="Control" unique_id=1448919376]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wf0jh")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=541245142]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -269.5
+offset_top = 9.0
+offset_right = 269.5
+offset_bottom = 66.0
+grow_horizontal = 2
+text = "Behind My Eyes Minigame"
+label_settings = ExtResource("2_xf7w6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=105565551]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="PlayButton" type="Label" parent="HBoxContainer" unique_id=779165705]
+layout_mode = 2
+text = "Play"
+label_settings = ExtResource("3_25jul")
+
+[node name="DefaultButton" type="Node" parent="HBoxContainer/PlayButton" unique_id=762925754 node_paths=PackedStringArray("MainTarget")]
+script = ExtResource("4_0fmn3")
+MainTarget = NodePath("..")
+autoscale = true
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="SettingsButton" type="Label" parent="HBoxContainer" unique_id=1193231034]
+layout_mode = 2
+text = "Settings"
+label_settings = ExtResource("3_25jul")
+
+[node name="DefaultButton" type="Node" parent="HBoxContainer/SettingsButton" unique_id=1673305772 node_paths=PackedStringArray("MainTarget")]
+script = ExtResource("4_0fmn3")
+MainTarget = NodePath("..")
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="ExitButton" type="Label" parent="HBoxContainer" unique_id=1996759237]
+layout_mode = 2
+text = "Exit"
+label_settings = ExtResource("3_25jul")
+
+[node name="DefaultButton" type="Node" parent="HBoxContainer/ExitButton" unique_id=335872276 node_paths=PackedStringArray("MainTarget")]
+script = ExtResource("4_0fmn3")
+MainTarget = NodePath("..")
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[connection signal="pressed" from="HBoxContainer/PlayButton/DefaultButton" to="." method="onPlayPressed"]
+[connection signal="pressed" from="HBoxContainer/SettingsButton/DefaultButton" to="." method="onSettingsPressed"]
+[connection signal="pressed" from="HBoxContainer/ExitButton/DefaultButton" to="." method="onExitPressed"]

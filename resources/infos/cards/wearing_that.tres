@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://cedmiufgoqqgi"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_m8ktd"]
+
+[resource]
+script = ExtResource("1_m8ktd")
+type = 5
+name = "Wearing That?"
+id = 5
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"
