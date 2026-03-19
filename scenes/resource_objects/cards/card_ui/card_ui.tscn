@@ -14,7 +14,6 @@ anchors_preset = 0
 offset_right = 50.0
 offset_bottom = 100.0
 script = ExtResource("1_kkiuu")
-name_lightened = null
 
 [node name="CardBoundsNode" type="PanelContainer" parent="." unique_id=1044656535]
 self_modulate = Color(0, 0, 0, 1)
@@ -70,7 +69,6 @@ label_settings = ExtResource("5_agjea")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DefaultButton" type="Node" parent="." unique_id=698778259 node_paths=PackedStringArray("MainTarget")]
+[node name="DefaultButton" type="Node" parent="." unique_id=698778259]
 script = ExtResource("6_od6dt")
-MainTarget = NodePath("..")
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"

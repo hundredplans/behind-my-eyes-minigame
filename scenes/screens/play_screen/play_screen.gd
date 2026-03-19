@@ -11,7 +11,7 @@ func _ready() -> void:
 		var card := deck_card.getCard()
 		var card_ui: CardUI = CardUIPacked.instantiate()
 		CardsContainer.add_child(card_ui)
-		card_ui.setInfo(card)
+		card_ui.setCard(card)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Escape") and !isPauseMenu():

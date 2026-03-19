@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Admin="*uid://ibfumr52qdjx"
 Data="*uid://ct8gpagiabvsy"
 Info="*uid://8ebp7ar5kclv"
+Actions="*uid://bc6mlh3gj3mjq"
 
 [display]
 

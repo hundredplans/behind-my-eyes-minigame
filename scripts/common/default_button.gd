@@ -39,7 +39,7 @@ func setDisabled(state: bool) -> void:
 	
 func onUpdateMouseCursorShape() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW if (disabled or !is_mouse_in_ui) else Input.CURSOR_POINTING_HAND)
-	MainTarget.mouse_default_cursor_shape = Control.CURSOR_ARROW if (disabled or !is_mouse_in_ui) else Control.CURSOR_POINTING_HAND
+	getMainTarget().mouse_default_cursor_shape = Control.CURSOR_ARROW if (disabled or !is_mouse_in_ui) else Control.CURSOR_POINTING_HAND
 	get_viewport().call_deferred("update_mouse_cursor_state")
 
 var FlashTween: Tween
@@ -50,6 +50,6 @@ func onFlash() -> void:
 	if !flash: return
 	if FlashTween: FlashTween.kill()
 	FlashTween = create_tween()
-	FlashTween.tween_property(MainTarget, "self_modulate", flash_color, flash_duration)
-	FlashTween.tween_property(MainTarget, "self_modulate", Color.WHITE, flash_duration)
+	FlashTween.tween_property(self, "self_modulate", flash_color, flash_duration)
+	FlashTween.tween_property(self, "self_modulate", Color.WHITE, flash_duration)
 	FlashTween.finished.connect(onFlash)

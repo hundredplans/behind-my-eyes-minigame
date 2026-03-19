@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bc6mlh3gj3mjq"]
+
+[ext_resource type="Script" uid="uid://cdtftdvrvc1db" path="res://scenes/autoload/actions/actions.gd" id="1_xera5"]
+
+[node name="Actions" type="Node" unique_id=292579698]
+script = ExtResource("1_xera5")
