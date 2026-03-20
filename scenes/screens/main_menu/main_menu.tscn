@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dregtbydnyyrb" path="res://scenes/screens/main_menu/main_menu.gd" id="1_wf0jh"]
 [ext_resource type="LabelSettings" uid="uid://d1xk6kfdu767s" path="res://resources/ui/label_settings/roboto/roboto_48.tres" id="2_xf7w6"]
 [ext_resource type="LabelSettings" uid="uid://ndl676j006tj" path="res://resources/ui/label_settings/spicyrice/spicyrice_48.tres" id="3_25jul"]
-[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/default_button.gd" id="4_0fmn3"]
+[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_0fmn3"]
 
 [node name="MainMenu" type="Control" unique_id=1448919376]
 layout_mode = 3

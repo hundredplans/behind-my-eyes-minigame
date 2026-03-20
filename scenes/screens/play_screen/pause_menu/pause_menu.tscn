@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8g55ekffcnj2" path="res://scenes/screens/play_screen/pause_menu/pause_menu.gd" id="1_mkbq7"]
 [ext_resource type="LabelSettings" uid="uid://ndl676j006tj" path="res://resources/ui/label_settings/spicyrice/spicyrice_48.tres" id="2_kbs6d"]
-[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/default_button.gd" id="3_pn633"]
+[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="3_pn633"]
 
 [node name="PauseMenu" type="Control" unique_id=568991233]
 layout_mode = 3
@@ -47,10 +47,9 @@ text = "Resume"
 label_settings = ExtResource("2_kbs6d")
 horizontal_alignment = 1
 
-[node name="ResumeDefaultButton" type="Node" parent="ButtonsContainer/ResumeButton" unique_id=2104897714 node_paths=PackedStringArray("MainTarget")]
+[node name="ResumeDefaultButton" type="Node" parent="ButtonsContainer/ResumeButton" unique_id=2104897714]
 unique_name_in_owner = true
 script = ExtResource("3_pn633")
-MainTarget = NodePath("..")
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
 [node name="SettingsButton" type="Label" parent="ButtonsContainer" unique_id=1130122623]
@@ -59,10 +58,9 @@ text = "Settings"
 label_settings = ExtResource("2_kbs6d")
 horizontal_alignment = 1
 
-[node name="SettingsDefaultButton" type="Node" parent="ButtonsContainer/SettingsButton" unique_id=1477047801 node_paths=PackedStringArray("MainTarget")]
+[node name="SettingsDefaultButton" type="Node" parent="ButtonsContainer/SettingsButton" unique_id=1477047801]
 unique_name_in_owner = true
 script = ExtResource("3_pn633")
-MainTarget = NodePath("..")
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
 [node name="ExitButton" type="Label" parent="ButtonsContainer" unique_id=872279398]
@@ -71,10 +69,9 @@ text = "Exit"
 label_settings = ExtResource("2_kbs6d")
 horizontal_alignment = 1
 
-[node name="ExitDefaultButton" type="Node" parent="ButtonsContainer/ExitButton" unique_id=2009583095 node_paths=PackedStringArray("MainTarget")]
+[node name="ExitDefaultButton" type="Node" parent="ButtonsContainer/ExitButton" unique_id=2009583095]
 unique_name_in_owner = true
 script = ExtResource("3_pn633")
-MainTarget = NodePath("..")
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
 [connection signal="pressed" from="ButtonsContainer/ResumeButton/ResumeDefaultButton" to="." method="onResumeButtonPressed"]

@@ -1,6 +1,12 @@
 extends Node
 
 enum CardType {NULL, ANGRY, NICE, SAD, HAPPY, SARCASTIC}
+const MIN_HAND_SIZE: int = 3
+const MAX_HAND_SIZE: int = 8
+
+@export var player_deck: Array[DeckCard]
+@export var enemy_deck: Array[DeckCard]
+
 func getColorFromCardType(card_type: CardType) -> Color:
 	match card_type:
 		CardType.ANGRY: return Color.RED
@@ -9,3 +15,6 @@ func getColorFromCardType(card_type: CardType) -> Color:
 		CardType.HAPPY: return Color.YELLOW
 		CardType.SARCASTIC: return Color.PURPLE
 	return Color.WHITE
+
+func getPlayerStartingDeck() -> Array[DeckCard]: return player_deck.duplicate()
+func getEnemyStartingDeck() -> Array[DeckCard]: return enemy_deck.duplicate()

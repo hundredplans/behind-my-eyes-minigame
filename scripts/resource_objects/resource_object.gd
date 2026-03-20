@@ -6,4 +6,5 @@ func _init(_info: ResourceInfo) -> void:
 	info = _info
 
 var info: ResourceInfo
+func getName() -> String: return info.getName()
 @abstract func getInfo() -> ResourceInfo

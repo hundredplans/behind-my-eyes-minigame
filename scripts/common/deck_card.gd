@@ -1,7 +1,7 @@
 class_name DeckCard extends Resource
 
 @export var id: int
-func getCard() -> Card:
+func getCard(players: bool) -> Card:
 	var card_info: CardInfo = Info.getInfo(CardInfo, id)
-	var card := Card.new(card_info)
+	var card := Card.new(card_info, players)
 	return card

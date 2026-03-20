@@ -5,7 +5,7 @@
 [ext_resource type="StyleBox" uid="uid://bvyjrrrh0cbej" path="res://resources/ui/styleboxes/flat_border_two.tres" id="3_jguvn"]
 [ext_resource type="LabelSettings" uid="uid://ddnxcsyj4dh2v" path="res://resources/ui/label_settings/spicyrice/spicyrice_6.tres" id="4_agjea"]
 [ext_resource type="LabelSettings" uid="uid://fl0jtxg7cfrv" path="res://resources/ui/label_settings/spicyrice/spicyrice_3.tres" id="5_agjea"]
-[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/default_button.gd" id="6_od6dt"]
+[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="6_od6dt"]
 
 [node name="CardUI" type="Control" unique_id=981053523]
 custom_minimum_size = Vector2(50, 100)

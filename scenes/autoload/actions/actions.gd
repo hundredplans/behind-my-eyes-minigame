@@ -5,7 +5,7 @@ var active_action: Action
 var actions: Array
 func onPush(_actions: Array, _owner: ActionManager) -> void:
 	for action: Action in _actions:
-		action.setOwner(_owner)
+		action.setActionOwner(_owner)
 		
 	_actions += actions
 	actions = _actions
@@ -13,13 +13,13 @@ func onPush(_actions: Array, _owner: ActionManager) -> void:
 
 func onAppend(_actions: Array, _owner: ActionManager) -> void:
 	for action: Action in _actions:
-		action.setOwner(_owner)
+		action.setActionOwner(_owner)
 	actions += _actions
 	onActionChain()
 
 func onForce(new_actions: Array, _owner: ActionManager) -> void:
 	for action: Action in new_actions:
-		action.setOwner(_owner)
+		action.setActionOwner(_owner)
 		onAction(action, true)
 
 func onActionChain() -> void:

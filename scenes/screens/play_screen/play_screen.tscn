@@ -2,36 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bg5xgpi3gorum" path="res://scenes/screens/play_screen/play_screen.gd" id="1_fefi0"]
 [ext_resource type="PackedScene" uid="uid://d3ueb0vmfsofs" path="res://scenes/screens/play_screen/pause_menu/pause_menu.tscn" id="2_52dmg"]
-[ext_resource type="Script" uid="uid://btac8mls6jhox" path="res://scripts/common/deck_card.gd" id="3_5f840"]
 [ext_resource type="PackedScene" uid="uid://cgk8mnf70jwns" path="res://scenes/resource_objects/cards/card_ui/card_ui.tscn" id="3_e1r2e"]
 [ext_resource type="Texture2D" uid="uid://ejd4xtfseh6b" path="res://assets/backgrounds/temp_pixel_art_wallpaper.png" id="3_k8syp"]
 [ext_resource type="StyleBox" uid="uid://bvyjrrrh0cbej" path="res://resources/ui/styleboxes/flat_border_two.tres" id="6_64bgq"]
 [ext_resource type="StyleBox" uid="uid://buw0l2eayxjtq" path="res://resources/ui/styleboxes/flat_border_four.tres" id="7_iron8"]
-
-[sub_resource type="Resource" id="Resource_e1r2e"]
-script = ExtResource("3_5f840")
-id = 1
-metadata/_custom_type_script = "uid://btac8mls6jhox"
-
-[sub_resource type="Resource" id="Resource_64bgq"]
-script = ExtResource("3_5f840")
-id = 2
-metadata/_custom_type_script = "uid://btac8mls6jhox"
-
-[sub_resource type="Resource" id="Resource_iron8"]
-script = ExtResource("3_5f840")
-id = 3
-metadata/_custom_type_script = "uid://btac8mls6jhox"
-
-[sub_resource type="Resource" id="Resource_eebmm"]
-script = ExtResource("3_5f840")
-id = 4
-metadata/_custom_type_script = "uid://btac8mls6jhox"
-
-[sub_resource type="Resource" id="Resource_i1kik"]
-script = ExtResource("3_5f840")
-id = 5
-metadata/_custom_type_script = "uid://btac8mls6jhox"
+[ext_resource type="Script" uid="uid://0shmw2f5jneh" path="res://scripts/actions/action_manager.gd" id="8_eebmm"]
 
 [node name="PlayScreen" type="Control" unique_id=746952712]
 layout_mode = 3
@@ -43,7 +18,6 @@ grow_vertical = 2
 script = ExtResource("1_fefi0")
 PauseMenuPacked = ExtResource("2_52dmg")
 CardUIPacked = ExtResource("3_e1r2e")
-deck = Array[ExtResource("3_5f840")]([SubResource("Resource_e1r2e"), SubResource("Resource_64bgq"), SubResource("Resource_iron8"), SubResource("Resource_eebmm"), SubResource("Resource_i1kik")])
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=136554596]
@@ -113,3 +87,8 @@ theme_override_constants/margin_bottom = 3
 [node name="PanelContainer" type="PanelContainer" parent="EnemyPanel/MarginContainer" unique_id=1958436331]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("6_64bgq")
+
+[node name="ActionSender" type="Node" parent="." unique_id=398503857]
+unique_name_in_owner = true
+script = ExtResource("8_eebmm")
+metadata/_custom_type_script = "uid://0shmw2f5jneh"
