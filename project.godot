@@ -15,6 +15,10 @@ run/main_scene="uid://cq800vfjencfg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://m3j0stbdbex4"
+
 [autoload]
 
 Admin="*uid://ibfumr52qdjx"

@@ -69,6 +69,7 @@ func setDisabled(state: bool) -> void:
 	update_disabled.emit(disabled)
 
 func isDisabled() -> bool: return disabled
+func isMouseInUI() -> bool: return is_mouse_in_ui
 func setBaseColor(_base_color: Color) -> void:
 	base_color = _base_color
 	onUpdateModulate()

@@ -4,6 +4,9 @@ enum CardType {NULL, ANGRY, NICE, SAD, HAPPY, SARCASTIC}
 const MIN_HAND_SIZE: int = 3
 const MAX_HAND_SIZE: int = 8
 
+const POINTS_TO_WIN: int = 25
+const POINTS_TO_COLLABORATE: int = 25
+
 @export var player_deck: Array[DeckCard]
 @export var enemy_deck: Array[DeckCard]
 

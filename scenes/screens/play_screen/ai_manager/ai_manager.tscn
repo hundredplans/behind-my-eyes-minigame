@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://difi5yni64h62"]
+
+[ext_resource type="Script" uid="uid://jvso02rlpv17" path="res://scenes/screens/play_screen/ai_manager/ai_manager.gd" id="1_s7bum"]
+[ext_resource type="Script" uid="uid://0shmw2f5jneh" path="res://scripts/actions/action_manager.gd" id="2_n6fve"]
+
+[node name="AIManager" type="Node" unique_id=218810832]
+script = ExtResource("1_s7bum")
+
+[node name="ActionSender" type="Node" parent="." unique_id=1208516195]
+unique_name_in_owner = true
+script = ExtResource("2_n6fve")
+metadata/_custom_type_script = "uid://0shmw2f5jneh"

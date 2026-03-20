@@ -53,3 +53,6 @@ func onFlash() -> void:
 	FlashTween.tween_property(self, "self_modulate", flash_color, flash_duration)
 	FlashTween.tween_property(self, "self_modulate", Color.WHITE, flash_duration)
 	FlashTween.finished.connect(onFlash)
+	
+func onOffsetPosition(relative: Vector2) -> void:
+	getMainTarget().position += relative

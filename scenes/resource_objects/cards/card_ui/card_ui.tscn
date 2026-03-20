@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://ddnxcsyj4dh2v" path="res://resources/ui/label_settings/spicyrice/spicyrice_6.tres" id="4_agjea"]
 [ext_resource type="LabelSettings" uid="uid://fl0jtxg7cfrv" path="res://resources/ui/label_settings/spicyrice/spicyrice_3.tres" id="5_agjea"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="6_od6dt"]
+[ext_resource type="Script" uid="uid://b0mi5nhkk1hyr" path="res://scripts/common/draggable_control.gd" id="7_3nsd1"]
 
 [node name="CardUI" type="Control" unique_id=981053523]
 custom_minimum_size = Vector2(50, 100)
@@ -23,11 +24,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = ExtResource("2_3yot5")
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CardBoundsNode" unique_id=895554056]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
@@ -36,11 +39,13 @@ theme_override_constants/margin_bottom = 2
 [node name="InsidePanel" type="PanelContainer" parent="CardBoundsNode/MarginContainer" unique_id=348443362]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = ExtResource("3_jguvn")
 
 [node name="MarginContainer" type="MarginContainer" parent="CardBoundsNode/MarginContainer/InsidePanel" unique_id=840000626]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
@@ -48,6 +53,7 @@ theme_override_constants/margin_bottom = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CardBoundsNode/MarginContainer/InsidePanel/MarginContainer" unique_id=467217654]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="NameLabel" type="Label" parent="CardBoundsNode/MarginContainer/InsidePanel/MarginContainer/VBoxContainer" unique_id=1173795757]
 unique_name_in_owner = true
@@ -60,6 +66,7 @@ horizontal_alignment = 1
 [node name="Control" type="Control" parent="CardBoundsNode/MarginContainer/InsidePanel/MarginContainer/VBoxContainer" unique_id=70498458]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="DescriptionLabel" type="Label" parent="CardBoundsNode/MarginContainer/InsidePanel/MarginContainer/VBoxContainer" unique_id=1765337434]
 unique_name_in_owner = true
@@ -69,6 +76,12 @@ label_settings = ExtResource("5_agjea")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DefaultButton" type="Node" parent="." unique_id=698778259]
+[node name="CardUIButton" type="Node" parent="." unique_id=698778259]
+unique_name_in_owner = true
 script = ExtResource("6_od6dt")
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="DraggableControl" type="Node" parent="CardUIButton" unique_id=1491633279]
+unique_name_in_owner = true
+script = ExtResource("7_3nsd1")
+metadata/_custom_type_script = "uid://b0mi5nhkk1hyr"
