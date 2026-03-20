@@ -15,6 +15,8 @@ func onProcessAction(action: Action) -> void:
 			onStartGame()
 		elif action is CreateHandCardAction:
 			onCreateHandCard(action)
+		elif action is StartTurnAction and action.isPlayers():
+			onStartTurn()
 			
 func onStartGame() -> void:
 	var actions: Array = [DrawCardAction.new(Data.MIN_HAND_SIZE, true)]
@@ -22,6 +24,9 @@ func onStartGame() -> void:
 	onInitialiseEnemy()
 	PointsDisplay.setInfo()
 	onPush(actions)
+	
+func onStartTurn() -> void:
+	pass
 	
 func onInitialisePlayer() -> void:
 	var player := Character.new()

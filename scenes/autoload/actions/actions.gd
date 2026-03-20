@@ -11,6 +11,12 @@ func onPush(_actions: Array, _owner: ActionManager) -> void:
 	actions = _actions
 	onActionChain()
 
+# [StartGame, StartTurn] 
+# [StartTurn]
+# [DrawCard, DrawCard, DrawCard, StartTurn] PUSH
+# [StartTurn, DrawCard, DrawCard, DrawCard] # APPEND
+# 
+
 func onAppend(_actions: Array, _owner: ActionManager) -> void:
 	for action: Action in _actions:
 		action.setActionOwner(_owner)

@@ -6,7 +6,9 @@ var card: Card
 func _init(_card: Card) -> void:
 	card = _card
 	
-func onPreAction() -> void: pass
+func onPreAction() -> void:
+	if card == null: onFailAction()
+	
 func onPostAction() -> void:
 	onPush([DelayAction.new(PLAY_CARD_DELAY)])
 	
