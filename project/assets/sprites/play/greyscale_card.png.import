@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hqda0qhuj0jb"
-path="res://.godot/imported/play_icons.png-156108fc0c4918ece6ede10813b1bd0e.ctex"
+uid="uid://ca5wjstxb3k7e"
+path="res://.godot/imported/greyscale_card.png-f10f74305d55942cf6b0d81aa7013775.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/play/play_icons.png"
-dest_files=["res://.godot/imported/play_icons.png-156108fc0c4918ece6ede10813b1bd0e.ctex"]
+source_file="res://assets/sprites/play/greyscale_card.png"
+dest_files=["res://.godot/imported/greyscale_card.png-f10f74305d55942cf6b0d81aa7013775.ctex"]
 
 [params]
 

@@ -8,6 +8,8 @@ extends Node2D
 
 @export var x_same_points_offset: float = 10.0
 func setInfo() -> void:
+	Board.getPlayer().update_points.connect(onUpdatePoints.bind(true))
+	Board.getEnemy().update_points.connect(onUpdatePoints.bind(false))
 	onUpdatePoints(false)
 	onUpdatePoints(true)
 
@@ -19,7 +21,7 @@ func onUpdatePoints(players: bool) -> void:
 	var sprite: Sprite2D = getCharacterSprite(players)
 	sprite.position = path_position
 
-	if points == other_character.getPoints():
+	if points <= Data.POINTS_TO_WIN and (points == other_character.getPoints()):
 		getCharacterSprite(false).offset.x = x_same_points_offset
 		getCharacterSprite(true).offset.x = -x_same_points_offset
 	else:
@@ -27,7 +29,7 @@ func onUpdatePoints(players: bool) -> void:
 		getCharacterSprite(!players).offset.x = 0
 	
 func getPathPosition(points: int, players: bool) -> Vector2:
-	var p: float = float(Data.POINTS_TO_WIN + Data.POINTS_TO_COLLABORATE / float(points))
+	var p: float = float(float(points) / float(Data.POINTS_TO_WIN + Data.POINTS_TO_COLLABORATE))
 	var curve: Curve2D = getPath(players).curve
 	var length: float = curve.get_baked_length()
 	var distance: float = length * p

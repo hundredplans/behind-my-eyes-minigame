@@ -1,87 +1,93 @@
 [gd_scene format=3 uid="uid://cgk8mnf70jwns"]
 
 [ext_resource type="Script" uid="uid://baugun20xjivg" path="res://scenes/resource_objects/cards/card_ui/card_ui.gd" id="1_kkiuu"]
-[ext_resource type="StyleBox" uid="uid://buw0l2eayxjtq" path="res://resources/ui/styleboxes/flat_border_four.tres" id="2_3yot5"]
-[ext_resource type="StyleBox" uid="uid://bvyjrrrh0cbej" path="res://resources/ui/styleboxes/flat_border_two.tres" id="3_jguvn"]
-[ext_resource type="LabelSettings" uid="uid://ddnxcsyj4dh2v" path="res://resources/ui/label_settings/spicyrice/spicyrice_6.tres" id="4_agjea"]
-[ext_resource type="LabelSettings" uid="uid://fl0jtxg7cfrv" path="res://resources/ui/label_settings/spicyrice/spicyrice_3.tres" id="5_agjea"]
+[ext_resource type="Shader" uid="uid://cdh0xdk77jyv7" path="res://resources/shaders/color_dark_pixels.gdshader" id="2_3nsd1"]
+[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_8jp0s"]
+[ext_resource type="Texture2D" uid="uid://ca5wjstxb3k7e" path="res://assets/sprites/play/greyscale_card.png" id="2_agjea"]
+[ext_resource type="FontFile" uid="uid://lj2hkch44j84" path="res://assets/fonts/jersey_10.ttf" id="3_od6dt"]
+[ext_resource type="Texture2D" uid="uid://dqlqveplmtnks" path="res://assets/sprites/play/combat_atlas/icons/sarcastic_icon.tres" id="4_8jp0s"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="6_od6dt"]
 [ext_resource type="Script" uid="uid://b0mi5nhkk1hyr" path="res://scripts/common/draggable_control.gd" id="7_3nsd1"]
 
-[node name="CardUI" type="Control" unique_id=981053523]
-custom_minimum_size = Vector2(50, 100)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 50.0
-offset_bottom = 100.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jp0s"]
+shader = ExtResource("2_3nsd1")
+
+[sub_resource type="LabelSettings" id="LabelSettings_3nsd1"]
+font = ExtResource("3_od6dt")
+font_size = 10
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_agjea"]
+line_spacing = 0.1
+font = ExtResource("3_od6dt")
+font_size = 6
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od6dt"]
+atlas = ExtResource("2_8jp0s")
+
+[node name="CardUI" type="Node2D" unique_id=1745416984]
 script = ExtResource("1_kkiuu")
 
-[node name="CardBoundsNode" type="PanelContainer" parent="." unique_id=1044656535]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Control" type="Control" parent="." unique_id=890086645]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -24.0
+offset_top = -40.0
+offset_right = 24.0
+offset_bottom = 40.0
 mouse_filter = 2
-theme_override_styles/panel = ExtResource("2_3yot5")
-metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="CardBoundsNode" unique_id=895554056]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="InsidePanel" type="PanelContainer" parent="CardBoundsNode/MarginContainer" unique_id=348443362]
+[node name="CardSprite" type="Sprite2D" parent="Control" unique_id=1666206552]
 unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("3_jguvn")
+texture_filter = 1
+material = SubResource("ShaderMaterial_8jp0s")
+position = Vector2(24, 40)
+texture = ExtResource("2_agjea")
 
-[node name="MarginContainer" type="MarginContainer" parent="CardBoundsNode/MarginContainer/InsidePanel" unique_id=840000626]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CardBoundsNode/MarginContainer/InsidePanel/MarginContainer" unique_id=467217654]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="NameLabel" type="Label" parent="CardBoundsNode/MarginContainer/InsidePanel/MarginContainer/VBoxContainer" unique_id=1173795757]
+[node name="IconSprite" type="Sprite2D" parent="Control" unique_id=1239170685]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Name"
-label_settings = ExtResource("4_agjea")
+texture_filter = 1
+position = Vector2(11, 11)
+texture = ExtResource("4_8jp0s")
+
+[node name="NameLabel" type="Label" parent="Control" unique_id=1303983797]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 3.0
+offset_top = 37.0
+offset_right = 45.0
+offset_bottom = 49.0
+text = "Handshake"
+label_settings = SubResource("LabelSettings_3nsd1")
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="CardBoundsNode/MarginContainer/InsidePanel/MarginContainer/VBoxContainer" unique_id=70498458]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="DescriptionLabel" type="Label" parent="CardBoundsNode/MarginContainer/InsidePanel/MarginContainer/VBoxContainer" unique_id=1765337434]
+[node name="DescriptionLabel" type="Label" parent="Control" unique_id=1506408335]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-label_settings = ExtResource("5_agjea")
+layout_mode = 0
+offset_left = 3.0
+offset_top = 50.0
+offset_right = 45.0
+offset_bottom = 80.0
+text = "Give an  enemy a Handshake
+card"
+label_settings = SubResource("LabelSettings_agjea")
 horizontal_alignment = 1
-vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="CardUIButton" type="Node" parent="." unique_id=698778259]
+[node name="CardUIButton" type="Node" parent="Control" unique_id=698778259]
 unique_name_in_owner = true
 script = ExtResource("6_od6dt")
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
-[node name="DraggableControl" type="Node" parent="CardUIButton" unique_id=1491633279]
+[node name="DraggableControl" type="Node" parent="Control/CardUIButton" unique_id=1491633279]
 unique_name_in_owner = true
 script = ExtResource("7_3nsd1")
 metadata/_custom_type_script = "uid://b0mi5nhkk1hyr"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1026446633]
+visible = false
+texture_filter = 1
+texture = SubResource("AtlasTexture_od6dt")

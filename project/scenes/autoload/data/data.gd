@@ -3,7 +3,11 @@ extends Node
 enum PointType {NULL, NONE, LOSE, WIN, COLLAB}
 enum CardType {NULL, ANGRY, KIND, SAD, HAPPY, SARCASTIC}
 const MIN_HAND_SIZE: int = 3
-const MAX_HAND_SIZE: int = 8
+const MAX_HAND_SIZE: int = 6
+const MAX_DECK_SIZE: int = 10
+
+const DEFAULT_POINT_MOVE: int = 5
+const LOSS_POINT_MOVE_MULT: int = 2
 
 const POINTS_TO_WIN: int = 25
 const POINTS_TO_COLLABORATE: int = 25
@@ -11,14 +15,49 @@ const POINTS_TO_COLLABORATE: int = 25
 @export var player_deck: Array[DeckCard]
 @export var enemy_deck: Array[DeckCard]
 
+@export var angry_icon: Texture2D
+@export var kind_icon: Texture2D
+@export var sad_icon: Texture2D
+@export var happy_icon: Texture2D
+@export var sarcastic_icon: Texture2D
+
 func getColorFromCardType(card_type: CardType) -> Color:
 	match card_type:
-		CardType.ANGRY: return Color.RED
-		CardType.KIND: return Color.GREEN
-		CardType.SAD: return Color.BLUE
-		CardType.HAPPY: return Color.YELLOW
-		CardType.SARCASTIC: return Color.PURPLE
+		CardType.ANGRY: return Color("e83b3b")
+		CardType.KIND: return Color("91db69")
+		CardType.SAD: return Color("4d9be6")
+		CardType.HAPPY: return Color("f9c22b")
+		CardType.SARCASTIC: return Color("831c5d")
 	return Color.WHITE
+	
+func getCardTypeIcon(type: Data.CardType) -> Texture2D:
+	match type:
+		CardType.ANGRY: return angry_icon
+		CardType.KIND: return kind_icon
+		CardType.SAD: return sad_icon
+		CardType.HAPPY: return happy_icon
+		CardType.SARCASTIC: return sarcastic_icon
+	return null
 
-func getPlayerStartingDeck() -> Array[DeckCard]: return player_deck.duplicate()
-func getEnemyStartingDeck() -> Array[DeckCard]: return enemy_deck.duplicate()
+func getPlayerStartingDeck() -> Array[DeckCard]:
+	return getRandomDeck()
+	
+func getEnemyStartingDeck() -> Array[DeckCard]:
+	return getRandomDeck()
+
+func getRandomDeck() -> Array[DeckCard]:
+	var deck_cards: Array[DeckCard] = []
+	for __: int in MAX_DECK_SIZE:
+		var id: int = randi_range(1, 30)
+		var deck_card := DeckCard.new()
+		deck_card.setId(id)
+		deck_cards.append(deck_card)
+	return deck_cards
+	
+static func getPointTypeString(point_type: PointType) -> String:
+	match point_type:
+		PointType.NONE: return "None"
+		PointType.LOSE: return "Lose"
+		PointType.WIN: return "Win"
+	return ""
+	

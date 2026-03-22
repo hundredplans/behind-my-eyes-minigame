@@ -13,6 +13,7 @@ func onPreAction() -> void:
 	
 func onPostAction() -> void:
 	if card_ui != null: card_ui.queue_free()
+	Board.onAppendFieldCard(card)
 	onPush([DelayAction.new(PLAY_CARD_DELAY)])
 	
 func getCard() -> Card: return card

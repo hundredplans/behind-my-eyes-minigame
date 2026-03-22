@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://cqa37uan6p5xi" path="res://assets/fonts/spicyrice.ttf" id="1_o0rc1"]
 
 [resource]
+line_spacing = 0.5
 font = ExtResource("1_o0rc1")
 font_size = 3
 outline_size = 1

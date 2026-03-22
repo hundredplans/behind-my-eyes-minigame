@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://kfahob34j16j"]
+
+[ext_resource type="Script" uid="uid://t6exniq8gqb7" path="res://scenes/screens/play_screen/hand_cards_manager/hand_cards_manager.gd" id="1_t2eli"]
+
+[node name="HandCardsManager" type="Node2D" unique_id=2065525916]
+script = ExtResource("1_t2eli")
