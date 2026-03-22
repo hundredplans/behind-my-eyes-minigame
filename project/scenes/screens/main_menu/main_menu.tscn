@@ -43,9 +43,8 @@ layout_mode = 2
 text = "Play"
 label_settings = ExtResource("3_25jul")
 
-[node name="DefaultButton" type="Node" parent="HBoxContainer/PlayButton" unique_id=762925754 node_paths=PackedStringArray("MainTarget")]
+[node name="DefaultButton" type="Node" parent="HBoxContainer/PlayButton" unique_id=762925754]
 script = ExtResource("4_0fmn3")
-MainTarget = NodePath("..")
 autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
@@ -54,9 +53,8 @@ layout_mode = 2
 text = "Settings"
 label_settings = ExtResource("3_25jul")
 
-[node name="DefaultButton" type="Node" parent="HBoxContainer/SettingsButton" unique_id=1673305772 node_paths=PackedStringArray("MainTarget")]
+[node name="DefaultButton" type="Node" parent="HBoxContainer/SettingsButton" unique_id=1673305772]
 script = ExtResource("4_0fmn3")
-MainTarget = NodePath("..")
 autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
@@ -65,9 +63,8 @@ layout_mode = 2
 text = "Exit"
 label_settings = ExtResource("3_25jul")
 
-[node name="DefaultButton" type="Node" parent="HBoxContainer/ExitButton" unique_id=335872276 node_paths=PackedStringArray("MainTarget")]
+[node name="DefaultButton" type="Node" parent="HBoxContainer/ExitButton" unique_id=335872276]
 script = ExtResource("4_0fmn3")
-MainTarget = NodePath("..")
 autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 

@@ -8,7 +8,9 @@ func _init(_card: Card, _card_ui: CardUI) -> void:
 	card = _card
 	card_ui = _card_ui
 	
-func onPreAction() -> void: pass
+func onPreAction() -> void:
+	if card == null: onFailAction()
+	
 func onPostAction() -> void:
 	if card_ui != null: card_ui.queue_free()
 	onPush([DelayAction.new(PLAY_CARD_DELAY)])
