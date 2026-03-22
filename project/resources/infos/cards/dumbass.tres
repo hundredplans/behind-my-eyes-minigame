@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://klt1wmadrgab"]
+
+[ext_resource type="Script" uid="uid://dw6bkfpdh8yms" path="res://scripts/entity_objects/cards/dumbass.gd" id="1_6w4gf"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_151e0"]
+
+[resource]
+script = ExtResource("1_151e0")
+type = 1
+rarity = 1
+gdscript = ExtResource("1_6w4gf")
+name = "Dumbass"
+id = 27
+description = "+2 to winning & -2 from enemy"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

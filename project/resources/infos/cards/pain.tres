@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://btkfjqsyn00ou"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_lxt6m"]
+[ext_resource type="Script" uid="uid://bp44hoo3vt0qm" path="res://scripts/entity_objects/cards/pain.gd" id="1_qlndx"]
+
+[resource]
+script = ExtResource("1_lxt6m")
+type = 3
+rarity = 1
+gdscript = ExtResource("1_qlndx")
+name = "Pain"
+id = 3
+description = "-4 enemy from winning "
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

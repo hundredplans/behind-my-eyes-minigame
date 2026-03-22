@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://dxncyvxgw60cn"]
+
+[ext_resource type="Script" uid="uid://cc3x6lbku551c" path="res://scripts/entity_objects/cards/fuming.gd" id="1_7ikxn"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_43378"]
+
+[resource]
+script = ExtResource("1_43378")
+type = 1
+rarity = 2
+gdscript = ExtResource("1_7ikxn")
+name = "Fuming"
+id = 29
+description = "+6 towards winning"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

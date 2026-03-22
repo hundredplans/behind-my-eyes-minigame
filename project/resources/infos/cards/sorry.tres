@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://5f1h23rw278h"]
+
+[ext_resource type="Script" uid="uid://6sy18ag81aub" path="res://scripts/entity_objects/cards/sorry.gd" id="1_0pxs3"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_h7ada"]
+
+[resource]
+script = ExtResource("1_h7ada")
+type = 5
+rarity = 1
+gdscript = ExtResource("1_0pxs3")
+name = "Sorry"
+id = 15
+description = "+2 towards winning (+6 if played on a sad card) "
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

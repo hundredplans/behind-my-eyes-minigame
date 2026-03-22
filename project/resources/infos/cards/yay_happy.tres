@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://cort8ariv16qb"]
+
+[ext_resource type="Script" uid="uid://b6s30vyexkmi6" path="res://scripts/entity_objects/cards/yay_happy.gd" id="1_jn5e1"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="2_rxdb7"]
+
+[resource]
+script = ExtResource("2_rxdb7")
+type = 4
+rarity = 1
+gdscript = ExtResource("1_jn5e1")
+name = "Yay!"
+id = 7
+description = "+2 to collab for both players"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

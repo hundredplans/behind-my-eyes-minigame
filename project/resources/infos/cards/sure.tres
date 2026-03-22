@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://byqfd7ankyaqt"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_agfcc"]
+[ext_resource type="Script" uid="uid://clmd007b4qjrt" path="res://scripts/entity_objects/cards/sure.gd" id="1_esmr7"]
+
+[resource]
+script = ExtResource("1_agfcc")
+type = 2
+rarity = 1
+gdscript = ExtResource("1_esmr7")
+name = "Sure"
+id = 21
+description = "+4 towards collaboration"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

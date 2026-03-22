@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://bknmbdf0rsfrn"]
+
+[ext_resource type="Script" uid="uid://dyneq6sa2lk4x" path="res://scripts/entity_objects/cards/side_eye.gd" id="1_juauk"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_q48ol"]
+
+[resource]
+script = ExtResource("1_q48ol")
+type = 5
+rarity = 2
+gdscript = ExtResource("1_juauk")
+name = "Side Eye"
+id = 17
+description = "Apply Sincere on opponent 
+"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

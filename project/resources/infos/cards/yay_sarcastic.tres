@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://bfrqne0fwktnm"]
+
+[ext_resource type="Script" uid="uid://dcqyjt5hx24fr" path="res://scripts/entity_objects/cards/yay_sarcastic.gd" id="1_id6fu"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_vv6sl"]
+
+[resource]
+script = ExtResource("1_vv6sl")
+type = 5
+rarity = 1
+gdscript = ExtResource("1_id6fu")
+name = "Yay..."
+id = 13
+description = "+2 (+6 on happy)"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

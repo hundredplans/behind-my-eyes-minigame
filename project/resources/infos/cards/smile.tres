@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://ctg3pt4va2ukd"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_iia6c"]
+[ext_resource type="Script" uid="uid://nfkopvwbbmdy" path="res://scripts/entity_objects/cards/smile.gd" id="1_s4k34"]
+
+[resource]
+script = ExtResource("1_iia6c")
+type = 5
+rarity = 2
+gdscript = ExtResource("1_s4k34")
+name = "Smile"
+id = 10
+description = "Become Confident 
+"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://dyxxvqcqlujx7"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_460bx"]
+[ext_resource type="Script" uid="uid://d2qi3d4n3ihqt" path="res://scripts/entity_objects/cards/helpful.gd" id="1_cgdvc"]
+
+[resource]
+script = ExtResource("1_460bx")
+type = 2
+rarity = 1
+gdscript = ExtResource("1_cgdvc")
+name = "Helpful"
+id = 20
+description = "+4 towards enemy collaboration 
+"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

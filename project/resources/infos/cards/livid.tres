@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://dsibv7gdg8lfg"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_dhl0f"]
+[ext_resource type="Script" uid="uid://yc5ci5ej2v1w" path="res://scripts/entity_objects/cards/livid.gd" id="1_dk573"]
+
+[resource]
+script = ExtResource("1_dhl0f")
+type = 1
+rarity = 2
+gdscript = ExtResource("1_dk573")
+name = "Livid"
+id = 28
+description = "Become Strong"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://dwfgupk430eo7"]
+
+[ext_resource type="Script" uid="uid://efq0gcjxuan5" path="res://scripts/entity_objects/cards/right_sarcastic.gd" id="1_7t1t2"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_r3eft"]
+
+[resource]
+script = ExtResource("1_r3eft")
+type = 5
+rarity = 1
+gdscript = ExtResource("1_7t1t2")
+name = "Right..."
+id = 14
+description = "50% chance to negate opponent’s card effect 
+"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

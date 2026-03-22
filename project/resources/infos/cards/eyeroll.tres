@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://6vnf4dfait1s"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_3dilt"]
+[ext_resource type="Script" uid="uid://cd22iby324ene" path="res://scripts/entity_objects/cards/eyeroll.gd" id="1_os0aj"]
+
+[resource]
+script = ExtResource("1_3dilt")
+type = 5
+rarity = 2
+gdscript = ExtResource("1_os0aj")
+name = "Eyeroll"
+id = 16
+description = "+4 towards winning (+10 if played on a nice card) "
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

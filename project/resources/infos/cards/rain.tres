@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://cammrcyhrfgw"]
+
+[ext_resource type="Script" uid="uid://bp44hoo3vt0qm" path="res://scripts/entity_objects/cards/pain.gd" id="1_r5213"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_rqd6k"]
+
+[resource]
+script = ExtResource("1_rqd6k")
+type = 3
+rarity = 2
+gdscript = ExtResource("1_r5213")
+name = "Pain"
+id = 4
+description = "Become Grumpy"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

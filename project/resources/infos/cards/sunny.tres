@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://cx82xw2oqogw3"]
+
+[ext_resource type="Script" uid="uid://cc1fwt0074a0u" path="res://scripts/entity_objects/cards/sunny.gd" id="1_nyijg"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="2_brxte"]
+
+[resource]
+script = ExtResource("2_brxte")
+type = 4
+rarity = 1
+gdscript = ExtResource("1_nyijg")
+name = "Sunny"
+id = 8
+description = "Collaboration match gives +1 this fight "
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

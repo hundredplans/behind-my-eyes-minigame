@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://cadubqnyaujn5"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_iaeik"]
+[ext_resource type="Script" uid="uid://dbwgxblha34bb" path="res://scripts/entity_objects/cards/excited.gd" id="1_johow"]
+
+[resource]
+script = ExtResource("1_iaeik")
+type = 4
+rarity = 2
+gdscript = ExtResource("1_johow")
+name = "Excited"
+id = 11
+description = "Get +2 on your 3 next cards
+"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

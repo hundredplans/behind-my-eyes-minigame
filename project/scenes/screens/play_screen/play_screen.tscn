@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://b5lbeif85mfb7"]
+
+[ext_resource type="Script" uid="uid://bg5xgpi3gorum" path="res://scenes/screens/play_screen/play_screen.gd" id="1_fefi0"]
+[ext_resource type="PackedScene" uid="uid://d3ueb0vmfsofs" path="res://scenes/screens/play_screen/pause_menu/pause_menu.tscn" id="2_52dmg"]
+[ext_resource type="PackedScene" uid="uid://cgk8mnf70jwns" path="res://scenes/resource_objects/cards/card_ui/card_ui.tscn" id="3_e1r2e"]
+[ext_resource type="Texture2D" uid="uid://ejd4xtfseh6b" path="res://assets/backgrounds/temp_pixel_art_wallpaper.png" id="3_k8syp"]
+[ext_resource type="PackedScene" uid="uid://d23jgtr4epto2" path="res://scenes/screens/play_screen/points_display/points_display.tscn" id="5_eebmm"]
+[ext_resource type="StyleBox" uid="uid://bvyjrrrh0cbej" path="res://resources/ui/styleboxes/flat_border_two.tres" id="6_64bgq"]
+[ext_resource type="StyleBox" uid="uid://buw0l2eayxjtq" path="res://resources/ui/styleboxes/flat_border_four.tres" id="7_iron8"]
+[ext_resource type="Script" uid="uid://0shmw2f5jneh" path="res://scripts/actions/action_manager.gd" id="8_eebmm"]
+[ext_resource type="Script" uid="uid://clnpatejya6yc" path="res://scenes/screens/play_screen/play_card_line_edit/play_card_line_edit.gd" id="8_hisnf"]
+[ext_resource type="PackedScene" uid="uid://difi5yni64h62" path="res://scenes/screens/play_screen/ai_manager/ai_manager.tscn" id="9_i1kik"]
+
+[node name="PlayScreen" type="Control" unique_id=746952712]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fefi0")
+PauseMenuPacked = ExtResource("2_52dmg")
+CardUIPacked = ExtResource("3_e1r2e")
+metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
+
+[node name="BackgroundTxRect" type="TextureRect" parent="." unique_id=136554596]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_k8syp")
+expand_mode = 3
+
+[node name="PointsDisplay" parent="." unique_id=806983574 instance=ExtResource("5_eebmm")]
+unique_name_in_owner = true
+position = Vector2(71, 123)
+
+[node name="CardsMarginContainer" type="MarginContainer" parent="." unique_id=1521661746]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -105.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="CardsContainer" type="HBoxContainer" parent="CardsMarginContainer" unique_id=460358469]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="EnemyPanel" type="PanelContainer" parent="." unique_id=972901351]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.5
+offset_top = 6.0
+offset_right = 126.5
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("7_iron8")
+
+[node name="MarginContainer" type="MarginContainer" parent="EnemyPanel" unique_id=1025685466]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="EnemyPanel/MarginContainer" unique_id=1958436331]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("6_64bgq")
+
+[node name="CardSpot" type="Control" parent="." unique_id=1181247455]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PlayCardLineEdit" type="LineEdit" parent="." unique_id=1874718902]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 468.0
+offset_top = 305.0
+offset_right = 603.5
+offset_bottom = 336.0
+placeholder_text = "Type Card Here"
+alignment = 1
+script = ExtResource("8_hisnf")
+
+[node name="ActionSender" type="Node" parent="." unique_id=398503857]
+unique_name_in_owner = true
+script = ExtResource("8_eebmm")
+metadata/_custom_type_script = "uid://0shmw2f5jneh"
+
+[node name="AIManager" parent="." unique_id=218810832 instance=ExtResource("9_i1kik")]
+unique_name_in_owner = true
+
+[connection signal="text_submitted" from="PlayCardLineEdit" to="." method="onPlayCardLineEditTextSubmitted"]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://dl18fbjj2b4fr"]
+
+[ext_resource type="Script" uid="uid://bm3kkov7f1t01" path="res://scripts/entity_objects/cards/cry.gd" id="1_08apl"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_ayt2d"]
+
+[resource]
+script = ExtResource("1_ayt2d")
+type = 3
+rarity = 1
+gdscript = ExtResource("1_08apl")
+name = "Cry"
+id = 2
+description = "+4 enemy towards winning "
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://bi3usffu3ssdc"]
+
+[ext_resource type="Script" uid="uid://dokgymn16eim7" path="res://scripts/entity_objects/cards/kittens.gd" id="1_j1ffu"]
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_olc82"]
+
+[resource]
+script = ExtResource("1_olc82")
+type = 4
+rarity = 3
+gdscript = ExtResource("1_j1ffu")
+name = "Kittens"
+id = 12
+description = "Replace your cards with random happy cards 
+"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"

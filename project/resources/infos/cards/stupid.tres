@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardInfo" format=3 uid="uid://d1gg848s7yc1f"]
+
+[ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_3wyqk"]
+[ext_resource type="Script" uid="uid://b8ixabcog8yqy" path="res://scripts/entity_objects/cards/stupid.gd" id="1_lws2i"]
+
+[resource]
+script = ExtResource("1_3wyqk")
+type = 1
+rarity = 1
+gdscript = ExtResource("1_lws2i")
+name = "Stupid"
+id = 26
+description = "-4 from enemy winning"
+metadata/_custom_type_script = "uid://c8h0psix8t0o5"
