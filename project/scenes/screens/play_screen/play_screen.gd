@@ -54,6 +54,7 @@ func onCreateHandCard(action: CreateHandCardAction) -> void:
 	var card_ui: CardUI = CardUIPacked.instantiate()
 	HandCardsManager.onHandCardCreated(card_ui)
 	card_ui.setCard(card)
+	card_ui.onCreateHandCard()
 	
 func onPlayCard(action: PlayCardAction) -> void:
 	var card_ui: CardUI = CardUIPacked.instantiate()
@@ -98,7 +99,7 @@ func onPlayCardLineEditTextSubmitted(new_text: String) -> void:
 	new_text = new_text.to_lower()
 	for card_ui: CardUI in getCardUis():
 		if card_ui.getCard().getName().to_lower() != new_text: continue
-		onPush([PlayCardAction.new(card_ui.getCard(), card_ui),
+		onPush([PlayCardAction.new(card_ui.getCard()),
 			TriggerCardEffectsAction.new()])
 		onAppend([DelayAction.new(PLAY_CARD_DELAY), StartTurnAction.new(false)])
 		return

@@ -10,6 +10,6 @@ rarity = 3
 gdscript = ExtResource("1_c4y7q")
 name = "Grin"
 id = 18
-description = "+4 towards winning +cleanse any status effects on you
+description = "+4 towards winning + cleanse any status effects on you
 "
 metadata/_custom_type_script = "uid://c8h0psix8t0o5"

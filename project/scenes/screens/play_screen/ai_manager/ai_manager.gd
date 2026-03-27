@@ -22,7 +22,7 @@ func onStartTurn() -> void:
 	if !hand_cards.is_empty():
 		var hand_card: Card = hand_cards.pick_random()
 		hand_cards.erase(hand_card)
-		actions.append(PlayCardAction.new(hand_card, null))
+		actions.append(PlayCardAction.new(hand_card))
 
 	onPush(actions)
 	onAppend([StartTurnAction.new(true)])

@@ -1,5 +1,5 @@
 extends Card
 
-func onTrigger(enemy_card: Card) -> void:
-	super(enemy_card)
-	
+const POINTS: int = 4
+func onTrigger(_enemy_card: Card) -> void:
+	onPush([UpdatePointsAction.new(players, POINTS)])

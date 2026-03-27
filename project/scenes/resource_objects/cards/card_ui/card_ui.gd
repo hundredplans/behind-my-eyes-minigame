@@ -26,6 +26,9 @@ func setCard(_card: Card) -> void:
 	NameLabel.modulate = card_type_color.lightened(name_lightened)
 	DescriptionLabel.text = card.getInfo().getDescription()
 	
+func onCreateHandCard() -> void: card.remove_hand_card.connect(onRemoveHandCard)
+func onRemoveHandCard() -> void: queue_free()
+	
 func setDisabled(_disabled: bool) -> void: CardUIButton.setDisabled(_disabled)
 func getCard() -> Card: return card
 func setDraggable(draggable: bool) -> void: DraggableNode.setDraggable(draggable)

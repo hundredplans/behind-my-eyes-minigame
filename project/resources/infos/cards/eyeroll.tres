@@ -10,5 +10,5 @@ rarity = 2
 gdscript = ExtResource("1_os0aj")
 name = "Eyeroll"
 id = 16
-description = "+4 towards winning (+10 if played on a nice card) "
+description = "+4 towards winning (+10 if played on a kind card) "
 metadata/_custom_type_script = "uid://c8h0psix8t0o5"

@@ -8,5 +8,5 @@ enum Rarity {NULL, ONE, TWO, THREE}
 func getRarity() -> Rarity: return rarity
 func getType() -> Data.CardType: return type as Data.CardType
 func getGdscript() -> GDScript: return gdscript
-
+func getCard(players: bool) -> Card: return gdscript.new(self, players)
 static func getDefaultPath() -> String: return "res://resources/infos/cards/"

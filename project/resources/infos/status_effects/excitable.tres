@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusEffectInfo" format=3 uid="uid://bylhilaq5a6p0"]
+
+[ext_resource type="Script" uid="uid://gqcxvmobkutd" path="res://scripts/entity_objects/status_effects/excitable.gd" id="1_ufkg7"]
+[ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_vwcxh"]
+
+[resource]
+script = ExtResource("1_vwcxh")
+gdscript = ExtResource("1_ufkg7")
+type = 1
+name = "Excitable"
+id = 2
+description = "Get +2 on your next 3 cards"
+metadata/_custom_type_script = "uid://cybuqbxq4qpum"

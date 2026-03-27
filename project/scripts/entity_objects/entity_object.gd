@@ -6,5 +6,10 @@ func _init(_info: ResourceInfo) -> void:
 	info = _info
 
 var info: ResourceInfo
+func onDestroy() -> void:
+	queue_free()
+	if Actions.process_action.is_connected(onProcessAction):
+		Actions.process_action.disconnect(onProcessAction)
+	
 func getName() -> String: return info.getName()
 @abstract func getInfo() -> ResourceInfo

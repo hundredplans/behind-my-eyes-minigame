@@ -10,7 +10,7 @@ func onPreAction() -> void:
 	if card == null or enemy_card == null: onFailAction()
 
 func onPostAction() -> void:
-	card.onTrigger(enemy_card)
+	card.onTriggerDefault(enemy_card)
 
 func getCard() -> Card: return card
 func getEnemyCard() -> Card: return enemy_card
