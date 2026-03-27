@@ -15,7 +15,7 @@ func setDescription(_description: String) -> void: description = _description
 func onSave() -> void:
 	ResourceSaver.save(self, getPath())
 	
-func getPath() -> String: return "%s%s.tres" % [getDefaultPath(), name.to_lower().replace(" ", "_").replace("\"", "")]
+func getPath() -> String: return resource_path
 	
 static func getDefaultPath() -> String:
 	push_error("Lacking implementation")

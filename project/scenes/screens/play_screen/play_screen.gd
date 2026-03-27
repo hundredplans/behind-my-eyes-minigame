@@ -1,5 +1,6 @@
 extends Screen
 
+@onready var EnemyHandCardsManager: Node2D = %EnemyHandCardsManager
 @onready var PlayCardLineEdit: LineEdit = %PlayCardLineEdit
 @onready var AIManager: Node = %AIManager
 @onready var CardSpot: Control = %CardSpot
@@ -25,6 +26,10 @@ func onProcessAction(action: Action) -> void:
 			onStartTurn()
 		elif action is TriggerCardEffectsAction:
 			onTriggerCardEffects()
+		elif action is CreateHandCardAction and !action.getCard().isPlayers():
+			onCreateEnemyHandCard()
+		elif action is EndGameAction:
+			onEndGame(action)
 			
 func onStartGame() -> void:
 	var actions: Array = [DrawCardAction.new(Data.MIN_HAND_SIZE, true)]
@@ -47,13 +52,16 @@ func onCreateHandCard(action: CreateHandCardAction) -> void:
 	var card: Card = action.getCard()
 	if !card.isPlayers(): return
 	var card_ui: CardUI = CardUIPacked.instantiate()
-	HandCardsManager.onAddCardUI(card_ui)
+	HandCardsManager.onHandCardCreated(card_ui)
 	card_ui.setCard(card)
 	
 func onPlayCard(action: PlayCardAction) -> void:
 	var card_ui: CardUI = CardUIPacked.instantiate()
 	CardSpot.add_child(card_ui)
 	card_ui.setCard(action.getCard())
+	
+	if !action.getCard().isPlayers(): EnemyHandCardsManager.onUpdateAmount()
+	else: HandCardsManager.onHandCardRemoved()
 
 func _ready() -> void:
 	Actions.process_action.connect(onProcessAction)
@@ -97,3 +105,12 @@ func onPlayCardLineEditTextSubmitted(new_text: String) -> void:
 		
 func onTriggerCardEffects() -> void:
 	for card_ui: CardUI in CardSpot.get_children(): card_ui.queue_free()
+	
+func onCreateEnemyHandCard() -> void:
+	EnemyHandCardsManager.onUpdateAmount()
+
+func onEndGame(action: EndGameAction) -> void:
+	match action.getType():
+		EndGameAction.Type.LOSS: load_screen.emit(Screen.Type.LOSS)
+		EndGameAction.Type.WIN: load_screen.emit(Screen.Type.WIN)
+		EndGameAction.Type.COLLAB: load_screen.emit(Screen.Type.COLLAB)

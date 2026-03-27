@@ -18,7 +18,7 @@ signal drag_start
 var card: Card
 func setCard(_card: Card) -> void:
 	card = _card
-	var card_type_color := Data.getColorFromCardType(card.getCardType())
+	var card_type_color: Color = Data.getColorFromCardType(card.getCardType())
 	CardSprite.set_instance_shader_parameter("custom_color", card_type_color)
 	IconSprite.texture = Data.getCardTypeIcon(card.getCardType())
 	IconSprite.modulate = card_type_color

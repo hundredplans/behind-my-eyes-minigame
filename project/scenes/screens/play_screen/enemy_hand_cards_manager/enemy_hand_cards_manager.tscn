@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cc8a8o6s38wxr"]
+
+[ext_resource type="Script" uid="uid://cpsvicy5pkyd8" path="res://scenes/screens/play_screen/enemy_hand_cards_manager/enemy_hand_cards_manager.gd" id="1_efc6g"]
+[ext_resource type="PackedScene" uid="uid://cr4kk87j20r2p" path="res://scenes/screens/play_screen/enemy_hand_cards_manager/enemy_hand_card_sprite.tscn" id="2_ru0wj"]
+
+[node name="EnemyHandCardsManager" type="Node2D" unique_id=477362272]
+script = ExtResource("1_efc6g")
+EnemyHandCardSprite = ExtResource("2_ru0wj")
+
+[node name="CardSprites" type="Node2D" parent="." unique_id=1767971245]
+unique_name_in_owner = true

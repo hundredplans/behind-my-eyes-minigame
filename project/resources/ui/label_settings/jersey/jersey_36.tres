@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://bnbx83cqlooa0"]
+
+[ext_resource type="FontFile" uid="uid://lj2hkch44j84" path="res://assets/fonts/jersey_10.ttf" id="1_thsfg"]
+
+[resource]
+font = ExtResource("1_thsfg")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)

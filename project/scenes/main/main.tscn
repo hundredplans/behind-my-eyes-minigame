@@ -3,8 +3,14 @@
 [ext_resource type="Script" uid="uid://dw7p2gijx26uk" path="res://scenes/main/main.gd" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://bac1cqlkmcjsl" path="res://scenes/screens/main_menu/main_menu.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://b5lbeif85mfb7" path="res://scenes/screens/play_screen/play_screen.tscn" id="3_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://fe6x111qlh08" path="res://scenes/screens/loss_screen/loss_screen.tscn" id="4_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://b0oeqgy6yx1vb" path="res://scenes/screens/win_screen/win_screen.tscn" id="5_hujxm"]
+[ext_resource type="PackedScene" uid="uid://d4iuck8v0b4yp" path="res://scenes/screens/collab_screen/collab_screen.tscn" id="6_yyfjg"]
 
 [node name="Main" type="Node" unique_id=964971304]
 script = ExtResource("1_hyk8p")
 MainMenuPacked = ExtResource("2_iuonh")
 PlayScreenPacked = ExtResource("3_k2fmo")
+LossScreenPacked = ExtResource("4_ow5a4")
+WinScreenPacked = ExtResource("5_hujxm")
+CollabScreenPacked = ExtResource("6_yyfjg")

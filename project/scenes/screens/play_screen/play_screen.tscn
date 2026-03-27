@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://clnpatejya6yc" path="res://scenes/screens/play_screen/play_card_line_edit/play_card_line_edit.gd" id="8_hisnf"]
 [ext_resource type="PackedScene" uid="uid://difi5yni64h62" path="res://scenes/screens/play_screen/ai_manager/ai_manager.tscn" id="9_i1kik"]
 [ext_resource type="PackedScene" uid="uid://kfahob34j16j" path="res://scenes/screens/play_screen/hand_cards_manager/hand_cards_manager.tscn" id="11_tunfc"]
+[ext_resource type="PackedScene" uid="uid://cc8a8o6s38wxr" path="res://scenes/screens/play_screen/enemy_hand_cards_manager/enemy_hand_cards_manager.tscn" id="12_xqjcl"]
 
 [node name="PlayScreen" type="Control" unique_id=746952712]
 layout_mode = 3
@@ -97,6 +98,10 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 z_index = 1
 position = Vector2(302, 321)
+
+[node name="EnemyHandCardsManager" parent="." unique_id=477362272 instance=ExtResource("12_xqjcl")]
+unique_name_in_owner = true
+position = Vector2(320, 63)
 
 [connection signal="text_submitted" from="PlayCardLineEdit" to="." method="onPlayCardLineEditTextSubmitted"]
 [connection signal="text_submitted" from="PlayCardLineEdit" to="PlayCardLineEdit" method="onTextSubmitted"]
