@@ -1,16 +1,18 @@
 [gd_scene format=3 uid="uid://cgk8mnf70jwns"]
 
 [ext_resource type="Script" uid="uid://baugun20xjivg" path="res://scenes/resource_objects/cards/card_ui/card_ui.gd" id="1_kkiuu"]
-[ext_resource type="Shader" uid="uid://cdh0xdk77jyv7" path="res://resources/shaders/color_dark_pixels.gdshader" id="2_3nsd1"]
 [ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_8jp0s"]
-[ext_resource type="Texture2D" uid="uid://ca5wjstxb3k7e" path="res://assets/sprites/play/greyscale_card.png" id="2_agjea"]
 [ext_resource type="FontFile" uid="uid://lj2hkch44j84" path="res://assets/fonts/jersey_10.ttf" id="3_od6dt"]
 [ext_resource type="Texture2D" uid="uid://dqlqveplmtnks" path="res://assets/sprites/play/combat_atlas/icons/sarcastic_icon.tres" id="4_8jp0s"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="6_od6dt"]
 [ext_resource type="Script" uid="uid://b0mi5nhkk1hyr" path="res://scripts/common/draggable_control.gd" id="7_3nsd1"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jp0s"]
-shader = ExtResource("2_3nsd1")
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_od6dt"]
+size_override = Vector2(800, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nsd1"]
+atlas = SubResource("PortableCompressedTexture2D_od6dt")
+region = Rect2(16, 400, 48, 80)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3nsd1"]
 font = ExtResource("3_od6dt")
@@ -43,12 +45,12 @@ mouse_filter = 2
 [node name="CardSprite" type="Sprite2D" parent="Control" unique_id=1666206552]
 unique_name_in_owner = true
 texture_filter = 1
-material = SubResource("ShaderMaterial_8jp0s")
 position = Vector2(24, 40)
-texture = ExtResource("2_agjea")
+texture = SubResource("AtlasTexture_3nsd1")
 
 [node name="IconSprite" type="Sprite2D" parent="Control" unique_id=1239170685]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 position = Vector2(11, 11)
 texture = ExtResource("4_8jp0s")

@@ -9,6 +9,7 @@ signal drag_start
 
 @onready var IconSprite: Sprite2D = %IconSprite
 @onready var CardSprite: Sprite2D = %CardSprite
+@onready var atlas = %CardSprite.texture as AtlasTexture
 @onready var DraggableNode: DraggableControl = %DraggableControl
 @onready var CardUIButton: DefaultButton = %CardUIButton
 @onready var DescriptionLabel: Label = %DescriptionLabel
@@ -18,10 +19,8 @@ signal drag_start
 var card: Card
 func setCard(_card: Card) -> void:
 	card = _card
+	atlas.region = Rect2(16,400,48,80)
 	var card_type_color: Color = Data.getColorFromCardType(card.getCardType())
-	CardSprite.set_instance_shader_parameter("custom_color", card_type_color)
-	IconSprite.texture = Data.getCardTypeIcon(card.getCardType())
-	IconSprite.modulate = card_type_color
 	NameLabel.text = card.getInfo().getName()
 	NameLabel.modulate = card_type_color.lightened(name_lightened)
 	DescriptionLabel.text = card.getInfo().getDescription()
