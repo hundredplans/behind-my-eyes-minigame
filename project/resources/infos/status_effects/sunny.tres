@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StatusEffectInfo" format=3 uid="uid://cjr3vewjdrwto"]
+
+[ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_b6g6x"]
+
+[resource]
+script = ExtResource("1_b6g6x")
+card_type = null
+type = 1
+name = "Sunny"
+id = 9
+description = "Collaboration gives +1 to this player"
+metadata/_custom_type_script = "uid://cybuqbxq4qpum"

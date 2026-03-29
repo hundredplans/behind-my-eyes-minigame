@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatusEffectInfo" format=3 uid="uid://dyvk8wxbtvfsj"]
+
+[ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_imiey"]
+[ext_resource type="Script" uid="uid://cjo5aag66d2ei" path="res://scripts/entity_objects/status_effects/status_effect.gd" id="1_v43pf"]
+
+[resource]
+script = ExtResource("1_imiey")
+gdscript = ExtResource("1_v43pf")
+card_type = 2
+type = 3
+name = "Grumpy"
+id = 6
+description = "Kind cards have no effect on this player
+
+"
+metadata/_custom_type_script = "uid://cybuqbxq4qpum"

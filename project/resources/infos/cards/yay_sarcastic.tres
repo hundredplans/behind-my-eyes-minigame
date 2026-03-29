@@ -10,5 +10,5 @@ rarity = 1
 gdscript = ExtResource("1_id6fu")
 name = "Yay..."
 id = 13
-description = "+2 (+6 on happy)"
+description = "+2 to winning (+6 on happy)"
 metadata/_custom_type_script = "uid://c8h0psix8t0o5"

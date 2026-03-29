@@ -37,6 +37,7 @@ func getDelta() -> int: return delta
 func onUpdateExtraDelta(_extra_delta: int) -> void: extra_delta = _extra_delta
 
 func setCardDefault(_card_default: bool) -> void: card_default = _card_default
-
+	
+func isCollab() -> int: return delta < 0
 func onDouble(): doubled = true
 func onNullify() -> void: nullified = true

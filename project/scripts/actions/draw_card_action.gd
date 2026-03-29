@@ -19,10 +19,10 @@ func onPostAction() -> void:
 	
 	var actions: Array = []
 	for i: int in deck_cards.size():
-		if i == amount: break
-		var deck_card: DeckCard = deck_cards.pop_back()
+		if i == add_amount: break
+		var deck_card: DeckCard = deck_cards[i]
 		var card: Card = deck_card.getCard(players)
-		actions.append(CreateHandCardAction.new(card))
+		actions.append(InsertCardAction.new(card, deck_card, players))
 	onPush(actions)
 	
 func getLogInfo() -> Array:

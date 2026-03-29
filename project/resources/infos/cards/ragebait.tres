@@ -10,6 +10,6 @@ rarity = 3
 gdscript = ExtResource("1_ua6h8")
 name = "Ragebait"
 id = 30
-description = "+6 and apply Irritable on the enemy 
+description = "+6 towards winning and apply Irritable on the enemy 
 "
 metadata/_custom_type_script = "uid://c8h0psix8t0o5"

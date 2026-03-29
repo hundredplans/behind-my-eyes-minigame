@@ -10,6 +10,6 @@ rarity = 1
 gdscript = ExtResource("1_7t1t2")
 name = "Right..."
 id = 14
-description = "50% chance to negate opponent’s card effect 
+description = "50% chance to negate opponent’s next card effect 
 "
 metadata/_custom_type_script = "uid://c8h0psix8t0o5"

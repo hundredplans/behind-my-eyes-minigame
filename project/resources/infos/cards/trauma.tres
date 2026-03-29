@@ -10,6 +10,5 @@ rarity = 1
 gdscript = ExtResource("1_w74qf")
 name = "Trauma"
 id = 1
-description = "Next card you draw is Sad
-"
+description = "Draw a Sad card"
 metadata/_custom_type_script = "uid://c8h0psix8t0o5"
