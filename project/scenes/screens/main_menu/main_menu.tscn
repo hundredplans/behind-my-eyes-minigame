@@ -1,9 +1,75 @@
 [gd_scene format=3 uid="uid://bac1cqlkmcjsl"]
 
 [ext_resource type="Script" uid="uid://dregtbydnyyrb" path="res://scenes/screens/main_menu/main_menu.gd" id="1_wf0jh"]
-[ext_resource type="LabelSettings" uid="uid://d1xk6kfdu767s" path="res://resources/ui/label_settings/roboto/roboto_48.tres" id="2_xf7w6"]
-[ext_resource type="LabelSettings" uid="uid://ndl676j006tj" path="res://resources/ui/label_settings/spicyrice/spicyrice_48.tres" id="3_25jul"]
+[ext_resource type="Texture2D" uid="uid://d3p5cca0l38xb" path="res://assets/sprites/play/combat_atlas/MenuSpritesheet-Sheet.aseprite" id="2_ht6f7"]
+[ext_resource type="Script" uid="uid://gsxra2pkb5g6" path="res://scenes/screens/main_menu/h_slider.gd" id="3_enpo5"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_0fmn3"]
+[ext_resource type="Texture2D" uid="uid://d353nqhf5jch5" path="res://assets/sprites/play/VolumeSlider.aseprite" id="4_xibsw"]
+[ext_resource type="Script" uid="uid://dox7rei1wf0ru" path="res://scenes/screens/main_menu/master_slider.gd" id="5_g4j36"]
+[ext_resource type="Script" uid="uid://bunlojxfg7vvi" path="res://scenes/screens/main_menu/sfx_slider.gd" id="6_g4j36"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vo2r"]
+atlas = ExtResource("2_ht6f7")
+region = Rect2(1120, 0, 240, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
+atlas = ExtResource("2_ht6f7")
+region = Rect2(848, 0, 240, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kug3"]
+atlas = ExtResource("2_ht6f7")
+region = Rect2(576, 0, 240, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0urj7"]
+atlas = ExtResource("2_ht6f7")
+region = Rect2(32, 0, 240, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uamlo"]
+atlas = ExtResource("2_ht6f7")
+region = Rect2(304, 0, 240, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0urj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vo2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h7de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kug3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0urj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uamlo")
+}],
+"loop": false,
+"name": &"CloseSettings",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0urj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uamlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kug3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h7de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vo2r")
+}],
+"loop": false,
+"name": &"OpenSettings",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="Control" unique_id=1448919376]
 layout_mode = 3
@@ -14,60 +80,126 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wf0jh")
 
-[node name="TitleLabel" type="Label" parent="." unique_id=541245142]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -269.5
-offset_top = 9.0
-offset_right = 269.5
-offset_bottom = 66.0
-grow_horizontal = 2
-text = "Behind My Eyes Minigame"
-label_settings = ExtResource("2_xf7w6")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1209570506]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(342, 179)
+sprite_frames = SubResource("SpriteFrames_0urj7")
+animation = &"OpenSettings"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=105565551]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 50
-alignment = 1
+[node name="Button4" type="Button" parent="AnimatedSprite2D" unique_id=1216902504]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -112.0
+offset_top = -99.0
+offset_right = -52.0
+offset_bottom = -81.0
 
-[node name="PlayButton" type="Label" parent="HBoxContainer" unique_id=779165705]
-layout_mode = 2
-text = "Play"
-label_settings = ExtResource("3_25jul")
-
-[node name="DefaultButton" type="Node" parent="HBoxContainer/PlayButton" unique_id=762925754]
+[node name="playButton" type="Node" parent="AnimatedSprite2D/Button4" unique_id=762925754]
 script = ExtResource("4_0fmn3")
 autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
-[node name="SettingsButton" type="Label" parent="HBoxContainer" unique_id=1193231034]
-layout_mode = 2
-text = "Settings"
-label_settings = ExtResource("3_25jul")
+[node name="Button2" type="Button" parent="AnimatedSprite2D" unique_id=966777724]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -114.0
+offset_top = -42.0
+offset_right = -25.236923
+offset_bottom = -19.785
+scale = Vector2(1.070265, 0.9433686)
 
-[node name="DefaultButton" type="Node" parent="HBoxContainer/SettingsButton" unique_id=1673305772]
+[node name="settingsButton" type="Node" parent="AnimatedSprite2D/Button2" unique_id=1673305772]
 script = ExtResource("4_0fmn3")
 autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
-[node name="ExitButton" type="Label" parent="HBoxContainer" unique_id=1996759237]
-layout_mode = 2
-text = "Exit"
-label_settings = ExtResource("3_25jul")
+[node name="Button3" type="Button" parent="AnimatedSprite2D" unique_id=1785281480]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -112.0
+offset_top = 18.0
+offset_right = -50.0
+offset_bottom = 38.0
 
-[node name="DefaultButton" type="Node" parent="HBoxContainer/ExitButton" unique_id=335872276]
+[node name="exitButton" type="Node" parent="AnimatedSprite2D/Button3" unique_id=335872276]
 script = ExtResource("4_0fmn3")
 autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
-[connection signal="pressed" from="HBoxContainer/PlayButton/DefaultButton" to="." method="onPlayPressed"]
-[connection signal="pressed" from="HBoxContainer/SettingsButton/DefaultButton" to="." method="onSettingsPressed"]
-[connection signal="pressed" from="HBoxContainer/ExitButton/DefaultButton" to="." method="onExitPressed"]
+[node name="Button" type="Button" parent="AnimatedSprite2D" unique_id=981707093]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 50.0
+offset_top = -146.0
+offset_right = 81.0
+offset_bottom = -130.0
+
+[node name="backButton" type="Node" parent="AnimatedSprite2D/Button" unique_id=2048079628]
+script = ExtResource("4_0fmn3")
+autoscale = true
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="SFXVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1008535666]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-43, -47)
+texture = ExtResource("4_xibsw")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 0, 87, 22)
+
+[node name="SFXSlider" type="HSlider" parent="AnimatedSprite2D/SFXVolume" unique_id=225507412]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -3.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 21.0
+script = ExtResource("6_g4j36")
+
+[node name="MusicVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1341355911]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-42, -77)
+texture = ExtResource("4_xibsw")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 0, 87, 22)
+
+[node name="MusicSlider" type="HSlider" parent="AnimatedSprite2D/MusicVolume" unique_id=1065542082]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -2.0
+offset_top = 4.0
+offset_right = 86.0
+offset_bottom = 20.0
+script = ExtResource("3_enpo5")
+
+[node name="GeneralVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=489548869]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-40, -107)
+texture = ExtResource("4_xibsw")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 0, 87, 22)
+
+[node name="MasterSlider" type="HSlider" parent="AnimatedSprite2D/GeneralVolume" unique_id=988154286]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -2.0
+offset_top = 4.0
+offset_right = 86.0
+offset_bottom = 20.0
+script = ExtResource("5_g4j36")
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_frame_changed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button4/playButton" to="." method="onPlayPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button2/settingsButton" to="." method="onSettingsPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button3/exitButton" to="." method="onExitPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button/backButton" to="." method="onBackPressed"]
