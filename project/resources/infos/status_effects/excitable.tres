@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://gqcxvmobkutd" path="res://scripts/entity_objects/status_effects/excitable.gd" id="1_ufkg7"]
 [ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_vwcxh"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufkg7"]
+
 [resource]
 script = ExtResource("1_vwcxh")
+icon = SubResource("AtlasTexture_ufkg7")
 gdscript = ExtResource("1_ufkg7")
 type = 1
 name = "Excitable"

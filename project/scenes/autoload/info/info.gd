@@ -1,7 +1,7 @@
 extends Node
 
 var infos: Dictionary # [GDScript, Dictionary[int, String (path)]]
-var info_types: Array[GDScript] = [CardInfo, EnemyInfo]
+var info_types: Array[GDScript] = [CardInfo, EnemyInfo, StatusEffectInfo]
 
 func _ready() -> void:
 	for info_type: GDScript in info_types:

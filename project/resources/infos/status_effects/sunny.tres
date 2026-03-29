@@ -1,9 +1,17 @@
 [gd_resource type="Resource" script_class="StatusEffectInfo" format=3 uid="uid://cjr3vewjdrwto"]
 
 [ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_b6g6x"]
+[ext_resource type="Script" uid="uid://g1uduffiy4fq" path="res://scripts/entity_objects/status_effects/sunny.gd" id="1_s8ktu"]
+[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_8dmb8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wh5kf"]
+atlas = ExtResource("2_8dmb8")
+region = Rect2(535, 175, 50, 18)
 
 [resource]
 script = ExtResource("1_b6g6x")
+icon = SubResource("AtlasTexture_wh5kf")
+gdscript = ExtResource("1_s8ktu")
 card_type = null
 type = 1
 name = "Sunny"

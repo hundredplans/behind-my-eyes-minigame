@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cnrfa4drlq8ms"]
+
+[ext_resource type="Script" uid="uid://d07qle8anetfk" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui_manager.gd" id="1_q73i8"]
+[ext_resource type="PackedScene" uid="uid://dbsw6hf6vm6dh" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui.tscn" id="2_7mugm"]
+
+[node name="StatusEffectUiManager" type="Node2D" unique_id=719229911]
+script = ExtResource("1_q73i8")
+StatusEffectUIPacked = ExtResource("2_7mugm")
+
+[node name="StatusEffectsNode" type="Node2D" parent="." unique_id=1245633502]
+unique_name_in_owner = true

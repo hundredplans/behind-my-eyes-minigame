@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dbsw6hf6vm6dh"]
+
+[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="1_cyuyq"]
+[ext_resource type="Script" uid="uid://uvl8pdigs23w" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui.gd" id="1_nrpuq"]
+[ext_resource type="LabelSettings" uid="uid://bgxfs62pokw5r" path="res://resources/ui/label_settings/jersey/jersey_24.tres" id="2_s3qth"]
+[ext_resource type="Script" uid="uid://b1qtu2bcvm30g" path="res://scripts/common/ui/default_control.gd" id="3_v6pqw"]
+[ext_resource type="Script" uid="uid://s2cxedp1lqal" path="res://scripts/common/ui/default_tooltip.gd" id="4_ndvkd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3qth"]
+atlas = ExtResource("1_cyuyq")
+region = Rect2(535, 207, 50, 18)
+
+[node name="StatusEffectUI" type="Node2D" unique_id=14122200]
+script = ExtResource("1_nrpuq")
+
+[node name="IconSprite" type="Sprite2D" parent="." unique_id=1622574874]
+unique_name_in_owner = true
+texture_filter = 1
+texture = SubResource("AtlasTexture_s3qth")
+
+[node name="DefaultControl" type="Node" parent="IconSprite" unique_id=390327937]
+script = ExtResource("3_v6pqw")
+metadata/_custom_type_script = "uid://b1qtu2bcvm30g"
+
+[node name="DefaultTooltip" type="Node" parent="IconSprite/DefaultControl" unique_id=2066417645]
+script = ExtResource("4_ndvkd")
+metadata/_custom_type_script = "uid://s2cxedp1lqal"
+
+[node name="DisplayAmountLabel" type="Label" parent="." unique_id=808463749]
+unique_name_in_owner = true
+offset_left = 18.0
+offset_top = -5.0
+offset_right = 28.0
+offset_bottom = 22.0
+text = "2"
+label_settings = ExtResource("2_s3qth")

@@ -11,3 +11,5 @@ func getCardType() -> Data.CardType: return card_type
 func getType() -> Type: return type
 func getStatusEffect(character: Character) -> StatusEffect:
 	return gdscript.new(self, character)
+
+static func getDefaultPath() -> String: return "res://resources/infos/status_effects/"

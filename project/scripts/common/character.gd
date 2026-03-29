@@ -39,15 +39,20 @@ func onUpdatePoints(delta: int) -> void:
 	points += delta
 	update_points.emit()
 	
+func isPlayers() -> bool: return players
 func onCreateStatusEffect(action: CreateStatusEffectAction) -> void:
 	status_effects.append(action.getStatusEffect())
 	
 func onRemoveStatusEffect(action: RemoveStatusEffectAction) -> void:
 	var status_effect_info: StatusEffectInfo = action.getInfo()
+	var status_effect: StatusEffect = getStatusEffect(status_effect_info)
+	if status_effect == null: return
+	status_effects.erase(status_effect)
+	
+func getStatusEffect(status_effect_info: StatusEffectInfo) -> StatusEffect:
 	for status_effect: StatusEffect in status_effects:
-		if status_effect.getInfo() == status_effect_info:
-			status_effects.erase(status_effect)
-			return
+		if status_effect.getInfo() == status_effect_info: return status_effect
+	return null
 	
 func getStatusEffects() -> Array[StatusEffect]: return status_effects
 func hasStatusEffect(info: StatusEffectInfo) -> bool:

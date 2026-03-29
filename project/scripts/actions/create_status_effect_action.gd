@@ -11,6 +11,7 @@ func onPreAction() -> void: if character.hasStatusEffect(info): onFailAction(); 
 func onPostAction() -> void:
 	status_effect = info.getStatusEffect(character)
 
+func isPlayers() -> bool: return character.isPlayers()
 func getStatusEffect() -> StatusEffect: return status_effect
 func getCharacter() -> Character: return character
 func getInfo() -> StatusEffectInfo: return info

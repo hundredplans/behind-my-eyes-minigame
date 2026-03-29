@@ -15,7 +15,6 @@ func onProcessAction(action: Action) -> void:
 				onForce([DoublerTriggerStatusEffectAction.new(self, action)])
 			elif isNullifier():
 				onForce([NullifierTriggerStatusEffectAction.new(self, action)])
-		
 
 func onDoubler(action: UpdatePointsAction) -> void: action.onDouble()
 func onNullifier(action: UpdatePointsAction) -> void: action.onNullify()
@@ -25,6 +24,6 @@ func isPlayers() -> bool: return character.isPlayers()
 func isDoubler() -> bool: return info.getType() == StatusEffectInfo.Type.DOUBLER
 func isNullifier() -> bool: return info.getType() == StatusEffectInfo.Type.NULLIFIER
 	
-func onUpdateDisplayAmount() -> void: update_display_amount.emit(getDisplayAmount())
+func onUpdateDisplayAmount() -> void: update_display_amount.emit()
 func getDisplayAmount() -> int: return -1
 func getInfo() -> StatusEffectInfo: return info
