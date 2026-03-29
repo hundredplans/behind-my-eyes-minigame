@@ -86,8 +86,6 @@ texture_filter = 1
 position = Vector2(342, 179)
 sprite_frames = SubResource("SpriteFrames_0urj7")
 animation = &"OpenSettings"
-frame = 1
-frame_progress = 0.070074454
 
 [node name="Button4" type="Button" parent="AnimatedSprite2D" unique_id=1216902504]
 unique_name_in_owner = true
@@ -149,35 +147,37 @@ metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 [node name="SFXVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1008535666]
 unique_name_in_owner = true
 visible = false
-position = Vector2(1, -38)
+position = Vector2(-43, -47)
 texture = ExtResource("4_xibsw")
+centered = false
 region_enabled = true
 region_rect = Rect2(3, 0, 87, 22)
 
 [node name="SFXSlider" type="HSlider" parent="AnimatedSprite2D/SFXVolume" unique_id=225507412]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -43.0
-offset_top = -6.0
-offset_right = 45.0
-offset_bottom = 10.0
+offset_left = -3.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 21.0
 script = ExtResource("6_g4j36")
 
 [node name="MusicVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1341355911]
 unique_name_in_owner = true
 visible = false
-position = Vector2(0, -66)
+position = Vector2(-42, -77)
 texture = ExtResource("4_xibsw")
+centered = false
 region_enabled = true
 region_rect = Rect2(3, 0, 87, 22)
 
 [node name="MusicSlider" type="HSlider" parent="AnimatedSprite2D/MusicVolume" unique_id=1065542082]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -43.0
-offset_top = -5.0
-offset_right = 45.0
-offset_bottom = 11.0
+offset_left = -2.0
+offset_top = 4.0
+offset_right = 86.0
+offset_bottom = 20.0
 script = ExtResource("3_enpo5")
 
 [node name="GeneralVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=489548869]
@@ -191,7 +191,7 @@ region_rect = Rect2(3, 0, 87, 22)
 
 [node name="MasterSlider" type="HSlider" parent="AnimatedSprite2D/GeneralVolume" unique_id=988154286]
 modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0.6431373)
+self_modulate = Color(1, 1, 1, 0)
 offset_left = -2.0
 offset_top = 4.0
 offset_right = 86.0
