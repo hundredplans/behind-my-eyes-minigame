@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://c1j2thwhsbntc"]
+
+[ext_resource type="Script" uid="uid://bikk1hi3ihy3h" path="res://scenes/common/tooltip_ui/tooltip_ui.gd" id="1_1nv7e"]
+[ext_resource type="StyleBox" uid="uid://cqn4t2d3k4doq" path="res://resources/ui/styleboxes/flat_border_zero.tres" id="1_vllac"]
+[ext_resource type="LabelSettings" uid="uid://bgxfs62pokw5r" path="res://resources/ui/label_settings/jersey/jersey_24.tres" id="2_lu0cb"]
+[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_ruh6l"]
+[ext_resource type="LabelSettings" uid="uid://b2eybhh4uqlim" path="res://resources/ui/label_settings/spicyrice/spicyrice_12.tres" id="5_gb3h7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu0cb"]
+atlas = ExtResource("2_ruh6l")
+region = Rect2(407, 207, 50, 18)
+
+[node name="TooltipUI" type="Node2D" unique_id=1810457796]
+top_level = true
+z_index = 100
+script = ExtResource("1_1nv7e")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1391992024]
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("1_vllac")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1652622250]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer" unique_id=2016780961]
+self_modulate = Color(1, 1, 0.6509804, 1)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_vllac")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer" unique_id=326443636]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer" unique_id=1249125667]
+self_modulate = Color(0.8939891, 0.8876302, 0, 1)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_vllac")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer" unique_id=1222618875]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1689093043]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1750950968]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sunny"
+label_settings = ExtResource("2_lu0cb")
+
+[node name="IconTxRect" type="TextureRect" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1623213913]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 10
+texture = SubResource("AtlasTexture_lu0cb")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer" unique_id=1974641945]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer" unique_id=1820075666]
+layout_mode = 2
+size_flags_vertical = 1
+text = "An explanation of how this guy works exactly is right here!"
+label_settings = ExtResource("5_gb3h7")
+autowrap_mode = 3

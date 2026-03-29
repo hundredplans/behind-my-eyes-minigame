@@ -21,6 +21,8 @@ const POINTS_TO_COLLABORATE: int = 25
 @export var happy_icon: Texture2D
 @export var sarcastic_icon: Texture2D
 
+@export var TooltipUIPacked: PackedScene
+
 func getColorFromCardType(card_type: CardType) -> Color:
 	match card_type:
 		CardType.ANGRY: return Color("e83b3b")

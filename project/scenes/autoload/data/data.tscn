@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dsrgx81alyj7w" path="res://assets/sprites/play/combat_atlas/icons/sad_icon.tres" id="5_rkbl5"]
 [ext_resource type="Texture2D" uid="uid://bergah6chqx6s" path="res://assets/sprites/play/combat_atlas/icons/happy_icon.tres" id="6_83ul2"]
 [ext_resource type="Texture2D" uid="uid://dqlqveplmtnks" path="res://assets/sprites/play/combat_atlas/icons/sarcastic_icon.tres" id="7_h1qe6"]
+[ext_resource type="PackedScene" uid="uid://c1j2thwhsbntc" path="res://scenes/common/tooltip_ui/tooltip_ui.tscn" id="8_cxnyl"]
 
 [sub_resource type="Resource" id="Resource_05rno"]
 script = ExtResource("2_1saa4")
@@ -42,3 +43,4 @@ kind_icon = ExtResource("4_cxnyl")
 sad_icon = ExtResource("5_rkbl5")
 happy_icon = ExtResource("6_83ul2")
 sarcastic_icon = ExtResource("7_h1qe6")
+TooltipUIPacked = ExtResource("8_cxnyl")
