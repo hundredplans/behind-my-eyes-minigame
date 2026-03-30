@@ -5,6 +5,7 @@ enum Type {NULL, OTHER, DOUBLER, NULLIFIER}
 @export var gdscript: GDScript
 @export var card_type: Data.CardType
 @export var type: Type
+func getTooltipIcon() -> AtlasTexture: return icon
 func getIcon() -> AtlasTexture: return icon
 func getGdscript() -> GDScript: return gdscript
 func getCardType() -> Data.CardType: return card_type

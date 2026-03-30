@@ -13,15 +13,10 @@ const LOSS_POINT_MOVE_MULT: int = 2
 
 const POINTS_TO_WIN: int = 25
 const POINTS_TO_COLLABORATE: int = 25
+const LOCKED_CARD_TURNS: int = 2
 
 @export var player_deck: Array[DeckCard]
 @export var enemy_deck: Array[DeckCard]
-
-@export var angry_icon: Texture2D
-@export var kind_icon: Texture2D
-@export var sad_icon: Texture2D
-@export var happy_icon: Texture2D
-@export var sarcastic_icon: Texture2D 
 
 func getXFromCardType(card_type: CardType) -> int:
 	match card_type:
@@ -49,14 +44,14 @@ func getColorFromCardType(card_type: CardType) -> Color:
 		CardType.SARCASTIC: return Color("831c5d")
 	return Color.WHITE
 	
-func getCardTypeIcon(type: Data.CardType) -> Texture2D:
-	match type:
-		CardType.ANGRY: return angry_icon
-		CardType.KIND: return kind_icon
-		CardType.SAD: return sad_icon
-		CardType.HAPPY: return happy_icon
-		CardType.SARCASTIC: return sarcastic_icon
-	return null
+#func getCardTypeIcon(type: Data.CardType) -> Texture2D:
+	#match type:
+		#CardType.ANGRY: return angry_icon
+		#CardType.KIND: return kind_icon
+		#CardType.SAD: return sad_icon
+		#CardType.HAPPY: return happy_icon
+		#CardType.SARCASTIC: return sarcastic_icon
+	#return null
 
 func getPlayerStartingDeck() -> Array[DeckCard]:
 	return getRandomDeck()

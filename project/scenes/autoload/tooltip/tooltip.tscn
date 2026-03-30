@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://belpj8r1uveb4"]
+
+[ext_resource type="Script" uid="uid://c5p3rbx60yhub" path="res://scenes/autoload/tooltip/tooltip.gd" id="1_mgp6l"]
+[ext_resource type="PackedScene" uid="uid://c1j2thwhsbntc" path="res://scenes/common/tooltip_ui/tooltip_ui.tscn" id="2_3cc3i"]
+
+[node name="Tooltip" type="Node" unique_id=340595680]
+script = ExtResource("1_mgp6l")
+
+[node name="TooltipUI" parent="." unique_id=1810457796 instance=ExtResource("2_3cc3i")]
+unique_name_in_owner = true
+
+[node name="TooltipTimer" type="Timer" parent="." unique_id=755736744]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="TooltipTimer" to="." method="onTooltipTimerTimeout"]

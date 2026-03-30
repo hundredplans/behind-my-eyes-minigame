@@ -4,6 +4,7 @@ signal update_points
 var points: int # 0 = collab, 50 = win
 var deck_cards: Array[DeckCard]
 var hand_cards: Array[Card]
+var locked_cards: Array[LockedCard]
 var status_effects: Array[StatusEffect]
 var players: bool
 
@@ -25,6 +26,8 @@ func onProcessAction(action: Action) -> void:
 			onCreateStatusEffect(action)
 		elif action is RemoveStatusEffectAction and action.getCharacter() == self:
 			onRemoveStatusEffect(action)
+		elif action is StartTurnAction and action.isPlayers() == players:
+			onStartTurn()
 			
 func isWin() -> bool: return points == Data.POINTS_TO_COLLABORATE + Data.POINTS_TO_WIN
 func isCollab() -> bool: return points == 0
@@ -57,6 +60,18 @@ func getStatusEffect(status_effect_info: StatusEffectInfo) -> StatusEffect:
 func getStatusEffects() -> Array[StatusEffect]: return status_effects
 func hasStatusEffect(info: StatusEffectInfo) -> bool:
 	return status_effects.any(func(x: StatusEffect): return x.getInfo() == info)
+	
+func onCreateLockedCard(locked_card: LockedCard) -> void:
+	locked_cards.append(locked_card)
+	
+func onStartTurn() -> void:
+	onDeincrementLockedCards()
+	
+func onDeincrementLockedCards() -> void:
+	for locked_card: LockedCard in locked_cards.duplicate():
+		locked_card.onDeincrement()
+		if locked_card.isUnlocked():
+			locked_cards.erase(locked_card)
 	
 func getName() -> String: return ""
 func getPoints() -> int: return points

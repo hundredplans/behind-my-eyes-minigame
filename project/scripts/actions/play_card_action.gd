@@ -11,7 +11,7 @@ func onPreAction() -> void:
 	
 func onPostAction() -> void:
 	Board.onAppendFieldCard(card)
-	onPush([RemoveHandCardAction.new(card), DelayAction.new(PLAY_CARD_DELAY)])
+	onPush([RemoveHandCardAction.new(card), CreateLockedCardAction.new(card), DelayAction.new(PLAY_CARD_DELAY)])
 	
 func getCard() -> Card: return card
 func getLogInfo() -> Array:

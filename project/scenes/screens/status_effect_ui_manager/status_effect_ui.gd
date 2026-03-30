@@ -2,9 +2,11 @@ extends Node2D
 
 @onready var IconSprite: Sprite2D = %IconSprite
 @onready var DisplayAmountLabel: Label = %DisplayAmountLabel
+@onready var DefaultTooltipNode: DefaultTooltip = %DefaultTooltipNode
 var status_effect: StatusEffect
 func setStatusEffect(_status_effect: StatusEffect) -> void:
 	status_effect = _status_effect
+	DefaultTooltipNode.onUpdateEntityObject(status_effect)
 	IconSprite.texture = status_effect.getInfo().getIcon()
 	status_effect.update_display_amount.connect(onUpdateDisplayAmount)
 	onUpdateDisplayAmount()
