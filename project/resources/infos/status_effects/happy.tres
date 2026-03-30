@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="StatusEffectInfo" format=3 uid="uid://bef8rasp44m4o"]
 
 [ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_2xwgx"]
-[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="1_4ccfp"]
 [ext_resource type="Script" uid="uid://cjo5aag66d2ei" path="res://scripts/entity_objects/status_effects/status_effect.gd" id="1_sijs1"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_sijs1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sijs1"]
-atlas = ExtResource("1_4ccfp")
+atlas = ExtResource("2_sijs1")
 region = Rect2(407, 271, 50, 18)
 
 [resource]

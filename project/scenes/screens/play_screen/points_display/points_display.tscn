@@ -2,21 +2,27 @@
 
 [ext_resource type="Script" uid="uid://g3u7xo5ujt7o" path="res://scenes/screens/play_screen/points_display/points_display.gd" id="1_2renx"]
 [ext_resource type="Texture2D" uid="uid://qlwlpbawrek6" path="res://assets/sprites/play/points_display.png" id="1_f7t0e"]
-[ext_resource type="Texture2D" uid="uid://c1eyacj4rvs1s" path="res://assets/sprites/play/player_icon.png" id="2_y145m"]
-[ext_resource type="Texture2D" uid="uid://bnyhrjx1ks5ko" path="res://assets/sprites/play/enemy_icon.png" id="3_3hlbe"]
-[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="5_2renx"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="3_y145m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hlbe"]
+atlas = ExtResource("3_y145m")
+region = Rect2(320, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2renx"]
-atlas = ExtResource("5_2renx")
-region = Rect2(321, 208, 14, 15)
+atlas = ExtResource("3_y145m")
+region = Rect2(352, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2gpq"]
+atlas = ExtResource("3_y145m")
+region = Rect2(352, 208, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vv14"]
-atlas = ExtResource("5_2renx")
-region = Rect2(321, 177, 14, 15)
+atlas = ExtResource("3_y145m")
+region = Rect2(352, 176, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3vil"]
-atlas = ExtResource("5_2renx")
-region = Rect2(308, 240, 23, 15)
+atlas = ExtResource("3_y145m")
+region = Rect2(336, 240, 32, 16)
 
 [sub_resource type="Curve2D" id="Curve2D_3hlbe"]
 _data = {
@@ -42,17 +48,17 @@ offset = Vector2(10, 0)
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1519299861]
 unique_name_in_owner = true
 texture_filter = 1
-texture = ExtResource("2_y145m")
+texture = SubResource("AtlasTexture_3hlbe")
 
 [node name="EnemySprite" type="Sprite2D" parent="." unique_id=284028358]
 unique_name_in_owner = true
 texture_filter = 1
-texture = ExtResource("3_3hlbe")
+texture = SubResource("AtlasTexture_2renx")
 
 [node name="WinSprite" type="Sprite2D" parent="." unique_id=1182414784]
 texture_filter = 1
 position = Vector2(-48, -110)
-texture = SubResource("AtlasTexture_2renx")
+texture = SubResource("AtlasTexture_e2gpq")
 
 [node name="LossSprite" type="Sprite2D" parent="." unique_id=1539092429]
 texture_filter = 1

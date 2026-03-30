@@ -11,11 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://kfahob34j16j" path="res://scenes/screens/play_screen/hand_cards_manager/hand_cards_manager.tscn" id="11_tunfc"]
 [ext_resource type="FontFile" uid="uid://lj2hkch44j84" path="res://assets/fonts/jersey_10.ttf" id="12_6keno"]
 [ext_resource type="PackedScene" uid="uid://cc8a8o6s38wxr" path="res://scenes/screens/play_screen/enemy_hand_cards_manager/enemy_hand_cards_manager.tscn" id="12_xqjcl"]
-[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="12_y8dr8"]
 [ext_resource type="PackedScene" uid="uid://cnrfa4drlq8ms" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui_manager.tscn" id="15_v3hmr"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1dmvx"]
+load_path = "res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8dr8"]
-atlas = ExtResource("12_y8dr8")
+atlas = SubResource("CompressedTexture2D_1dmvx")
 region = Rect2(639, 147, 145, 77)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6keno"]

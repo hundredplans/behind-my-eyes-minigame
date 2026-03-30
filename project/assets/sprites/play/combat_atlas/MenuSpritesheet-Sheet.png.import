@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cea33pwj2g7dt"
-path="res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
+uid="uid://cevd4fmny51b4"
+path="res://.godot/imported/MenuSpritesheet-Sheet.png-888b88de01d15e959f82f2261fb23ef7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/play/combat_atlas/combat_atlas.png"
-dest_files=["res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"]
+source_file="res://assets/sprites/play/combat_atlas/MenuSpritesheet-Sheet.png"
+dest_files=["res://.godot/imported/MenuSpritesheet-Sheet.png-888b88de01d15e959f82f2261fb23ef7.ctex"]
 
 [params]
 

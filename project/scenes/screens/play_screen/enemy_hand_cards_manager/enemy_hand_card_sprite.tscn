@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cr4kk87j20r2p"]
 
-[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="1_vepxk"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="1_vepxk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7m12"]
 atlas = ExtResource("1_vepxk")
-region = Rect2(336, 304, 48, 80)
+region = Rect2(336, 400, 48, 80)
 
 [node name="EnemyHandCardSprite" type="Sprite2D" unique_id=499159935]
+texture_filter = 1
 texture = SubResource("AtlasTexture_d7m12")

@@ -2,6 +2,8 @@ extends Node
 
 enum PointType {NULL, NONE, LOSE, WIN, COLLAB}
 enum CardType {NULL, ANGRY, KIND, SAD, HAPPY, SARCASTIC}
+enum Rarity {NULL, ONE, TWO, THREE}
+
 const MIN_HAND_SIZE: int = 3
 const MAX_HAND_SIZE: int = 6
 const MAX_DECK_SIZE: int = 10
@@ -19,8 +21,25 @@ const POINTS_TO_COLLABORATE: int = 25
 @export var kind_icon: Texture2D
 @export var sad_icon: Texture2D
 @export var happy_icon: Texture2D
-@export var sarcastic_icon: Texture2D
+@export var sarcastic_icon: Texture2D 
 
+func getXFromCardType(card_type: CardType) -> int:
+	match card_type:
+		CardType.ANGRY: return 208
+		CardType.KIND: return 16
+		CardType.SAD: return 80
+		CardType.HAPPY: return 144
+		CardType.SARCASTIC: return 272
+	return 0
+	
+func getYFromCardRarity(rarity) -> int:
+	match rarity:
+		Rarity.NULL: return 0
+		Rarity.ONE: return 208
+		Rarity.TWO: return 304
+		Rarity.THREE:return 400
+	return 0
+	
 func getColorFromCardType(card_type: CardType) -> Color:
 	match card_type:
 		CardType.ANGRY: return Color("e83b3b")

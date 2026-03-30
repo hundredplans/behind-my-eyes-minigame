@@ -9,6 +9,7 @@
 script = ExtResource("1_vwcxh")
 icon = SubResource("AtlasTexture_ufkg7")
 gdscript = ExtResource("1_ufkg7")
+card_type = null
 type = 1
 name = "Excitable"
 id = 2

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjo5aag66d2ei" path="res://scripts/entity_objects/status_effects/status_effect.gd" id="1_3nh2o"]
 [ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_u3bqh"]
-[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_v3wnk"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_v3wnk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ak223"]
 atlas = ExtResource("2_v3wnk")

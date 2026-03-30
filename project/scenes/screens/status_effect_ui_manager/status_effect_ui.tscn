@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dbsw6hf6vm6dh"]
 
-[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="1_cyuyq"]
 [ext_resource type="Script" uid="uid://uvl8pdigs23w" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui.gd" id="1_nrpuq"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_ndvkd"]
 [ext_resource type="LabelSettings" uid="uid://bgxfs62pokw5r" path="res://resources/ui/label_settings/jersey/jersey_24.tres" id="2_s3qth"]
 [ext_resource type="Script" uid="uid://b1qtu2bcvm30g" path="res://scripts/common/ui/default_control.gd" id="3_v6pqw"]
 [ext_resource type="Script" uid="uid://s2cxedp1lqal" path="res://scripts/common/ui/default_tooltip.gd" id="4_ndvkd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3qth"]
-atlas = ExtResource("1_cyuyq")
+atlas = ExtResource("2_ndvkd")
 region = Rect2(535, 207, 50, 18)
 
 [node name="StatusEffectUI" type="Node2D" unique_id=14122200]

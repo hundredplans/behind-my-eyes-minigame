@@ -7,7 +7,6 @@ signal pressed
 signal drag_finished
 signal drag_start
 
-@onready var IconSprite: Sprite2D = %IconSprite
 @onready var CardSprite: Sprite2D = %CardSprite
 @onready var atlas = %CardSprite.texture as AtlasTexture
 @onready var DraggableNode: DraggableControl = %DraggableControl
@@ -19,10 +18,10 @@ signal drag_start
 var card: Card
 func setCard(_card: Card) -> void:
 	card = _card
-	atlas.region = Rect2(16,400,48,80)
-	var card_type_color: Color = Data.getColorFromCardType(card.getCardType())
+	var region_x: int = Data.getXFromCardType(card.getCardType())
+	var region_y: int = Data.getYFromCardRarity(card.getInfo().getRarity())
+	atlas.region = Rect2(region_x,region_y,48,80)
 	NameLabel.text = card.getInfo().getName()
-	NameLabel.modulate = card_type_color.lightened(name_lightened)
 	DescriptionLabel.text = card.getInfo().getDescription()
 	
 func onCreateHandCard() -> void: card.remove_hand_card.connect(onRemoveHandCard)

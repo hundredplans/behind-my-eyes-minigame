@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_b6g6x"]
 [ext_resource type="Script" uid="uid://g1uduffiy4fq" path="res://scripts/entity_objects/status_effects/sunny.gd" id="1_s8ktu"]
-[ext_resource type="Texture2D" uid="uid://cdltyr8lir7bh" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_8dmb8"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_s8ktu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wh5kf"]
-atlas = ExtResource("2_8dmb8")
+atlas = ExtResource("2_s8ktu")
 region = Rect2(535, 175, 50, 18)
 
 [resource]
