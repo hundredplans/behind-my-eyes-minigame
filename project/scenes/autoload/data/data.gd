@@ -11,6 +11,7 @@ const LOSS_POINT_MOVE_MULT: int = 2
 
 const POINTS_TO_WIN: int = 25
 const POINTS_TO_COLLABORATE: int = 25
+const LOCKED_CARD_TURNS: int = 2
 
 @export var player_deck: Array[DeckCard]
 @export var enemy_deck: Array[DeckCard]
@@ -20,8 +21,6 @@ const POINTS_TO_COLLABORATE: int = 25
 @export var sad_icon: Texture2D
 @export var happy_icon: Texture2D
 @export var sarcastic_icon: Texture2D
-
-@export var TooltipUIPacked: PackedScene
 
 func getColorFromCardType(card_type: CardType) -> Color:
 	match card_type:

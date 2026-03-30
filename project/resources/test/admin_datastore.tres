@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_axuri")
+dev_mode = true
 metadata/_custom_type_script = "uid://ftup66myrd8g"
