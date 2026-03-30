@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cevd4fmny51b4" path="res://assets/sprites/play/combat_atlas/MenuSpritesheet-Sheet.png" id="2_ht6f7"]
 [ext_resource type="Script" uid="uid://gsxra2pkb5g6" path="res://scenes/screens/main_menu/h_slider.gd" id="3_enpo5"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_0fmn3"]
-[ext_resource type="Texture2D" uid="uid://d353nqhf5jch5" path="res://assets/sprites/play/VolumeSlider.aseprite" id="4_xibsw"]
+[ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_0urj7"]
 [ext_resource type="Script" uid="uid://dox7rei1wf0ru" path="res://scenes/screens/main_menu/master_slider.gd" id="5_g4j36"]
 [ext_resource type="Script" uid="uid://bunlojxfg7vvi" path="res://scenes/screens/main_menu/sfx_slider.gd" id="6_g4j36"]
 
@@ -168,7 +168,7 @@ metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 unique_name_in_owner = true
 visible = false
 position = Vector2(-43, -47)
-texture = ExtResource("4_xibsw")
+texture = ExtResource("4_0urj7")
 centered = false
 region_enabled = true
 region_rect = Rect2(3, 0, 87, 22)
@@ -186,7 +186,7 @@ script = ExtResource("6_g4j36")
 unique_name_in_owner = true
 visible = false
 position = Vector2(-42, -77)
-texture = ExtResource("4_xibsw")
+texture = ExtResource("4_0urj7")
 centered = false
 region_enabled = true
 region_rect = Rect2(3, 0, 87, 22)
@@ -204,7 +204,7 @@ script = ExtResource("3_enpo5")
 unique_name_in_owner = true
 visible = false
 position = Vector2(-40, -107)
-texture = ExtResource("4_xibsw")
+texture = ExtResource("4_0urj7")
 centered = false
 region_enabled = true
 region_rect = Rect2(3, 0, 87, 22)

@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://d23jgtr4epto2"]
 
 [ext_resource type="Script" uid="uid://g3u7xo5ujt7o" path="res://scenes/screens/play_screen/points_display/points_display.gd" id="1_2renx"]
-[ext_resource type="Texture2D" uid="uid://qlwlpbawrek6" path="res://assets/sprites/play/points_display.png" id="1_f7t0e"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="3_y145m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0scbe"]
+atlas = ExtResource("3_y145m")
+region = Rect2(16, 80, 240, 112)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hlbe"]
 atlas = ExtResource("3_y145m")
@@ -42,7 +45,7 @@ script = ExtResource("1_2renx")
 [node name="PointsDisplaySprite" type="Sprite2D" parent="." unique_id=2014523871]
 texture_filter = 1
 rotation = 1.5707964
-texture = ExtResource("1_f7t0e")
+texture = SubResource("AtlasTexture_0scbe")
 offset = Vector2(10, 0)
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1519299861]

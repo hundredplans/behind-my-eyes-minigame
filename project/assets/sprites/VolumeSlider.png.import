@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca5wjstxb3k7e"
-path="res://.godot/imported/greyscale_card.png-f10f74305d55942cf6b0d81aa7013775.ctex"
+uid="uid://cqnrg7u4b22c0"
+path="res://.godot/imported/VolumeSlider.png-a2209eeb158e33d093f98559e56472a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/play/greyscale_card.png"
-dest_files=["res://.godot/imported/greyscale_card.png-f10f74305d55942cf6b0d81aa7013775.ctex"]
+source_file="res://assets/sprites/VolumeSlider.png"
+dest_files=["res://.godot/imported/VolumeSlider.png-a2209eeb158e33d093f98559e56472a8.ctex"]
 
 [params]
 
