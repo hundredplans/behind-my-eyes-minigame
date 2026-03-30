@@ -1,16 +1,14 @@
 [gd_scene format=3 uid="uid://cgk8mnf70jwns"]
 
 [ext_resource type="Script" uid="uid://baugun20xjivg" path="res://scenes/resource_objects/cards/card_ui/card_ui.gd" id="1_kkiuu"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_agjea"]
 [ext_resource type="FontFile" uid="uid://lj2hkch44j84" path="res://assets/fonts/jersey_10.ttf" id="3_od6dt"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="6_od6dt"]
 [ext_resource type="Script" uid="uid://b0mi5nhkk1hyr" path="res://scripts/common/draggable_control.gd" id="7_3nsd1"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_od6dt"]
-load_path = "res://.godot/imported/combatSprites-Sheet.png-f62fc6e8ee7bfed3ba95de8e5636eee2.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3nsd1"]
 resource_local_to_scene = true
-atlas = SubResource("CompressedTexture2D_od6dt")
+atlas = ExtResource("2_agjea")
 region = Rect2(16, 208, 48, 80)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3nsd1"]
