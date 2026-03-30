@@ -16,6 +16,10 @@ func setInfo(_deck_cards: Array, _players: bool) -> void:
 	onUpdatePoints((Data.POINTS_TO_WIN + Data.POINTS_TO_COLLABORATE) / 2)
 	onConnectToActions()
 	
+func onAddDeckCard(deck_card: DeckCard) -> void:
+	var index: int = randi_range(0, abs(deck_cards.size() - 1))
+	deck_cards.insert(index, deck_card)
+	
 func onProcessAction(action: Action) -> void:
 	if action.isPost():
 		if action is CreateHandCardAction and action.getCard().isPlayers() == players:
@@ -68,10 +72,19 @@ func onStartTurn() -> void:
 	onDeincrementLockedCards()
 	
 func onDeincrementLockedCards() -> void:
+	var unlocked_cards: Array = [] # [LockedCard]
 	for locked_card: LockedCard in locked_cards.duplicate():
-		locked_card.onDeincrement()
+		locked_card.onDeincrementTurns()
 		if locked_card.isUnlocked():
-			locked_cards.erase(locked_card)
+			unlocked_cards.append(locked_card)
+			
+	if unlocked_cards.is_empty(): return
+	var actions: Array = unlocked_cards.map(func(x: LockedCard): return RemoveLockedCardAction.new(x, isPlayers()))
+	onPush(actions)
+	
+func hasLockedCard(locked_card: LockedCard) -> bool: return locked_cards.any(func(x: LockedCard): return x == locked_card)
+func onRemoveLockedCard(locked_card: LockedCard) -> void:
+	locked_cards.erase(locked_card)
 	
 func getName() -> String: return ""
 func getPoints() -> int: return points

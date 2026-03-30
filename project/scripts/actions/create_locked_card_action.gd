@@ -14,6 +14,5 @@ func onPostAction() -> void:
 	
 	var character: Character = Board.getCharacter(card.isPlayers())
 	character.onCreateLockedCard(locked_card)
-	onPush([DestroyEntityObjectAction.new(card)])
 	
 func getLogInfo() -> Array: return ["Card: %s" % card.getName()]
