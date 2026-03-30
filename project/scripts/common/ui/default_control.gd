@@ -7,6 +7,7 @@ signal update_disabled
 @export var autoscale: bool = false
 @export var default_scale := Vector2.ONE
 @export var base_color: Color = Color.WHITE
+@export var base_mouse_filter: Control.MouseFilter
 
 const SCALE_TIME: float = 0.25
 const SCALE_MAX: float = 1.1
@@ -22,7 +23,7 @@ var ScaleTween: Tween
 func _ready() -> void:
 	#if mouse_self:
 	mouse_nodes.append(get_parent())
-	setMouseFilter(Control.MOUSE_FILTER_STOP)
+	setMouseFilter(base_mouse_filter)
 		
 	for mouse_node: Control in mouse_nodes:
 		mouse_node.mouse_exited.connect(onMouseInUI.bind(false))

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_agjea"]
 [ext_resource type="FontFile" uid="uid://lj2hkch44j84" path="res://assets/fonts/jersey_10.ttf" id="3_od6dt"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="6_od6dt"]
-[ext_resource type="Script" uid="uid://b0mi5nhkk1hyr" path="res://scripts/common/draggable_control.gd" id="7_3nsd1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3nsd1"]
 resource_local_to_scene = true
@@ -75,12 +74,8 @@ autowrap_mode = 3
 [node name="CardUIButton" type="Node" parent="Control" unique_id=698778259]
 unique_name_in_owner = true
 script = ExtResource("6_od6dt")
+base_mouse_filter = 2
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
-
-[node name="DraggableControl" type="Node" parent="Control/CardUIButton" unique_id=1491633279]
-unique_name_in_owner = true
-script = ExtResource("7_3nsd1")
-metadata/_custom_type_script = "uid://b0mi5nhkk1hyr"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1026446633]
 visible = false

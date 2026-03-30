@@ -3,13 +3,8 @@ class_name CardUI extends Node2D
 const DEFAULT_Z: int = 1
 const DRAG_Z: int = 80
 
-signal pressed
-signal drag_finished
-signal drag_start
-
 @onready var CardSprite: Sprite2D = %CardSprite
 @onready var atlas = %CardSprite.texture as AtlasTexture
-@onready var DraggableNode: DraggableControl = %DraggableControl
 @onready var CardUIButton: DefaultButton = %CardUIButton
 @onready var DescriptionLabel: Label = %DescriptionLabel
 @onready var NameLabel: Label = %NameLabel
@@ -29,4 +24,3 @@ func onRemoveHandCard() -> void: queue_free()
 	
 func setDisabled(_disabled: bool) -> void: CardUIButton.setDisabled(_disabled)
 func getCard() -> Card: return card
-func setDraggable(draggable: bool) -> void: DraggableNode.setDraggable(draggable)
