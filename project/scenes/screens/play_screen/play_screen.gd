@@ -1,5 +1,6 @@
 extends Screen
 
+@onready var TurnTimerDisplay: Node2D = %TurnTimerDisplay
 @onready var PlayerCardPath: Path2D = %PlayerCardPath
 @onready var EnemyCardPath: Path2D = %EnemyCardPath
 @onready var EnemyHandCardsManager: Node2D = %EnemyHandCardsManager
@@ -38,7 +39,7 @@ func onStartGame() -> void:
 	onPush(actions)
 	
 func onStartTurn() -> void:
-	pass
+	TurnTimerDisplay.onStart()
 	
 func onInitialisePlayer() -> void:
 	var player := Character.new()
@@ -70,6 +71,7 @@ func _ready() -> void:
 	Actions.process_action.connect(onProcessAction)
 	Actions.action_chain_started.connect(onActionChainStarted)
 	Actions.action_chain_ended.connect(onActionChainEnded)
+	TurnTimerDisplay.turn_timer_timeout.connect(onTurnTimerTimeout)
 	onInitialisePlayer()
 	onInitialiseEnemy()
 	PointsDisplay.setInfo()
@@ -101,11 +103,16 @@ func onPlayCardLineEditTextSubmitted(new_text: String) -> void:
 	new_text = new_text.to_lower()
 	for card_ui: CardUI in getCardUis():
 		if card_ui.getCard().getName().to_lower() != new_text: continue
-		onPush([PlayCardAction.new(card_ui.getCard()),
-			TriggerCardEffectsAction.new()])
-		onAppend([StartTurnAction.new(false)])
+		onCardPlayed(card_ui.getCard())
 		return
-		
+	
+func onCardPlayed(card: Card) -> void:
+	onPush([PlayCardAction.new(card), TriggerCardEffectsAction.new()])
+	onAppend([StartTurnAction.new(false)])
+	
+func onTurnTimerTimeout() -> void:
+	onCardPlayed(Board.getCharacter(true).getHandCards().pick_random()) # This will break if no cards
+	
 func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
 	var field_card_uis: Array = getFieldCardUis()
 	assert(field_card_uis.size() == 2, "Invalid field size")

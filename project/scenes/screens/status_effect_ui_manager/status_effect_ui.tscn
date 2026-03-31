@@ -28,6 +28,9 @@ texture_filter = 1
 position = Vector2(25, 9)
 texture = SubResource("AtlasTexture_s3qth")
 
+[node name="TimerSprite" type="Sprite2D" parent="Hitbox/IconSprite" unique_id=1250632648]
+position = Vector2(31, 7)
+
 [node name="DefaultControl" type="Node" parent="Hitbox" unique_id=390327937]
 script = ExtResource("3_v6pqw")
 metadata/_custom_type_script = "uid://b1qtu2bcvm30g"

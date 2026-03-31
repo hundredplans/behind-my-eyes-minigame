@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cq3bfwkqjvl7u"]
+
+[ext_resource type="Script" uid="uid://dxxmrgws7mx84" path="res://scenes/screens/play_screen/turn_timer_display/turn_timer_display.gd" id="1_pq7ej"]
+[ext_resource type="Texture2D" uid="uid://dn3k2g5ivmkof" path="res://assets/sprites/play/circle.png" id="2_pq7ej"]
+[ext_resource type="Shader" uid="uid://dwt66b13x3fq0" path="res://resources/shaders/circle_alpha.gdshader" id="3_pq7ej"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycg4i"]
+shader = ExtResource("3_pq7ej")
+
+[node name="TurnTimerDisplay" type="Node2D" unique_id=114330032]
+script = ExtResource("1_pq7ej")
+start_timer_color = Color(0, 1, 0, 1)
+end_timer_color = Color(1, 0, 0, 1)
+disabled_color = Color(0.2147026, 0.21470255, 0.21470255, 1)
+
+[node name="TurnTimer" type="Timer" parent="." unique_id=104006491]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="FlashingStartTimer" type="Timer" parent="." unique_id=1260530852]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1775917151]
+
+[node name="BorderCircleSprite" type="Sprite2D" parent="Sprites" unique_id=1904916684]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 1)
+texture_filter = 2
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_pq7ej")
+metadata/_edit_lock_ = true
+
+[node name="BackgroundCircle" type="Sprite2D" parent="Sprites" unique_id=1695595115]
+self_modulate = Color(0.13333334, 0.13333334, 0.13333334, 1)
+texture_filter = 2
+texture = ExtResource("2_pq7ej")
+metadata/_edit_lock_ = true
+
+[node name="InnerCircleSprite" type="Sprite2D" parent="Sprites" unique_id=639881213]
+unique_name_in_owner = true
+texture_filter = 2
+material = SubResource("ShaderMaterial_ycg4i")
+instance_shader_parameters/progress = 0.0
+texture = ExtResource("2_pq7ej")
+metadata/_edit_lock_ = true
+
+[connection signal="timeout" from="TurnTimer" to="." method="onTurnTimerTimeout"]
+[connection signal="timeout" from="FlashingStartTimer" to="." method="onFlashingStartTimerTimeout"]
