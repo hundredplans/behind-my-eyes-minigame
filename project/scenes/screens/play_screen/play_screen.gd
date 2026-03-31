@@ -1,15 +1,18 @@
 extends Screen
 
+@onready var TurnTimerDisplay: Node2D = %TurnTimerDisplay
+@onready var PlayerCardPath: Path2D = %PlayerCardPath
+@onready var EnemyCardPath: Path2D = %EnemyCardPath
 @onready var EnemyHandCardsManager: Node2D = %EnemyHandCardsManager
 @onready var PlayCardLineEdit: LineEdit = %PlayCardLineEdit
 @onready var AIManager: Node = %AIManager
-@onready var CardSpot: Control = %CardSpot
 @onready var Blink: AnimatedSprite2D = %Blink
+@onready var CardSpot: Node2D = %CardSpot
 @onready var PointsDisplay: Node2D = %PointsDisplay
 @onready var ActionSender: ActionManager = %ActionSender
 @onready var HandCardsManager: Node2D = %HandCardsManager
 
-const PLAY_CARD_DELAY: float = 0.5
+const CARD_TRIGGERED_DISPLAY_END_SCALE: float = 2.0
 
 @export var PauseMenuPacked: PackedScene
 @export var CardUIPacked: PackedScene
@@ -26,7 +29,7 @@ func onProcessAction(action: Action) -> void:
 		elif action is StartTurnAction and action.isPlayers():
 			onStartTurn()
 		elif action is TriggerCardEffectsAction:
-			onTriggerCardEffects()
+			onTriggerCardEffects(action)
 		elif action is CreateHandCardAction and !action.getCard().isPlayers():
 			onCreateEnemyHandCard()
 		elif action is EndGameAction:
@@ -37,7 +40,7 @@ func onStartGame() -> void:
 	onPush(actions)
 	
 func onStartTurn() -> void:
-	pass
+	TurnTimerDisplay.onStart()
 	
 func onInitialisePlayer() -> void:
 	var player := Character.new()
@@ -72,6 +75,7 @@ func _ready() -> void:
 	Actions.process_action.connect(onProcessAction)
 	Actions.action_chain_started.connect(onActionChainStarted)
 	Actions.action_chain_ended.connect(onActionChainEnded)
+	TurnTimerDisplay.turn_timer_timeout.connect(onTurnTimerTimeout)
 	onInitialisePlayer()
 	onInitialiseEnemy()
 	PointsDisplay.setInfo()
@@ -103,13 +107,47 @@ func onPlayCardLineEditTextSubmitted(new_text: String) -> void:
 	new_text = new_text.to_lower()
 	for card_ui: CardUI in getCardUis():
 		if card_ui.getCard().getName().to_lower() != new_text: continue
-		onPush([PlayCardAction.new(card_ui.getCard()),
-			TriggerCardEffectsAction.new()])
-		onAppend([DelayAction.new(PLAY_CARD_DELAY), StartTurnAction.new(false)])
+		onCardPlayed(card_ui.getCard())
 		return
+	
+func onCardPlayed(card: Card) -> void:
+	onPush([PlayCardAction.new(card), TriggerCardEffectsAction.new()])
+	onAppend([StartTurnAction.new(false)])
+	
+func onTurnTimerTimeout() -> void:
+	onCardPlayed(Board.getCharacter(true).getHandCards().pick_random()) # This will break if no cards
+	
+func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
+	var field_card_uis: Array = getFieldCardUis()
+	assert(field_card_uis.size() == 2, "Invalid field size")
+	for card_ui: CardUI in field_card_uis:
+		onCardTriggeredDisplay(card_ui, action.getTravelDelay())
+	await get_tree().create_timer(action.getTravelDelay()).timeout
+	for i: int in field_card_uis.size():
+		var card_ui: CardUI = field_card_uis[i]
+		var other_card_ui: CardUI = field_card_uis[abs(i - 1)]
+		card_ui.setDisabled(false)
+		other_card_ui.setDisabled(true)
+		await get_tree().create_timer(action.getFlashDelay() / 2.0).timeout
 		
-func onTriggerCardEffects() -> void:
-	for card_ui: CardUI in CardSpot.get_children(): card_ui.queue_free()
+	for card_ui: CardUI in field_card_uis: card_ui.queue_free()
+	
+func onCardTriggeredDisplay(card_ui: CardUI, travel_delay: float) -> void:
+	card_ui.setDisabled(true)
+	var path: Path2D = (PlayerCardPath if card_ui.getCard().isPlayers() else EnemyCardPath)
+	var tween: Tween = create_tween()
+	tween.tween_method(onCardTriggeredDisplayTween.bind(path, card_ui), 0.0, 1.0, travel_delay)
+	
+func onCardTriggeredDisplayTween(p: float, path: Path2D, card_ui: CardUI) -> void:
+	var curve: Curve2D = path.curve
+	var length: float = curve.get_baked_length()
+	var distance: float = length * p
+	card_ui.transform = curve.sample_baked_with_rotation(distance)
+	card_ui.position += path.position
+	var end_scale: float = lerp(1.0, CARD_TRIGGERED_DISPLAY_END_SCALE, p)
+	card_ui.scale = Vector2(end_scale, end_scale)
+	
+func getFieldCardUis() -> Array: return CardSpot.get_children()
 	
 func onCreateEnemyHandCard() -> void:
 	EnemyHandCardsManager.onUpdateAmount()

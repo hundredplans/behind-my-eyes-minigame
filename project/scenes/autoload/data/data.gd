@@ -4,6 +4,7 @@ enum PointType {NULL, NONE, LOSE, WIN, COLLAB}
 enum CardType {NULL, ANGRY, KIND, SAD, HAPPY, SARCASTIC}
 enum Rarity {NULL, ONE, TWO, THREE}
 
+const TURN_TIME: float = 15.0
 const MIN_HAND_SIZE: int = 3
 const MAX_HAND_SIZE: int = 6
 const MAX_DECK_SIZE: int = 10

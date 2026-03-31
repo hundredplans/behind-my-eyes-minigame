@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d0gotiitnapgw" path="res://assets/sprites/play/npc_icon.png" id="13_y8dr8"]
 [ext_resource type="Texture2D" uid="uid://cup5xmekk47mq" path="res://assets/sprites/play/Blink_Animation.png" id="14_6keno"]
 [ext_resource type="PackedScene" uid="uid://cnrfa4drlq8ms" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui_manager.tscn" id="15_v3hmr"]
+[ext_resource type="PackedScene" uid="uid://cq3bfwkqjvl7u" path="res://scenes/screens/play_screen/turn_timer_display/turn_timer_display.tscn" id="16_y8dr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
 atlas = ExtResource("14_6keno")
@@ -88,6 +89,12 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="Curve2D" id="Curve2D_xqjcl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16, -31, 0, 0, 0, 0, -49, -55, 0, 0, 0, 0, -80, -67, 0, 0, 0, 0, -120, -67, 0, 0, 0, 0, -154, -62, 0, 0, 0, 0, -184, -49, 0, 0, 0, 0, -195, -27, 0, 0, 0, 0, -196, 2, 0, 0, 0, 0, -188, 25, 0, 0, 0, 0, -174, 45, 0, 0, 0, 0, -151, 53, 0, 0, 0, 0, -131, 53, 0, 0, 0, 0, -111, 53, 0, 0, 0, 0, -85, 53)
+}
+point_count = 15
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1dmvx"]
 load_path = "res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
 
@@ -150,19 +157,22 @@ grow_vertical = 2
 texture = ExtResource("3_k8syp")
 expand_mode = 3
 
-[node name="CardSpot" type="Control" parent="." unique_id=1181247455]
+[node name="CardPlayZone" type="Node2D" parent="." unique_id=62960181]
+position = Vector2(341, 186)
+
+[node name="CardSpot" type="Node2D" parent="CardPlayZone" unique_id=1615483396]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = 35.0
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+
+[node name="CardDisplayPaths" type="Node2D" parent="CardPlayZone" unique_id=1690616523]
+
+[node name="PlayerCardPath" type="Path2D" parent="CardPlayZone/CardDisplayPaths" unique_id=1611729959]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_xqjcl")
+
+[node name="EnemyCardPath" type="Path2D" parent="CardPlayZone/CardDisplayPaths" unique_id=1909371664]
+unique_name_in_owner = true
+position = Vector2(238, 0)
+curve = SubResource("Curve2D_xqjcl")
 
 [node name="PointsDisplay" parent="." unique_id=806983574 instance=ExtResource("5_eebmm")]
 unique_name_in_owner = true
@@ -225,6 +235,10 @@ texture_filter = 1
 position = Vector2(320, 40)
 scale = Vector2(2, 2)
 texture = ExtResource("13_y8dr8")
+
+[node name="TurnTimerDisplay" parent="." unique_id=114330032 instance=ExtResource("16_y8dr8")]
+unique_name_in_owner = true
+position = Vector2(595, 165)
 
 [connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
 [connection signal="text_submitted" from="PlayerSpeechBubble/PlayCardLineEdit" to="." method="onPlayCardLineEditTextSubmitted"]
