@@ -38,10 +38,10 @@ func getYFromCardRarity(rarity) -> int:
 func getColorFromCardType(card_type: CardType) -> Color:
 	match card_type:
 		CardType.ANGRY: return Color("e83b3b")
-		CardType.KIND: return Color("91db69")
-		CardType.SAD: return Color("4d9be6")
-		CardType.HAPPY: return Color("f9c22b")
-		CardType.SARCASTIC: return Color("831c5d")
+		CardType.KIND: return Color("1ebc73")
+		CardType.SAD: return Color("8fd3ff")
+		CardType.HAPPY: return Color("f79617")
+		CardType.SARCASTIC: return Color("c32454")
 	return Color.WHITE
 	
 #func getCardTypeIcon(type: Data.CardType) -> Texture2D:

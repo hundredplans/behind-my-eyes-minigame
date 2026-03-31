@@ -11,7 +11,82 @@
 [ext_resource type="PackedScene" uid="uid://kfahob34j16j" path="res://scenes/screens/play_screen/hand_cards_manager/hand_cards_manager.tscn" id="11_tunfc"]
 [ext_resource type="FontFile" uid="uid://lj2hkch44j84" path="res://assets/fonts/jersey_10.ttf" id="12_6keno"]
 [ext_resource type="PackedScene" uid="uid://cc8a8o6s38wxr" path="res://scenes/screens/play_screen/enemy_hand_cards_manager/enemy_hand_cards_manager.tscn" id="12_xqjcl"]
+[ext_resource type="Texture2D" uid="uid://d0gotiitnapgw" path="res://assets/sprites/play/npc_icon.png" id="13_y8dr8"]
+[ext_resource type="Texture2D" uid="uid://cup5xmekk47mq" path="res://assets/sprites/play/Blink_Animation.png" id="14_6keno"]
 [ext_resource type="PackedScene" uid="uid://cnrfa4drlq8ms" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui_manager.tscn" id="15_v3hmr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
+atlas = ExtResource("14_6keno")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vo2r"]
+atlas = ExtResource("14_6keno")
+region = Rect2(641, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce3ld"]
+atlas = ExtResource("14_6keno")
+region = Rect2(1282, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcge5"]
+atlas = ExtResource("14_6keno")
+region = Rect2(1923, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w464w"]
+atlas = ExtResource("14_6keno")
+region = Rect2(2564, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v66l7"]
+atlas = ExtResource("14_6keno")
+region = Rect2(3205, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v3hmr"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_8h7de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vo2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce3ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcge5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w464w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v66l7")
+}],
+"loop": false,
+"name": &"CloseEyes",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_v66l7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w464w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcge5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce3ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vo2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h7de")
+}],
+"loop": false,
+"name": &"OpenEyes",
+"speed": 20.0
+}]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1dmvx"]
 load_path = "res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
@@ -48,6 +123,15 @@ PauseMenuPacked = ExtResource("2_52dmg")
 CardUIPacked = ExtResource("3_e1r2e")
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
 
+[node name="Blink" type="AnimatedSprite2D" parent="." unique_id=1611334765]
+unique_name_in_owner = true
+z_index = 100
+z_as_relative = false
+texture_filter = 1
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_v3hmr")
+animation = &"OpenEyes"
+
 [node name="ActionSender" type="Node" parent="." unique_id=398503857]
 unique_name_in_owner = true
 script = ExtResource("8_eebmm")
@@ -74,6 +158,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_top = 35.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -126,11 +212,20 @@ curve = SubResource("Curve2D_y8dr8")
 [node name="HandCardsManager" parent="HandCardManagers" unique_id=2065525916 instance=ExtResource("11_tunfc")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(302, 321)
+texture_filter = 1
+position = Vector2(320, 300)
+scale = Vector2(1.5, 1.5)
 
 [node name="EnemyHandCardsManager" parent="HandCardManagers" unique_id=477362272 instance=ExtResource("12_xqjcl")]
 unique_name_in_owner = true
-position = Vector2(320, 63)
+position = Vector2(320, 125)
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1130503863]
+texture_filter = 1
+position = Vector2(320, 40)
+scale = Vector2(2, 2)
+texture = ExtResource("13_y8dr8")
+
+[connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
 [connection signal="text_submitted" from="PlayerSpeechBubble/PlayCardLineEdit" to="." method="onPlayCardLineEditTextSubmitted"]
 [connection signal="text_submitted" from="PlayerSpeechBubble/PlayCardLineEdit" to="PlayerSpeechBubble/PlayCardLineEdit" method="onTextSubmitted"]

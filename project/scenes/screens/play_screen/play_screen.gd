@@ -4,6 +4,7 @@ extends Screen
 @onready var PlayCardLineEdit: LineEdit = %PlayCardLineEdit
 @onready var AIManager: Node = %AIManager
 @onready var CardSpot: Control = %CardSpot
+@onready var Blink: AnimatedSprite2D = %Blink
 @onready var PointsDisplay: Node2D = %PointsDisplay
 @onready var ActionSender: ActionManager = %ActionSender
 @onready var HandCardsManager: Node2D = %HandCardsManager
@@ -58,6 +59,8 @@ func onCreateHandCard(action: CreateHandCardAction) -> void:
 	
 func onPlayCard(action: PlayCardAction) -> void:
 	var card_ui: CardUI = CardUIPacked.instantiate()
+	card_ui.skew = deg_to_rad(-43)
+	card_ui.rotation = deg_to_rad(-25)
 	CardSpot.add_child(card_ui)
 	card_ui.setCard(action.getCard())
 	
@@ -65,6 +68,7 @@ func onPlayCard(action: PlayCardAction) -> void:
 	else: HandCardsManager.onHandCardRemoved()
 
 func _ready() -> void:
+	Blink.play("OpenEyes")
 	Actions.process_action.connect(onProcessAction)
 	Actions.action_chain_started.connect(onActionChainStarted)
 	Actions.action_chain_ended.connect(onActionChainEnded)
@@ -115,3 +119,8 @@ func onEndGame(action: EndGameAction) -> void:
 		EndGameAction.Type.LOSS: load_screen.emit(Screen.Type.LOSS)
 		EndGameAction.Type.WIN: load_screen.emit(Screen.Type.WIN)
 		EndGameAction.Type.COLLAB: load_screen.emit(Screen.Type.COLLAB)
+
+
+func _on_blink_animation_finished() -> void:
+	Blink.visible=false
+	

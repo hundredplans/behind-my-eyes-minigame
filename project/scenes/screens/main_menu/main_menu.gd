@@ -1,5 +1,6 @@
 extends Screen
 
+@onready var Blink: AnimatedSprite2D = %Blink
 @onready var Sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var Play: Button = %Button4
 @onready var SettingsButton: Button = %Button2
@@ -11,7 +12,8 @@ extends Screen
 @onready var Master: Sprite2D =%GeneralVolume
 
 func onPlayPressed() -> void:
-	load_screen.emit(Screen.Type.PLAY)
+	Blink.visible = true
+	Blink.play("CloseEyes");
 	
 
 func onSettingsPressed() -> void:
@@ -42,3 +44,6 @@ func _on_frame_changed() -> void:
 		SFX.visible=false
 		Music.visible=false
 		Master.visible=false
+
+func _on_blink_animation_finished() -> void:
+	load_screen.emit(Screen.Type.PLAY)

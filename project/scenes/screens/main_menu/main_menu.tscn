@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_0urj7"]
 [ext_resource type="Script" uid="uid://dox7rei1wf0ru" path="res://scenes/screens/main_menu/master_slider.gd" id="5_g4j36"]
 [ext_resource type="Script" uid="uid://bunlojxfg7vvi" path="res://scenes/screens/main_menu/sfx_slider.gd" id="6_g4j36"]
+[ext_resource type="Texture2D" uid="uid://cup5xmekk47mq" path="res://assets/sprites/play/Blink_Animation.png" id="8_xibsw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht6f7"]
 atlas = ExtResource("2_ht6f7")
@@ -89,6 +90,56 @@ animations = [{
 "loop": false,
 "name": &"OpenSettings",
 "speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vo2r"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(641, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce3ld"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(1282, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcge5"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(1923, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w464w"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(2564, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v66l7"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(3205, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p21bm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h7de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vo2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce3ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcge5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w464w")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_v66l7")
+}],
+"loop": false,
+"name": &"CloseEyes",
+"speed": 20.0
 }]
 
 [node name="MainMenu" type="Control" unique_id=1448919376]
@@ -218,8 +269,17 @@ offset_right = 86.0
 offset_bottom = 20.0
 script = ExtResource("5_g4j36")
 
+[node name="Blink" type="AnimatedSprite2D" parent="." unique_id=575761315]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_p21bm")
+animation = &"CloseEyes"
+
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_frame_changed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button4/playButton" to="." method="onPlayPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button2/settingsButton" to="." method="onSettingsPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button3/exitButton" to="." method="onExitPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button/backButton" to="." method="onBackPressed"]
+[connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
