@@ -26,6 +26,15 @@ func setCard(_card: Card) -> void:
 	NameLabel.add_theme_color_override("font_shadow_color",shadow_color) 
 	#DescriptionLabel.add_theme_color_override("font_shadow_color",shadow_color)
 	DescriptionLabel.text = card.getInfo().getDescription()
+	setTooltipSelf(false)
+	
+func setTooltipSelf(tooltip_self: bool) -> void:
+	if tooltip_self:
+		var tooltip_data := TooltipData.new()
+		tooltip_data.setId(card.getInfo().getId())
+		tooltip_data.setType(TooltipData.Type.CARD)
+		DefaultTooltipNode.onUpdateTooltipDatas([tooltip_data])
+		return
 	DefaultTooltipNode.onUpdateTooltipDatas(card.getInfo().getTooltipDatas())
 	
 func onCreateHandCard() -> void: card.remove_hand_card.connect(onRemoveHandCard)

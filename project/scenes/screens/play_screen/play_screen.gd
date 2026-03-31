@@ -65,7 +65,9 @@ func onPlayCard(action: PlayCardAction) -> void:
 	card_ui.skew = deg_to_rad(-43)
 	card_ui.rotation = deg_to_rad(-25)
 	CardSpot.add_child(card_ui)
+	
 	card_ui.setCard(action.getCard())
+	card_ui.setTooltipSelf(true)
 	
 	if !action.getCard().isPlayers(): EnemyHandCardsManager.onUpdateAmount()
 	else: HandCardsManager.onHandCardRemoved()

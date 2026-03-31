@@ -86,8 +86,7 @@ metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 [node name="DefaultTooltipNode" type="Node" parent="Control/CardUIButton" unique_id=1372773069]
 unique_name_in_owner = true
 script = ExtResource("5_agjea")
-display_time = null
-offset = null
+offset = Vector2(10, 20)
 metadata/_custom_type_script = "uid://s2cxedp1lqal"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1026446633]

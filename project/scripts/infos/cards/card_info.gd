@@ -6,9 +6,11 @@ enum Rarity {NULL, ONE, TWO, THREE}
 @export var gdscript: GDScript
 @export var tooltips: Array[TooltipData] = []
 
+func getTooltipIcon() -> Texture2D: return null
 func getTooltipDatas() -> Array[TooltipData]: return tooltips
 func getRarity() -> Rarity: return rarity
 func getType() -> Data.CardType: return type as Data.CardType
+func getCardType() -> Data.CardType: return getType()
 func getGdscript() -> GDScript: return gdscript
 func getCard(players: bool) -> Card: return gdscript.new(self, players)
 static func getDefaultPath() -> String: return "res://resources/infos/cards/"
