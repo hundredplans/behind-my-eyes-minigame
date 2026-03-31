@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_13n0a"]
 [ext_resource type="Script" uid="uid://ceh0v858s0tep" path="res://scripts/entity_objects/cards/grief.gd" id="1_mff40"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_fs3lt"]
+
+[sub_resource type="Resource" id="Resource_8caiv"]
+script = ExtResource("3_fs3lt")
+id = 3
+type = 2
+metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("1_13n0a")
 type = 3
 rarity = 3
 gdscript = ExtResource("1_mff40")
+tooltips = Array[ExtResource("3_fs3lt")]([SubResource("Resource_8caiv")])
 name = "Grief"
 id = 6
 description = "Apply Sentimental on the enemy 

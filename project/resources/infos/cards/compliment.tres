@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bn7l54vtublro" path="res://scripts/entity_objects/cards/compliment.gd" id="1_ekcha"]
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_n3dwa"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_sgfcm"]
+
+[sub_resource type="Resource" id="Resource_mol0k"]
+script = ExtResource("3_sgfcm")
+id = 1
+type = 2
+metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("1_n3dwa")
 type = 2
 rarity = 2
 gdscript = ExtResource("1_ekcha")
+tooltips = Array[ExtResource("3_sgfcm")]([SubResource("Resource_mol0k")])
 name = "Compliment"
 id = 22
 description = "Give opponent Happy 

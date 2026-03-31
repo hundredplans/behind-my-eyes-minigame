@@ -118,6 +118,13 @@ _data = {
 }
 point_count = 7
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3hmr"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
 [node name="PlayScreen" type="Control" unique_id=746952712]
 layout_mode = 3
 anchors_preset = 15
@@ -125,6 +132,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_fefi0")
 PauseMenuPacked = ExtResource("2_52dmg")
 CardUIPacked = ExtResource("3_e1r2e")
@@ -132,6 +140,7 @@ metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
 
 [node name="Blink" type="AnimatedSprite2D" parent="." unique_id=1611334765]
 unique_name_in_owner = true
+visible = false
 z_index = 100
 z_as_relative = false
 texture_filter = 1
@@ -154,6 +163,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("3_k8syp")
 expand_mode = 3
 
@@ -230,15 +240,23 @@ scale = Vector2(1.5, 1.5)
 unique_name_in_owner = true
 position = Vector2(320, 125)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1130503863]
-texture_filter = 1
-position = Vector2(320, 40)
-scale = Vector2(2, 2)
-texture = ExtResource("13_y8dr8")
-
 [node name="TurnTimerDisplay" parent="." unique_id=114330032 instance=ExtResource("16_y8dr8")]
 unique_name_in_owner = true
 position = Vector2(595, 165)
+
+[node name="EnemyIconBorder" type="PanelContainer" parent="." unique_id=49374493]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 8.0
+offset_right = 416.0
+offset_bottom = 72.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v3hmr")
+
+[node name="EnemyIconSprite" type="Sprite2D" parent="EnemyIconBorder" unique_id=1130503863]
+texture_filter = 1
+position = Vector2(96, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("13_y8dr8")
 
 [connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
 [connection signal="text_submitted" from="PlayerSpeechBubble/PlayCardLineEdit" to="." method="onPlayCardLineEditTextSubmitted"]

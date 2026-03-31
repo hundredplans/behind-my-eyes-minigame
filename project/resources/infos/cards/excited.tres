@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_iaeik"]
 [ext_resource type="Script" uid="uid://dbwgxblha34bb" path="res://scripts/entity_objects/cards/excited.gd" id="1_johow"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_ab8lj"]
+
+[sub_resource type="Resource" id="Resource_2buve"]
+script = ExtResource("3_ab8lj")
+id = 2
+type = 2
+metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("1_iaeik")
 type = 4
 rarity = 2
 gdscript = ExtResource("1_johow")
+tooltips = Array[ExtResource("3_ab8lj")]([SubResource("Resource_2buve")])
 name = "Excited"
 id = 11
 description = "Get +2 on your 3 next cards

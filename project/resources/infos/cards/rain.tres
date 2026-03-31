@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://xc0kaijsmdiq" path="res://scripts/entity_objects/cards/rain.gd" id="1_r5213"]
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_rqd6k"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_p2fp3"]
+
+[sub_resource type="Resource" id="Resource_7744k"]
+script = ExtResource("3_p2fp3")
+id = 6
+type = 2
+metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("1_rqd6k")
 type = 3
 rarity = 2
 gdscript = ExtResource("1_r5213")
+tooltips = Array[ExtResource("3_p2fp3")]([SubResource("Resource_7744k")])
 name = "Rain"
 id = 4
 description = "Become Grumpy"

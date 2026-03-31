@@ -8,13 +8,14 @@ extends Node2D
 
 const TOP_PANEL_DARKEN: float = 0.25
 var base_color: Color
-func setEntityObject(entity_object: EntityObject) -> void:
-	NameLabel.text = entity_object.getName()
-	IconTxRect.texture = entity_object.getInfo().getTooltipIcon()
-	DescriptionLabel.text = entity_object.getInfo().getDescription()
+func setTooltipData(tooltip_data: TooltipData) -> void:
+	var info: ResourceInfo = tooltip_data.getInfo()
+	NameLabel.text = info.getName()
+	IconTxRect.texture = info.getTooltipIcon()
+	DescriptionLabel.text = info.getDescription()
 
-	if entity_object is StatusEffect:
-		var card_type: Data.CardType = entity_object.getInfo().getCardType()
+	if tooltip_data.getType() == TooltipData.Type.STATUS_EFFECT:
+		var card_type: Data.CardType = info.getCardType()
 		if card_type != Data.CardType.NULL:
 			base_color = Data.getColorFromCardType(card_type)
 			

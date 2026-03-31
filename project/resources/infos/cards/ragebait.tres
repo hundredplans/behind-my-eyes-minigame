@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_3tdb6"]
 [ext_resource type="Script" uid="uid://cu204lbh63csi" path="res://scripts/entity_objects/cards/ragebait.gd" id="1_ua6h8"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_ffpue"]
+
+[sub_resource type="Resource" id="Resource_r8rvc"]
+script = ExtResource("3_ffpue")
+id = 5
+type = 2
+metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("1_3tdb6")
 type = 1
 rarity = 3
 gdscript = ExtResource("1_ua6h8")
+tooltips = Array[ExtResource("3_ffpue")]([SubResource("Resource_r8rvc")])
 name = "Ragebait"
 id = 30
 description = "+6 towards winning and apply Irritable on the enemy 

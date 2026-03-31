@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6s30vyexkmi6" path="res://scripts/entity_objects/cards/yay_happy.gd" id="1_jn5e1"]
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="2_rxdb7"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_rxdb7"]
 
 [resource]
 script = ExtResource("2_rxdb7")

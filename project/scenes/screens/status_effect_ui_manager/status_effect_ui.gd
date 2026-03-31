@@ -6,7 +6,10 @@ extends Node2D
 var status_effect: StatusEffect
 func setStatusEffect(_status_effect: StatusEffect) -> void:
 	status_effect = _status_effect
-	DefaultTooltipNode.onUpdateEntityObject(status_effect)
+	var tooltip_data := TooltipData.new()
+	tooltip_data.setType(TooltipData.Type.STATUS_EFFECT)
+	tooltip_data.setId(status_effect.getInfo().getId())
+	DefaultTooltipNode.onUpdateTooltipDatas([tooltip_data])
 	IconSprite.texture = status_effect.getInfo().getIcon()
 	status_effect.update_display_amount.connect(onUpdateDisplayAmount)
 	onUpdateDisplayAmount()

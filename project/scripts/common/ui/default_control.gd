@@ -3,6 +3,7 @@ class_name DefaultControl extends Node
 signal mouse_in_ui
 signal update_disabled
 
+@export var DISABLED_DARKEN: float = 0.5
 @export var HOVERED_DARKEN: float = 0.2
 @export var autoscale: bool = false
 @export var default_scale := Vector2.ONE
@@ -11,7 +12,6 @@ signal update_disabled
 
 const SCALE_TIME: float = 0.25
 const SCALE_MAX: float = 1.1
-const DISABLED_DARKEN: float = 0.5
 
 var mouse_nodes: Array[Control]
 var drag_mode: bool

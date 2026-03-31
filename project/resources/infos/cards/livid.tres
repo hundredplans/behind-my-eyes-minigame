@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_dhl0f"]
 [ext_resource type="Script" uid="uid://yc5ci5ej2v1w" path="res://scripts/entity_objects/cards/livid.gd" id="1_dk573"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_37gtc"]
+
+[sub_resource type="Resource" id="Resource_vajj7"]
+script = ExtResource("3_37gtc")
+id = 4
+type = 2
+metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("1_dhl0f")
 type = 1
 rarity = 2
 gdscript = ExtResource("1_dk573")
+tooltips = Array[ExtResource("3_37gtc")]([SubResource("Resource_vajj7")])
 name = "Livid"
 id = 28
 description = "Become Strong"

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://baugun20xjivg" path="res://scenes/resource_objects/cards/card_ui/card_ui.gd" id="1_kkiuu"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_agjea"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="3_3nsd1"]
+[ext_resource type="Script" uid="uid://s2cxedp1lqal" path="res://scripts/common/ui/default_tooltip.gd" id="5_agjea"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="6_od6dt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3nsd1"]
@@ -80,8 +81,14 @@ autowrap_mode = 3
 [node name="CardUIButton" type="Node" parent="Control" unique_id=698778259]
 unique_name_in_owner = true
 script = ExtResource("6_od6dt")
-base_mouse_filter = 2
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="DefaultTooltipNode" type="Node" parent="Control/CardUIButton" unique_id=1372773069]
+unique_name_in_owner = true
+script = ExtResource("5_agjea")
+display_time = null
+offset = null
+metadata/_custom_type_script = "uid://s2cxedp1lqal"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1026446633]
 visible = false

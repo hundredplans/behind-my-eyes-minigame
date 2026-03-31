@@ -3,6 +3,7 @@ class_name CardUI extends Node2D
 const DEFAULT_Z: int = 1
 const DRAG_Z: int = 80
 
+@onready var DefaultTooltipNode: DefaultTooltip = %DefaultTooltipNode
 @onready var CardSprite: Sprite2D = %CardSprite
 @onready var atlas = %CardSprite.texture as AtlasTexture
 @onready var CardUIButton: DefaultButton = %CardUIButton
@@ -25,6 +26,7 @@ func setCard(_card: Card) -> void:
 	NameLabel.add_theme_color_override("font_shadow_color",shadow_color) 
 	#DescriptionLabel.add_theme_color_override("font_shadow_color",shadow_color)
 	DescriptionLabel.text = card.getInfo().getDescription()
+	DefaultTooltipNode.onUpdateTooltipDatas(card.getInfo().getTooltipDatas())
 	
 func onCreateHandCard() -> void: card.remove_hand_card.connect(onRemoveHandCard)
 func onRemoveHandCard() -> void: queue_free()

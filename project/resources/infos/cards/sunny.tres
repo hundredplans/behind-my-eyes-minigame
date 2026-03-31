@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://cc1fwt0074a0u" path="res://scripts/entity_objects/cards/sunny.gd" id="1_nyijg"]
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="2_brxte"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_brxte"]
+
+[sub_resource type="Resource" id="Resource_brxte"]
+script = ExtResource("3_brxte")
+id = 9
+type = 2
+metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("2_brxte")
 type = 4
 rarity = 1
 gdscript = ExtResource("1_nyijg")
+tooltips = Array[ExtResource("3_brxte")]([SubResource("Resource_brxte")])
 name = "Sunny"
 id = 8
 description = "Collaboration match gives +1 this fight "

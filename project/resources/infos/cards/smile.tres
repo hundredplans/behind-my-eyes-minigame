@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_iia6c"]
 [ext_resource type="Script" uid="uid://nfkopvwbbmdy" path="res://scripts/entity_objects/cards/smile.gd" id="1_s4k34"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_qjkdi"]
+
+[sub_resource type="Resource" id="Resource_47tcd"]
+script = ExtResource("3_qjkdi")
+id = 8
+type = 2
+metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("1_iia6c")
 type = 5
 rarity = 2
 gdscript = ExtResource("1_s4k34")
+tooltips = Array[ExtResource("3_qjkdi")]([SubResource("Resource_47tcd")])
 name = "Smile"
 id = 10
 description = "Become Confident 
