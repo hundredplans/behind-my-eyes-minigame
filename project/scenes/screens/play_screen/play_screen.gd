@@ -1,5 +1,7 @@
 extends Screen
 
+@onready var EnemyWordLabel: Label = %EnemyWordLabel
+@onready var EnemySpeechBubble: Node2D = %EnemySpeechBubble
 @onready var TestPath: Path2D = %TestPath
 @onready var TurnTimerDisplay: Node2D = %TurnTimerDisplay
 @onready var EnemyHandCardsManager: Node2D = %EnemyHandCardsManager
@@ -17,6 +19,9 @@ const CARD_TRIGGERED_DISPLAY_END_SCALE: float = 2.0
 @export var card_trigger_curve: Curve2D
 @export var PauseMenuPacked: PackedScene
 @export var CardUIPacked: PackedScene
+
+@export var enemy_speech_bubble_start_position: Vector2
+@export var enemy_speech_bubble_end_position: Vector2
 
 var card_trigger_mirror_curve: Curve2D
 var PauseMenu: Control
@@ -71,10 +76,14 @@ func onPlayCard(action: PlayCardAction) -> void:
 	card_ui.setCard(action.getCard())
 	card_ui.setTooltipSelf(true)
 	
-	if !action.getCard().isPlayers(): EnemyHandCardsManager.onUpdateAmount()
+	if !action.getCard().isPlayers():
+		EnemyHandCardsManager.onUpdateAmount()
+		onCreateEnemySpeechBubble(action.getCard(), action.getEnemyPlayCardDelay())
+		card_ui.setZIndex(50)
 	else: HandCardsManager.onHandCardRemoved()
 
 func _ready() -> void:
+	EnemySpeechBubble.visible = false
 	Blink.visible = true
 	Blink.play("OpenEyes")
 	Actions.process_action.connect(onProcessAction)
@@ -192,3 +201,32 @@ func setMirroredCardTriggerCurve() -> void:
 	var points: PackedVector2Array = card_trigger_curve.get_baked_points()
 	for point: Vector2 in points:
 		card_trigger_mirror_curve.add_point(Vector2(-point.x, point.y))
+
+func onCreateEnemySpeechBubble(card: Card, delay: float) -> void:
+	EnemyWordLabel.text = card.getName()
+	EnemyWordLabel.modulate = Data.getColorFromCardType(card.getCardType())
+	EnemySpeechBubble.visible = true
+	EnemySpeechBubble.scale = Vector2.ZERO
+	EnemySpeechBubble.rotation = 0.0
+	EnemySpeechBubble.position = enemy_speech_bubble_start_position
+	
+	var first_delay: float = delay / 8.0 * 2
+	var hold_delay: float = (delay / 8.0) * 3
+	var dissapear_delay: float = (delay / 8.0) * 2
+	var end_delay: float = (delay / 8.0)
+	
+	var tween := create_tween()
+	tween.tween_property(EnemySpeechBubble, "scale", Vector2.ONE, first_delay)\
+		.as_relative().set_trans(Tween.TRANS_SINE)
+	
+	var ntween := create_tween()
+	ntween.tween_property(EnemySpeechBubble, "position", enemy_speech_bubble_end_position, first_delay)
+	ntween.tween_interval(hold_delay)
+	await ntween.finished
+	
+	var mtween := create_tween()
+	mtween.set_parallel(true)
+	mtween.tween_property(EnemySpeechBubble, "rotation", PI, dissapear_delay)\
+		.as_relative().set_trans(Tween.TRANS_SINE)
+	mtween.tween_property(EnemySpeechBubble, "scale", -Vector2.ONE, dissapear_delay)\
+		.as_relative().set_trans(Tween.TRANS_SINE)

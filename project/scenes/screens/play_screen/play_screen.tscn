@@ -14,7 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://d0gotiitnapgw" path="res://assets/sprites/play/npc_icon.png" id="13_y8dr8"]
 [ext_resource type="Texture2D" uid="uid://cup5xmekk47mq" path="res://assets/sprites/play/Blink_Animation.png" id="14_6keno"]
 [ext_resource type="PackedScene" uid="uid://cnrfa4drlq8ms" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui_manager.tscn" id="15_v3hmr"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="16_8t53l"]
 [ext_resource type="PackedScene" uid="uid://cq3bfwkqjvl7u" path="res://scenes/screens/play_screen/turn_timer_display/turn_timer_display.tscn" id="16_y8dr8"]
+[ext_resource type="LabelSettings" uid="uid://benuktnsetv7u" path="res://resources/ui/label_settings/jersey/jersey_16.tres" id="17_8jnos"]
 
 [sub_resource type="Curve2D" id="Curve2D_xqjcl"]
 _data = {
@@ -114,7 +116,7 @@ point_count = 15
 
 [sub_resource type="Curve2D" id="Curve2D_y8dr8"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 137, 18, 0, 0, 0, 0, 193, 42, 0, 0, 0, 0, 247, 24, 0, 0, 0, 0, 297, 36, 0, 0, 0, 0, 366, 19, 0, 0, 0, 0, 426, 41, 0, 0, 0, 0, 493, 27)
+"points": PackedVector2Array(0, 0, 0, 0, 216, 91, 0, 0, 0, 0, 441, 91, 0, 0, 0, 0, 443, 16, 0, 0, 0, 0, 487, 16, 0, 0, 0, 0, 485, 90, 0, 0, 0, 0, 527, 91, 0, 0, 0, 0, 529, 14)
 }
 point_count = 7
 
@@ -124,6 +126,10 @@ expand_margin_left = 3.0
 expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jnos"]
+atlas = ExtResource("16_8t53l")
+region = Rect2(639, 147, 145, 77)
 
 [node name="PlayScreen" type="Control" unique_id=746952712]
 layout_mode = 3
@@ -137,6 +143,8 @@ script = ExtResource("1_fefi0")
 card_trigger_curve = SubResource("Curve2D_xqjcl")
 PauseMenuPacked = ExtResource("2_52dmg")
 CardUIPacked = ExtResource("3_e1r2e")
+enemy_speech_bubble_start_position = Vector2(71, 63.999992)
+enemy_speech_bubble_end_position = Vector2(35, 109)
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
 
 [node name="Blink" type="AnimatedSprite2D" parent="." unique_id=1611334765]
@@ -253,6 +261,25 @@ texture_filter = 1
 position = Vector2(96, 32)
 scale = Vector2(2, 2)
 texture = ExtResource("13_y8dr8")
+
+[node name="EnemySpeechBubble" type="Node2D" parent="EnemyIconBorder" unique_id=965455065]
+unique_name_in_owner = true
+position = Vector2(24, 109)
+
+[node name="EnemySpeechBubbleSprite" type="Sprite2D" parent="EnemyIconBorder/EnemySpeechBubble" unique_id=2001539052]
+texture_filter = 1
+rotation = -3.1415927
+texture = SubResource("AtlasTexture_8jnos")
+
+[node name="EnemyWordLabel" type="Label" parent="EnemyIconBorder/EnemySpeechBubble" unique_id=1849089154]
+unique_name_in_owner = true
+offset_left = -59.0
+offset_top = -10.0
+offset_right = 61.0
+offset_bottom = 18.0
+text = "Word"
+label_settings = ExtResource("17_8jnos")
+horizontal_alignment = 1
 
 [connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
 [connection signal="text_submitted" from="PlayerSpeechBubble/PlayCardLineEdit" to="." method="onPlayCardLineEditTextSubmitted"]

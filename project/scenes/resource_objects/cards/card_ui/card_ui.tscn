@@ -47,6 +47,7 @@ shape = SubResource("RectangleShape2D_agjea")
 
 [node name="NameLabel" type="Label" parent="Control/CardSprite" unique_id=1303983797]
 unique_name_in_owner = true
+z_index = 1
 texture_filter = 1
 offset_left = -31.0
 offset_top = -14.0
