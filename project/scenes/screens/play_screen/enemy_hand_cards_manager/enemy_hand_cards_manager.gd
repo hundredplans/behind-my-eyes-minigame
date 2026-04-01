@@ -6,6 +6,8 @@ func onUpdateAmount() -> void:
 	var amount: int = Board.getCharacter(false).getHandCards().size()
 	var child_amount: int = CardSprites.get_child_count()
 	if amount == child_amount: return
+	print(amount)
+
 	
 	if amount > child_amount:
 		for __: int in amount - child_amount:

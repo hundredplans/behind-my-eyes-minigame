@@ -71,6 +71,7 @@ func onPlayCard(action: PlayCardAction) -> void:
 	else: HandCardsManager.onHandCardRemoved()
 
 func _ready() -> void:
+	Blink.visible = true
 	Blink.play("OpenEyes")
 	Actions.process_action.connect(onProcessAction)
 	Actions.action_chain_started.connect(onActionChainStarted)
@@ -86,9 +87,9 @@ func _process(_delta: float) -> void:
 		onCreatePauseMenu()
 
 func onCreatePauseMenu() -> void:
+	Blink.visible=true
+	Blink.play("CloseEyes")
 	PauseMenu = PauseMenuPacked.instantiate()
-	add_child(PauseMenu)
-	PauseMenu.setInfo()
 	
 func onActionChainStarted() -> void:
 	PlayCardLineEdit.editable = false
@@ -160,5 +161,11 @@ func onEndGame(action: EndGameAction) -> void:
 
 
 func _on_blink_animation_finished() -> void:
+	if isPauseMenu():
+		add_child(PauseMenu)
+		PauseMenu.load_screen.connect(on_leave)
 	Blink.visible=false
 	
+	
+func on_leave(type: Screen.Type) -> void:
+		load_screen.emit(type)

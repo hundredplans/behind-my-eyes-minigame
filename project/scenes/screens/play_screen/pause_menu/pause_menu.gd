@@ -1,56 +1,168 @@
-extends Control
+extends Screen
 
-@onready var ButtonsContainer: Container = %ButtonsContainer
-@onready var ResumeDefaultButton: DefaultButton = %ResumeDefaultButton
-@onready var SettingsDefaultButton: DefaultButton = %SettingsDefaultButton
-@onready var ExitDefaultButton: DefaultButton = %ExitDefaultButton
 @onready var BackgroundRect: ColorRect = %BackgroundRect
+@onready var Blink: AnimatedSprite2D = %Blink
+@onready var Sprite: AnimatedSprite2D = %AnimatedSprite2D
+@onready var Play: Button = %Button4
+@onready var SettingsButton: Button = %Button2
+@onready var Exit: Button = %Button3
+@onready var Back: Button = %Button
+@onready var SFX: Sprite2D =%SFXVolume
+@onready var Music: Sprite2D =%MusicVolume
+@onready var Master: Sprite2D =%GeneralVolume
+@onready var ResolutionLabel: Label =%Resolution
+@onready var LowerRes: Button =%lowerResolution
+@onready var HigherRes: Button =%higherResolution
+var settings_data: SettingsData
+var inSettings: bool
+var exiting: bool
+var resolutionScale = 3
 
-@export var start_color: Color
-@export var scale_in_end_alpha: float
-@export var scale_in_time: float = 0.5
+func _ready() -> void:
+	Blink.play("OpenEyes")
+	onUpdateSettings()
+	Sprite.animation="OpenSettings"
+	
+func getSettingsData() -> SettingsData: return settings_data
+func onSaveSettingsData() -> void:
+	ResourceSaver.save(settings_data, SettingsData.getDefaultPath())
 
-var is_scaled_in: bool
-func setInfo() -> void:
-	ButtonsContainer.pivot_offset = size / 2.0
-	ButtonsContainer.scale = Vector2.ZERO
+func onUpdateSettings() -> void:
+	if !FileAccess.file_exists(SettingsData.getDefaultPath()):
+		settings_data = SettingsData.new()
+		ResourceSaver.save(settings_data, SettingsData.getDefaultPath())
+	else: 
+		settings_data = load(SettingsData.getDefaultPath())
+		
+	_on_SFX_value_changed(settings_data.getSFXVolume())
+	_on_Music_value_changed(settings_data.getMusicVolume())
+	_on_Master_value_changed(settings_data.getMasterVolume())
 	
-	var tween := create_tween()
-	tween.tween_property(ButtonsContainer, "scale", Vector2.ONE, scale_in_time)\
-		.as_relative().set_trans(Tween.TRANS_SINE)
-	tween.finished.connect(onScaleInFinished)
+
+	onUpdateWindowMode(settings_data.getWindowMode())
+
+func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
+	DisplayServer.window_set_mode(window_mode)
+	if window_mode == DisplayServer.WINDOW_MODE_WINDOWED:
+		var screen_rect: Rect2i = DisplayServer.screen_get_usable_rect()
+		DisplayServer.window_set_size(screen_rect.size)
+		DisplayServer.window_set_position(screen_rect.position)
+	else:
+		DisplayServer.window_set_size(Vector2(1920, 1080))
+		DisplayServer.window_set_position(Vector2.ZERO)
 	
-	BackgroundRect.color = start_color
-	var mtween := create_tween()
-	mtween.tween_property(BackgroundRect, "color:a", scale_in_end_alpha, scale_in_time)
+
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Escape") and is_scaled_in:
-		onScaleOut()
+	if Input.is_action_just_pressed("Escape") and inSettings:
+		onBackPressed()
+	if Input.is_action_just_pressed("Escape") and !inSettings:
+		onPlayPressed()
+	
+func onPlayPressed() -> void:
+	Blink.visible = true
+	Blink.play("CloseEyes");
+	
+	
+	
+
+func onSettingsPressed() -> void:
+	Sprite.play("OpenSettings")
+	Play.visible=false
+	SettingsButton.visible=false
+	Exit.visible=false
+	Back.visible=true
+	inSettings=true
+	LowerRes.visible=true
+	HigherRes.visible=true
+	
+	
+func onBackPressed() -> void:
+	inSettings=false
+	onSaveSettingsData()
+	Sprite.play("CloseSettings")
+	Play.visible=true
+	SettingsButton.visible=true
+	Exit.visible=true
+	Back.visible=false
+	LowerRes.visible=false
+	HigherRes.visible=false
+
+func onExitPressed() -> void:
+	print("this should exit")
+	load_screen.emit(Screen.Type.MAIN_MENU)
+
+func _on_frame_changed() -> void:
+	if Sprite.frame == 2 and Sprite.animation == "OpenSettings" :
+		ResolutionLabel.visible=true
+		ResolutionLabel.visible_characters=6
+	if Sprite.frame == 3 and Sprite.animation == "OpenSettings" :
+		ResolutionLabel.visible_characters=-1
+		SFX.visible=true
+		Music.visible=true
+		Master.visible=true
+	if Sprite.frame == 2 and Sprite.animation =="CloseSettings" :
+		ResolutionLabel.visible_characters=6
+		SFX.visible=false
+		Music.visible=false
+		Master.visible=false
+	if Sprite.frame == 3 and Sprite.animation =="CloseSettings" :
+		ResolutionLabel.visible=false
 		
-func onScaleOut() -> void:
-	is_scaled_in = false
-	var tween := create_tween()
-	tween.tween_property(ButtonsContainer, "scale", -Vector2.ONE, scale_in_time)\
-		.as_relative().set_trans(Tween.TRANS_SINE)
-	tween.finished.connect(onScaleOutFinished)
+
+func _on_blink_animation_finished() -> void:
+	if Blink.animation == "CloseEyes":
+		Sprite.visible=false
+		BackgroundRect.visible=false
+		Blink.play("OpenEyes")
+		exiting=true
+
+	else:
+		if exiting:
+			queue_free()
+		Blink.visible=false
+		
 	
-	var mtween := create_tween()
-	mtween.tween_property(BackgroundRect, "modulate:a", 0.0, scale_in_time)
-
-func onScaleInFinished() -> void:
-	is_scaled_in = true
 	
-func onScaleOutFinished() -> void:
-	queue_free()
+func _on_SFX_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(2, linear_to_db(value)
+	)
+	var width= value*87/100
+	settings_data.setSFXVolume(value)
+	SFX.region_rect = Rect2(3,0,width,22)
 	
-func getButtons() -> Array: return [ResumeDefaultButton, SettingsDefaultButton, ExitDefaultButton]
+func _on_Music_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(
+		1,
+		linear_to_db(value)
+	)
+	var width= value*87/100
+	settings_data.setMusicVolume(value)
+	Music.region_rect = Rect2(3,0,width,22)
+	
+func _on_Master_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(
+		0,
+		linear_to_db(value)
+	)
+	var width= value*87/100
+	settings_data.setMasterVolume(value)
+	Master.region_rect = Rect2(3,0,width,22)
+	
+func _on_lower_resolution() -> void:
+	if resolutionScale>1:
+		resolutionScale -= 1
+	var x=640*resolutionScale
+	var y=360*resolutionScale
+	DisplayServer.window_set_size(Vector2i(x,y))
+	settings_data.set
+	ResolutionLabel.text = "" + str(x) + "x" + str(y)
 
-func onResumeButtonPressed() -> void:
-	pass # Replace with function body.
 
-func onSettingsButtonPressed() -> void:
-	pass # Replace with function body.
-
-func onExitButtonPressed() -> void:
-	pass # Replace with function body.
+func _on_higher_resolution() -> void:
+	if resolutionScale<5:
+		resolutionScale += 1 
+	var x=640*resolutionScale
+	var y=360*resolutionScale
+	DisplayServer.window_set_size(Vector2i(x,y))
+	ResolutionLabel.text = "" + str(x) + "x" + str(y)

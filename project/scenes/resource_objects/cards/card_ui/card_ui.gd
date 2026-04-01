@@ -11,6 +11,7 @@ const DRAG_Z: int = 80
 @onready var NameLabel: Label = %NameLabel
 @export var name_lightened: float = 0.2
 
+var z_indexCopy: int
 var card: Card
 func setCard(_card: Card) -> void:
 	card = _card
@@ -26,10 +27,25 @@ func setCard(_card: Card) -> void:
 	NameLabel.add_theme_color_override("font_shadow_color",shadow_color) 
 	#DescriptionLabel.add_theme_color_override("font_shadow_color",shadow_color)
 	DescriptionLabel.text = card.getInfo().getDescription()
-	DefaultTooltipNode.onUpdateTooltipDatas(card.getInfo().getTooltipDatas())
+	#DefaultTooltipNode.onUpdateTooltipDatas(card.getInfo().getTooltipDatas())
 	
 func onCreateHandCard() -> void: card.remove_hand_card.connect(onRemoveHandCard)
 func onRemoveHandCard() -> void: queue_free()
 	
 func setDisabled(_disabled: bool) -> void: CardUIButton.setDisabled(_disabled)
 func getCard() -> Card: return card
+
+func _on_area_2d_mouse_entered() -> void:
+	print("hello")
+	
+	CardSprite.scale=Vector2(1.5,1.5)
+	z_indexCopy=CardSprite.z_index
+	CardSprite.z_index=20
+
+
+func _on_area_2d_mouse_exited() -> void:
+	print("bye")
+	CardSprite.scale=Vector2(1,1) 
+	CardSprite.z_index=z_indexCopy
+	
+	

@@ -1,10 +1,150 @@
 [gd_scene format=3 uid="uid://d3ueb0vmfsofs"]
 
 [ext_resource type="Script" uid="uid://8g55ekffcnj2" path="res://scenes/screens/play_screen/pause_menu/pause_menu.gd" id="1_mkbq7"]
-[ext_resource type="LabelSettings" uid="uid://ndl676j006tj" path="res://resources/ui/label_settings/spicyrice/spicyrice_48.tres" id="2_kbs6d"]
+[ext_resource type="Texture2D" uid="uid://dwesa0oj6duet" path="res://assets/sprites/play/combat_atlas/Pausemenu.png" id="3_fq2yx"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="3_pn633"]
+[ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_364fe"]
+[ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="5_8crni"]
+[ext_resource type="Texture2D" uid="uid://cup5xmekk47mq" path="res://assets/sprites/play/Blink_Animation.png" id="5_fq2yx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
+atlas = ExtResource("5_fq2yx")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vo2r"]
+atlas = ExtResource("5_fq2yx")
+region = Rect2(641, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce3ld"]
+atlas = ExtResource("5_fq2yx")
+region = Rect2(1282, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcge5"]
+atlas = ExtResource("5_fq2yx")
+region = Rect2(1923, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w464w"]
+atlas = ExtResource("5_fq2yx")
+region = Rect2(2564, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v66l7"]
+atlas = ExtResource("5_fq2yx")
+region = Rect2(3205, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8crni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h7de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vo2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce3ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcge5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w464w")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_v66l7")
+}],
+"loop": false,
+"name": &"CloseEyes",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_v66l7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w464w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcge5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce3ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vo2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h7de")
+}],
+"loop": false,
+"name": &"OpenEyes",
+"speed": 20.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31jqw"]
+atlas = ExtResource("3_fq2yx")
+region = Rect2(1120, 0, 240, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m34yy"]
+atlas = ExtResource("3_fq2yx")
+region = Rect2(848, 0, 240, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_364fe"]
+atlas = ExtResource("3_fq2yx")
+region = Rect2(576, 0, 240, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsj5v"]
+atlas = ExtResource("3_fq2yx")
+region = Rect2(304, 0, 240, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8crni"]
+atlas = ExtResource("3_fq2yx")
+region = Rect2(32, 0, 240, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1q06"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31jqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m34yy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_364fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsj5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8crni")
+}],
+"loop": false,
+"name": &"CloseSettings",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8crni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsj5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_364fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m34yy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31jqw")
+}],
+"loop": false,
+"name": &"OpenSettings",
+"speed": 5.0
+}]
 
 [node name="PauseMenu" type="Control" unique_id=568991233]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,11 +152,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mkbq7")
-start_color = Color(0, 0, 0, 0)
-scale_in_end_alpha = 0.9
+
+[node name="Blink" type="AnimatedSprite2D" parent="." unique_id=215334517]
+unique_name_in_owner = true
+z_index = 100
+texture_filter = 1
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_8crni")
+animation = &"OpenEyes"
 
 [node name="BackgroundRect" type="ColorRect" parent="." unique_id=1692788822]
 unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.8862745)
+self_modulate = Color(0, 0, 0, 0.8862745)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,56 +172,170 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="." unique_id=1681047978]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1886950353]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 320.0
-offset_bottom = 180.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
+z_index = 1
+texture_filter = 1
+position = Vector2(338, 180)
+sprite_frames = SubResource("SpriteFrames_q1q06")
+animation = &"CloseSettings"
 
-[node name="ResumeButton" type="Label" parent="ButtonsContainer" unique_id=1474294133]
-layout_mode = 2
-text = "Resume"
-label_settings = ExtResource("2_kbs6d")
-horizontal_alignment = 1
-
-[node name="ResumeDefaultButton" type="Node" parent="ButtonsContainer/ResumeButton" unique_id=2104897714]
+[node name="Button4" type="Button" parent="AnimatedSprite2D" unique_id=2026564044]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -112.0
+offset_top = -99.0
+offset_right = -52.0
+offset_bottom = -81.0
+
+[node name="playButton" type="Node" parent="AnimatedSprite2D/Button4" unique_id=1879272339]
 script = ExtResource("3_pn633")
+autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
-[node name="SettingsButton" type="Label" parent="ButtonsContainer" unique_id=1130122623]
-layout_mode = 2
-text = "Settings"
-label_settings = ExtResource("2_kbs6d")
-horizontal_alignment = 1
-
-[node name="SettingsDefaultButton" type="Node" parent="ButtonsContainer/SettingsButton" unique_id=1477047801]
+[node name="Button2" type="Button" parent="AnimatedSprite2D" unique_id=1078066470]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -114.0
+offset_top = -42.0
+offset_right = -25.236923
+offset_bottom = -19.785
+scale = Vector2(1.070265, 0.9433686)
+
+[node name="settingsButton" type="Node" parent="AnimatedSprite2D/Button2" unique_id=1403259755]
 script = ExtResource("3_pn633")
+autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
-[node name="ExitButton" type="Label" parent="ButtonsContainer" unique_id=872279398]
-layout_mode = 2
-text = "Exit"
-label_settings = ExtResource("2_kbs6d")
-horizontal_alignment = 1
-
-[node name="ExitDefaultButton" type="Node" parent="ButtonsContainer/ExitButton" unique_id=2009583095]
+[node name="Button3" type="Button" parent="AnimatedSprite2D" unique_id=249631564]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -112.0
+offset_top = 18.0
+offset_right = -50.0
+offset_bottom = 38.0
+
+[node name="exitButton" type="Node" parent="AnimatedSprite2D/Button3" unique_id=1811143247]
 script = ExtResource("3_pn633")
+autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
-[connection signal="pressed" from="ButtonsContainer/ResumeButton/ResumeDefaultButton" to="." method="onResumeButtonPressed"]
-[connection signal="pressed" from="ButtonsContainer/SettingsButton/SettingsDefaultButton" to="." method="onSettingsButtonPressed"]
-[connection signal="pressed" from="ButtonsContainer/ExitButton/ExitDefaultButton" to="." method="onExitButtonPressed"]
+[node name="Button" type="Button" parent="AnimatedSprite2D" unique_id=1774563855]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 50.0
+offset_top = -146.0
+offset_right = 81.0
+offset_bottom = -130.0
+
+[node name="backButton" type="Node" parent="AnimatedSprite2D/Button" unique_id=1374995057]
+script = ExtResource("3_pn633")
+autoscale = true
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="Resolution" type="Label" parent="AnimatedSprite2D" unique_id=956505784]
+unique_name_in_owner = true
+visible = false
+anchors_preset = -1
+anchor_left = 0.44000003
+anchor_top = 0.57100004
+anchor_right = 0.44000003
+anchor_bottom = 0.57100004
+offset_left = -151.6
+offset_top = -185.56001
+offset_right = -88.600006
+offset_bottom = -174.56001
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("5_8crni")
+theme_override_font_sizes/font_size = 16
+text = "1920x1080"
+metadata/_edit_use_anchors_ = true
+
+[node name="lowerResolution" type="Button" parent="AnimatedSprite2D/Resolution" unique_id=892785847]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -15.0
+offset_top = -2.0
+offset_right = -3.0
+offset_bottom = 14.0
+
+[node name="higherResolution" type="Button" parent="AnimatedSprite2D/Resolution" unique_id=739334627]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 63.0
+offset_top = -2.0
+offset_right = 75.0
+offset_bottom = 14.0
+
+[node name="SFXVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=2031615727]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+position = Vector2(-43, -47)
+texture = ExtResource("4_364fe")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 0, 87, 22)
+
+[node name="SFXSlider" type="HSlider" parent="AnimatedSprite2D/SFXVolume" unique_id=2093647642]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -3.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 21.0
+
+[node name="MusicVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1252348480]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+position = Vector2(-42, -77)
+texture = ExtResource("4_364fe")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 0, 87, 22)
+
+[node name="MusicSlider" type="HSlider" parent="AnimatedSprite2D/MusicVolume" unique_id=1906062053]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -2.0
+offset_top = 4.0
+offset_right = 86.0
+offset_bottom = 20.0
+
+[node name="GeneralVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1635913404]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-40, -107)
+texture = ExtResource("4_364fe")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 0, 87, 22)
+
+[node name="MasterSlider" type="HSlider" parent="AnimatedSprite2D/GeneralVolume" unique_id=2061454249]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -2.0
+offset_top = 4.0
+offset_right = 86.0
+offset_bottom = 20.0
+
+[connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_frame_changed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button4/playButton" to="." method="onPlayPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button2/settingsButton" to="." method="onSettingsPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button3/exitButton" to="." method="onExitPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button/backButton" to="." method="onBackPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Resolution/lowerResolution" to="." method="_on_lower_resolution"]
+[connection signal="pressed" from="AnimatedSprite2D/Resolution/higherResolution" to="." method="_on_higher_resolution"]
+[connection signal="value_changed" from="AnimatedSprite2D/SFXVolume/SFXSlider" to="." method="_on_SFX_value_changed"]
+[connection signal="value_changed" from="AnimatedSprite2D/MusicVolume/MusicSlider" to="." method="_on_Music_value_changed"]
+[connection signal="value_changed" from="AnimatedSprite2D/GeneralVolume/MasterSlider" to="." method="_on_Master_value_changed"]

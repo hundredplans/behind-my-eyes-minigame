@@ -3,22 +3,19 @@
 [ext_resource type="Script" uid="uid://baugun20xjivg" path="res://scenes/resource_objects/cards/card_ui/card_ui.gd" id="1_kkiuu"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_agjea"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="3_3nsd1"]
+[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_1dmvx"]
 [ext_resource type="Script" uid="uid://s2cxedp1lqal" path="res://scripts/common/ui/default_tooltip.gd" id="5_agjea"]
-[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="6_od6dt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3nsd1"]
 resource_local_to_scene = true
 atlas = ExtResource("2_agjea")
 region = Rect2(16, 208, 48, 80)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agjea"]
+size = Vector2(2.0000007, 14.360083)
+
 [sub_resource type="FontVariation" id="FontVariation_agjea"]
 base_font = ExtResource("3_3nsd1")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1dmvx"]
-load_path = "res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_od6dt"]
-atlas = SubResource("CompressedTexture2D_1dmvx")
 
 [node name="CardUI" type="Node2D" unique_id=1745416984]
 script = ExtResource("1_kkiuu")
@@ -30,23 +27,33 @@ offset_left = -24.0
 offset_top = -40.0
 offset_right = 24.0
 offset_bottom = 40.0
-mouse_filter = 2
 
 [node name="CardSprite" type="Sprite2D" parent="Control" unique_id=1666206552]
 unique_name_in_owner = true
+y_sort_enabled = true
 texture_filter = 1
 position = Vector2(24, 40)
 texture = SubResource("AtlasTexture_3nsd1")
 
-[node name="NameLabel" type="Label" parent="Control" unique_id=1303983797]
+[node name="Area2D" type="Area2D" parent="Control/CardSprite" unique_id=1192182817]
+position = Vector2(-1, -1)
+scale = Vector2(24, 5.571)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/CardSprite/Area2D" unique_id=1204744424]
+z_index = 1
+position = Vector2(0.041666668, 0.179501)
+scale = Vector2(0.99999964, 0.99999946)
+shape = SubResource("RectangleShape2D_agjea")
+
+[node name="NameLabel" type="Label" parent="Control/CardSprite" unique_id=1303983797]
 unique_name_in_owner = true
 texture_filter = 1
-layout_mode = 0
-offset_left = -7.0
-offset_top = 26.0
-offset_right = 119.0
-offset_bottom = 48.0
+offset_left = -31.0
+offset_top = -14.0
+offset_right = 95.0
+offset_bottom = 8.0
 scale = Vector2(0.5, 0.5)
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_constants/shadow_offset_x = -1
@@ -57,15 +64,15 @@ theme_override_font_sizes/font_size = 32
 text = "Handshake"
 horizontal_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="Control" unique_id=1506408335]
+[node name="DescriptionLabel" type="Label" parent="Control/CardSprite" unique_id=1506408335]
 unique_name_in_owner = true
 texture_filter = 1
-layout_mode = 0
-offset_left = 3.0
-offset_top = 44.0
-offset_right = 87.0
-offset_bottom = 129.0
+offset_left = -21.0
+offset_top = 4.0
+offset_right = 63.0
+offset_bottom = 89.0
 scale = Vector2(0.5, 0.5)
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
 theme_override_colors/font_shadow_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
 theme_override_constants/line_spacing = -1
@@ -78,19 +85,14 @@ text = "Give an enemy a Handshake card "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="CardUIButton" type="Node" parent="Control" unique_id=698778259]
+[node name="CardUIButton" type="Node" parent="Control" unique_id=582718633]
 unique_name_in_owner = true
-script = ExtResource("6_od6dt")
-metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+script = ExtResource("4_1dmvx")
+base_mouse_filter = 2
 
-[node name="DefaultTooltipNode" type="Node" parent="Control/CardUIButton" unique_id=1372773069]
+[node name="DefaultTooltipNode" type="Node" parent="Control/CardUIButton" unique_id=1444097386]
 unique_name_in_owner = true
 script = ExtResource("5_agjea")
-display_time = null
-offset = null
-metadata/_custom_type_script = "uid://s2cxedp1lqal"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1026446633]
-visible = false
-texture_filter = 1
-texture = SubResource("AtlasTexture_od6dt")
+[connection signal="mouse_entered" from="Control/CardSprite/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Control/CardSprite/Area2D" to="." method="_on_area_2d_mouse_exited"]

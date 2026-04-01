@@ -44,15 +44,6 @@ func getColorFromCardType(card_type: CardType) -> Color:
 		CardType.HAPPY: return Color("f79617")
 		CardType.SARCASTIC: return Color("c32454")
 	return Color.WHITE
-	
-#func getCardTypeIcon(type: Data.CardType) -> Texture2D:
-	#match type:
-		#CardType.ANGRY: return angry_icon
-		#CardType.KIND: return kind_icon
-		#CardType.SAD: return sad_icon
-		#CardType.HAPPY: return happy_icon
-		#CardType.SARCASTIC: return sarcastic_icon
-	#return null
 
 func getPlayerStartingDeck() -> Array[DeckCard]:
 	return getRandomDeck()

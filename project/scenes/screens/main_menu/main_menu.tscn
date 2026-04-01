@@ -2,12 +2,60 @@
 
 [ext_resource type="Script" uid="uid://dregtbydnyyrb" path="res://scenes/screens/main_menu/main_menu.gd" id="1_wf0jh"]
 [ext_resource type="Texture2D" uid="uid://cevd4fmny51b4" path="res://assets/sprites/play/combat_atlas/MenuSpritesheet-Sheet.png" id="2_ht6f7"]
-[ext_resource type="Script" uid="uid://gsxra2pkb5g6" path="res://scenes/screens/main_menu/h_slider.gd" id="3_enpo5"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_0fmn3"]
 [ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_0urj7"]
-[ext_resource type="Script" uid="uid://dox7rei1wf0ru" path="res://scenes/screens/main_menu/master_slider.gd" id="5_g4j36"]
-[ext_resource type="Script" uid="uid://bunlojxfg7vvi" path="res://scenes/screens/main_menu/sfx_slider.gd" id="6_g4j36"]
+[ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="5_g4j36"]
 [ext_resource type="Texture2D" uid="uid://cup5xmekk47mq" path="res://assets/sprites/play/Blink_Animation.png" id="8_xibsw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vo2r"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(641, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce3ld"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(1282, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcge5"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(1923, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w464w"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(2564, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v66l7"]
+atlas = ExtResource("8_xibsw")
+region = Rect2(3205, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p21bm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h7de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vo2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce3ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcge5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w464w")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_v66l7")
+}],
+"loop": false,
+"name": &"CloseEyes",
+"speed": 20.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht6f7"]
 atlas = ExtResource("2_ht6f7")
@@ -92,56 +140,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
-atlas = ExtResource("8_xibsw")
-region = Rect2(0, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8vo2r"]
-atlas = ExtResource("8_xibsw")
-region = Rect2(641, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ce3ld"]
-atlas = ExtResource("8_xibsw")
-region = Rect2(1282, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qcge5"]
-atlas = ExtResource("8_xibsw")
-region = Rect2(1923, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w464w"]
-atlas = ExtResource("8_xibsw")
-region = Rect2(2564, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v66l7"]
-atlas = ExtResource("8_xibsw")
-region = Rect2(3205, 0, 640, 360)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p21bm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8h7de")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8vo2r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ce3ld")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qcge5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w464w")
-}, {
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_v66l7")
-}],
-"loop": false,
-"name": &"CloseEyes",
-"speed": 20.0
-}]
-
 [node name="MainMenu" type="Control" unique_id=1448919376]
 layout_mode = 3
 anchors_preset = 15
@@ -151,17 +149,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wf0jh")
 
+[node name="Blink" type="AnimatedSprite2D" parent="." unique_id=575761315]
+unique_name_in_owner = true
+visible = false
+z_index = 1000
+texture_filter = 1
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_p21bm")
+animation = &"CloseEyes"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1209570506]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(363, 180)
+position = Vector2(338, 180)
 sprite_frames = SubResource("SpriteFrames_0urj7")
-animation = &"OpenSettings"
+animation = &"CloseSettings"
 
 [node name="Button4" type="Button" parent="AnimatedSprite2D" unique_id=1216902504]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
+modulate = Color(0.13333334, 0.13333334, 0.13333334, 0)
+self_modulate = Color(0.08627451, 0.08627451, 0.08627451, 0)
 offset_left = -112.0
 offset_top = -99.0
 offset_right = -52.0
@@ -215,9 +222,50 @@ script = ExtResource("4_0fmn3")
 autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
 
+[node name="Resolution" type="Label" parent="AnimatedSprite2D" unique_id=1105273623]
+unique_name_in_owner = true
+visible = false
+anchors_preset = -1
+anchor_left = 0.43100002
+anchor_top = 0.57100004
+anchor_right = 0.43100002
+anchor_bottom = 0.57100004
+offset_left = -149.44
+offset_top = -185.56001
+offset_right = -90.44
+offset_bottom = -174.56001
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_g4j36")
+theme_override_font_sizes/font_size = 16
+text = "1920x1080"
+metadata/_edit_use_anchors_ = true
+
+[node name="lowerResolution" type="Button" parent="AnimatedSprite2D/Resolution" unique_id=657023380]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -15.0
+offset_top = -2.0
+offset_right = -3.0
+offset_bottom = 14.0
+
+[node name="higherResolution" type="Button" parent="AnimatedSprite2D/Resolution" unique_id=186035237]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 62.0
+offset_top = -2.0
+offset_right = 74.0
+offset_bottom = 14.0
+
 [node name="SFXVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1008535666]
 unique_name_in_owner = true
 visible = false
+texture_filter = 1
 position = Vector2(-43, -47)
 texture = ExtResource("4_0urj7")
 centered = false
@@ -231,11 +279,11 @@ offset_left = -3.0
 offset_top = 5.0
 offset_right = 85.0
 offset_bottom = 21.0
-script = ExtResource("6_g4j36")
 
 [node name="MusicVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1341355911]
 unique_name_in_owner = true
 visible = false
+texture_filter = 1
 position = Vector2(-42, -77)
 texture = ExtResource("4_0urj7")
 centered = false
@@ -249,7 +297,6 @@ offset_left = -2.0
 offset_top = 4.0
 offset_right = 86.0
 offset_bottom = 20.0
-script = ExtResource("3_enpo5")
 
 [node name="GeneralVolume" type="Sprite2D" parent="AnimatedSprite2D" unique_id=489548869]
 unique_name_in_owner = true
@@ -267,19 +314,15 @@ offset_left = -2.0
 offset_top = 4.0
 offset_right = 86.0
 offset_bottom = 20.0
-script = ExtResource("5_g4j36")
 
-[node name="Blink" type="AnimatedSprite2D" parent="." unique_id=575761315]
-unique_name_in_owner = true
-visible = false
-texture_filter = 1
-position = Vector2(320, 180)
-sprite_frames = SubResource("SpriteFrames_p21bm")
-animation = &"CloseEyes"
-
+[connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_frame_changed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button4/playButton" to="." method="onPlayPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button2/settingsButton" to="." method="onSettingsPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button3/exitButton" to="." method="onExitPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button/backButton" to="." method="onBackPressed"]
-[connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
+[connection signal="pressed" from="AnimatedSprite2D/Resolution/lowerResolution" to="." method="_on_lower_resolution"]
+[connection signal="pressed" from="AnimatedSprite2D/Resolution/higherResolution" to="." method="_on_higher_resolution"]
+[connection signal="value_changed" from="AnimatedSprite2D/SFXVolume/SFXSlider" to="." method="_on_SFX_value_changed"]
+[connection signal="value_changed" from="AnimatedSprite2D/MusicVolume/MusicSlider" to="." method="_on_Music_value_changed"]
+[connection signal="value_changed" from="AnimatedSprite2D/GeneralVolume/MasterSlider" to="." method="_on_Master_value_changed"]

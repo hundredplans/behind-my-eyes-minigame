@@ -4,6 +4,7 @@ class_name SettingsData extends Resource
 @export_storage var music_volume: int = 100
 @export_storage var sfx_volume: int = 100
 @export_storage var game_speed: float = 1.0
+@export_storage var resolutionScale: int=3
 @export_storage var window_mode: DisplayServer.WindowMode
 @export_storage var english: bool
 

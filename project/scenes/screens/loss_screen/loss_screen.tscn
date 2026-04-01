@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://fe6x111qlh08"]
 
 [ext_resource type="Script" uid="uid://cw5e78pdrwau5" path="res://scenes/screens/loss_screen/loss_screen.gd" id="1_l0kv4"]
-[ext_resource type="LabelSettings" uid="uid://c2qypebn5bxdy" path="res://resources/ui/label_settings/spicyrice/spicyrice_96.tres" id="2_sun44"]
-[ext_resource type="LabelSettings" uid="uid://bnbx83cqlooa0" path="res://resources/ui/label_settings/jersey/jersey_36.tres" id="3_dqdtm"]
+[ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="2_dqdtm"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_f7pcp"]
 
 [node name="LossScreen" type="Control" unique_id=1713264168]
@@ -17,6 +16,7 @@ script = ExtResource("1_l0kv4")
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
 
 [node name="Label" type="Label" parent="." unique_id=271655918]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -29,10 +29,16 @@ offset_right = 183.0
 offset_bottom = 67.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "You Lost!"
-label_settings = ExtResource("2_sun44")
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_shadow_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("2_dqdtm")
+theme_override_font_sizes/font_size = 128
+text = "You Lost :("
 
 [node name="Label2" type="Label" parent="." unique_id=1636123584]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -45,8 +51,13 @@ offset_right = -9.0
 offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_shadow_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("2_dqdtm")
+theme_override_font_sizes/font_size = 64
 text = "Main Menu"
-label_settings = ExtResource("3_dqdtm")
 
 [node name="MainMenuButton" type="Node" parent="Label2" unique_id=820908260]
 script = ExtResource("4_f7pcp")

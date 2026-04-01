@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://gqcxvmobkutd" path="res://scripts/entity_objects/status_effects/excitable.gd" id="1_ufkg7"]
 [ext_resource type="Script" uid="uid://cybuqbxq4qpum" path="res://scripts/infos/status_effects/status_effect_info.gd" id="1_vwcxh"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_i1c3d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufkg7"]
+atlas = ExtResource("2_i1c3d")
+region = Rect2(407, 111, 50, 18)
 
 [resource]
 script = ExtResource("1_vwcxh")

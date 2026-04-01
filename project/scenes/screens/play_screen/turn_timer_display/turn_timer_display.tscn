@@ -22,24 +22,25 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="Sprites" type="Node2D" parent="." unique_id=1775917151]
+texture_filter = 1
 
 [node name="BorderCircleSprite" type="Sprite2D" parent="Sprites" unique_id=1904916684]
 unique_name_in_owner = true
 self_modulate = Color(0, 0, 0, 1)
-texture_filter = 2
+texture_filter = 1
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_pq7ej")
 metadata/_edit_lock_ = true
 
 [node name="BackgroundCircle" type="Sprite2D" parent="Sprites" unique_id=1695595115]
 self_modulate = Color(0.13333334, 0.13333334, 0.13333334, 1)
-texture_filter = 2
+texture_filter = 1
 texture = ExtResource("2_pq7ej")
 metadata/_edit_lock_ = true
 
 [node name="InnerCircleSprite" type="Sprite2D" parent="Sprites" unique_id=639881213]
 unique_name_in_owner = true
-texture_filter = 2
+texture_filter = 1
 material = SubResource("ShaderMaterial_ycg4i")
 instance_shader_parameters/progress = 0.0
 texture = ExtResource("2_pq7ej")
