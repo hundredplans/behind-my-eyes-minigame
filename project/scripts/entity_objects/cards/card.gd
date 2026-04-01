@@ -19,6 +19,7 @@ func onTriggerDefault(enemy_card: Card) -> void:
 	var _is_players: bool = isPlayers()
 	match point_type:
 		Data.PointType.NONE: return
+		Data.PointType.COLLAB: delta *= -1
 		Data.PointType.LOSE:
 			delta *= Data.LOSS_POINT_MOVE_MULT
 			_is_players = !_is_players

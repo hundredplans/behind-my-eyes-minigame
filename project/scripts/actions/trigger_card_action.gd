@@ -11,7 +11,6 @@ func onPreAction() -> void:
 
 func onPostAction() -> void:
 	card.onTriggerDefault(enemy_card)
-	onPush([DestroyEntityObjectAction.new(card)])
 
 func getCard() -> Card: return card
 func getEnemyCard() -> Card: return enemy_card

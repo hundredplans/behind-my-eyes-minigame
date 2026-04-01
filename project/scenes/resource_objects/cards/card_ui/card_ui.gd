@@ -6,7 +6,7 @@ const DRAG_Z: int = 80
 @onready var DefaultTooltipNode: DefaultTooltip = %DefaultTooltipNode
 @onready var CardSprite: Sprite2D = %CardSprite
 @onready var atlas = %CardSprite.texture as AtlasTexture
-@onready var CardUIButton: DefaultButton = %CardUIButton
+@onready var CardUIButton: DefaultControl = %CardUIButton
 @onready var DescriptionLabel: Label = %DescriptionLabel
 @onready var NameLabel: Label = %NameLabel
 @export var name_lightened: float = 0.2
@@ -42,3 +42,6 @@ func onRemoveHandCard() -> void: queue_free()
 	
 func setDisabled(_disabled: bool) -> void: CardUIButton.setDisabled(_disabled)
 func getCard() -> Card: return card
+
+func setZIndex(_z_index: int) -> void:
+	z_index = _z_index
