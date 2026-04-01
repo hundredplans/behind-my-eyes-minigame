@@ -1,19 +1,12 @@
 [gd_scene format=3 uid="uid://d23jgtr4epto2"]
 
 [ext_resource type="Script" uid="uid://g3u7xo5ujt7o" path="res://scenes/screens/play_screen/points_display/points_display.gd" id="1_2renx"]
+[ext_resource type="PackedScene" uid="uid://bmipev2ly0jf5" path="res://scenes/common/stat_update_vfx/stat_update_vfx.tscn" id="2_y145m"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="3_y145m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0scbe"]
 atlas = ExtResource("3_y145m")
 region = Rect2(16, 80, 240, 112)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3hlbe"]
-atlas = ExtResource("3_y145m")
-region = Rect2(320, 64, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2renx"]
-atlas = ExtResource("3_y145m")
-region = Rect2(352, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2gpq"]
 atlas = ExtResource("3_y145m")
@@ -33,30 +26,32 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0scbe"]
+load_path = "res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y145m"]
+atlas = SubResource("CompressedTexture2D_0scbe")
+region = Rect2(352, 64, 16, 16)
+
 [sub_resource type="Curve2D" id="Curve2D_2renx"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 121, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, -102)
 }
 point_count = 3
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hlbe"]
+atlas = ExtResource("3_y145m")
+region = Rect2(320, 64, 16, 16)
+
 [node name="PointsDisplay" type="Node2D" unique_id=806983574]
 script = ExtResource("1_2renx")
+StatUpdateVFXPacked = ExtResource("2_y145m")
 
 [node name="PointsDisplaySprite" type="Sprite2D" parent="." unique_id=2014523871]
 texture_filter = 1
 rotation = 1.5707964
 texture = SubResource("AtlasTexture_0scbe")
 offset = Vector2(10, 0)
-
-[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1519299861]
-unique_name_in_owner = true
-texture_filter = 1
-texture = SubResource("AtlasTexture_3hlbe")
-
-[node name="EnemySprite" type="Sprite2D" parent="." unique_id=284028358]
-unique_name_in_owner = true
-texture_filter = 1
-texture = SubResource("AtlasTexture_2renx")
 
 [node name="WinSprite" type="Sprite2D" parent="." unique_id=1182414784]
 texture_filter = 1
@@ -73,10 +68,32 @@ texture_filter = 1
 position = Vector2(0, 126)
 texture = SubResource("AtlasTexture_x3vil")
 
-[node name="EnemyPath" type="Path2D" parent="." unique_id=435929552]
+[node name="PlayerPath" type="Path2D" parent="." unique_id=435929552]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_3hlbe")
 
-[node name="PlayerPath" type="Path2D" parent="." unique_id=756108866]
+[node name="EnemyPathFollow" type="PathFollow2D" parent="PlayerPath" unique_id=1063680925]
+unique_name_in_owner = true
+position = Vector2(0, 123)
+rotation = -1.5707964
+
+[node name="EnemySprite" type="Sprite2D" parent="PlayerPath/EnemyPathFollow" unique_id=284028358]
+unique_name_in_owner = true
+texture_filter = 1
+rotation = 1.5707964
+texture = SubResource("AtlasTexture_y145m")
+
+[node name="EnemyPath" type="Path2D" parent="." unique_id=756108866]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_2renx")
+
+[node name="PlayerPathFollow" type="PathFollow2D" parent="EnemyPath" unique_id=379674508]
+unique_name_in_owner = true
+position = Vector2(0, 121)
+rotation = -1.5707964
+
+[node name="PlayerSprite" type="Sprite2D" parent="EnemyPath/PlayerPathFollow" unique_id=1519299861]
+unique_name_in_owner = true
+texture_filter = 1
+rotation = 1.5707964
+texture = SubResource("AtlasTexture_3hlbe")

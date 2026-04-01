@@ -16,6 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://cnrfa4drlq8ms" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui_manager.tscn" id="15_v3hmr"]
 [ext_resource type="PackedScene" uid="uid://cq3bfwkqjvl7u" path="res://scenes/screens/play_screen/turn_timer_display/turn_timer_display.tscn" id="16_y8dr8"]
 
+[sub_resource type="Curve2D" id="Curve2D_xqjcl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -14, -35, 0, 0, 0, 0, -37, -65, 0, 0, 0, 0, -73, -77, 0, 0, 0, 0, -113, -77, 0, 0, 0, 0, -149, -72, 0, 0, 0, 0, -174, -56, 0, 0, 0, 0, -174, -29, 0, 0, 0, 0, -158, -10, 0, 0, 0, 0, -140, -5, 0, 0, 0, 0, -111, -1, 0, 0, 0, 0, -88, 0, 0, 0, 0, 0, -59, 0)
+}
+point_count = 13
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
 atlas = ExtResource("14_6keno")
 region = Rect2(0, 0, 640, 360)
@@ -89,12 +95,6 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="Curve2D" id="Curve2D_xqjcl"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16, -31, 0, 0, 0, 0, -49, -55, 0, 0, 0, 0, -80, -67, 0, 0, 0, 0, -120, -67, 0, 0, 0, 0, -154, -62, 0, 0, 0, 0, -184, -49, 0, 0, 0, 0, -195, -27, 0, 0, 0, 0, -196, 2, 0, 0, 0, 0, -188, 25, 0, 0, 0, 0, -174, 45, 0, 0, 0, 0, -151, 53, 0, 0, 0, 0, -131, 53, 0, 0, 0, 0, -111, 53, 0, 0, 0, 0, -85, 53)
-}
-point_count = 15
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1dmvx"]
 load_path = "res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
 
@@ -134,6 +134,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_fefi0")
+card_trigger_curve = SubResource("Curve2D_xqjcl")
 PauseMenuPacked = ExtResource("2_52dmg")
 CardUIPacked = ExtResource("3_e1r2e")
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
@@ -174,15 +175,8 @@ position = Vector2(320, 210)
 [node name="CardSpot" type="Node2D" parent="CardPlayZone" unique_id=1615483396]
 unique_name_in_owner = true
 
-[node name="CardDisplayPaths" type="Node2D" parent="CardPlayZone" unique_id=1690616523]
-
-[node name="PlayerCardPath" type="Path2D" parent="CardPlayZone/CardDisplayPaths" unique_id=1611729959]
+[node name="TestPath" type="Path2D" parent="CardPlayZone" unique_id=660726575]
 unique_name_in_owner = true
-curve = SubResource("Curve2D_xqjcl")
-
-[node name="EnemyCardPath" type="Path2D" parent="CardPlayZone/CardDisplayPaths" unique_id=1909371664]
-unique_name_in_owner = true
-position = Vector2(238, 0)
 curve = SubResource("Curve2D_xqjcl")
 
 [node name="PointsDisplay" parent="." unique_id=806983574 instance=ExtResource("5_eebmm")]

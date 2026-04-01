@@ -85,14 +85,17 @@ text = "Give an enemy a Handshake card "
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="CardUIButton" type="Node" parent="Control" unique_id=582718633]
+[node name="CardUIButton" type="Node" parent="Control" unique_id=953146956]
 unique_name_in_owner = true
 script = ExtResource("4_1dmvx")
 base_mouse_filter = 2
+metadata/_custom_type_script = "uid://b1qtu2bcvm30g"
 
 [node name="DefaultTooltipNode" type="Node" parent="Control/CardUIButton" unique_id=1444097386]
 unique_name_in_owner = true
 script = ExtResource("5_agjea")
+offset = Vector2(10, 20)
+metadata/_custom_type_script = "uid://s2cxedp1lqal"
 
 [connection signal="mouse_entered" from="Control/CardSprite/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Control/CardSprite/Area2D" to="." method="_on_area_2d_mouse_exited"]

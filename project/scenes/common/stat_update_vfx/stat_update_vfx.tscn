@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bmipev2ly0jf5"]
+
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="1_8rr44"]
+[ext_resource type="Script" uid="uid://yotsky8wahma" path="res://scenes/common/stat_update_vfx/stat_update_vfx.gd" id="1_38o4x"]
+[ext_resource type="LabelSettings" uid="uid://cn3kfhw3xcsw6" path="res://resources/ui/label_settings/jersey/jersey_12.tres" id="2_r27bi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38o4x"]
+atlas = ExtResource("1_8rr44")
+region = Rect2(353, 208, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2x61"]
+atlas = ExtResource("1_8rr44")
+region = Rect2(340, 240, 23, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r27bi"]
+atlas = ExtResource("1_8rr44")
+region = Rect2(340, 240, 23, 15)
+
+[node name="StatUpdateVfx" type="Node2D" unique_id=38509772]
+script = ExtResource("1_38o4x")
+win_icon = SubResource("AtlasTexture_38o4x")
+collab_icon = SubResource("AtlasTexture_x2x61")
+win_color = Color(1, 0.36139563, 0.28860375, 1)
+collab_color = Color(0.3569, 0.83, 0.41209504, 1)
+win_label_position = Vector2(-25, -7)
+collab_label_position = Vector2(-42, -7)
+
+[node name="IconSprite" type="Sprite2D" parent="." unique_id=59378566]
+unique_name_in_owner = true
+texture_filter = 1
+texture = SubResource("AtlasTexture_r27bi")
+
+[node name="ValueLabel" type="Label" parent="." unique_id=2100947606]
+unique_name_in_owner = true
+offset_left = -33.0
+offset_top = -7.0
+offset_right = -14.0
+offset_bottom = 7.0
+text = "+12"
+label_settings = ExtResource("2_r27bi")
+horizontal_alignment = 2

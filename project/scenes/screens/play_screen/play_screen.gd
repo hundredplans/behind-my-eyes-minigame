@@ -1,8 +1,7 @@
 extends Screen
 
+@onready var TestPath: Path2D = %TestPath
 @onready var TurnTimerDisplay: Node2D = %TurnTimerDisplay
-@onready var PlayerCardPath: Path2D = %PlayerCardPath
-@onready var EnemyCardPath: Path2D = %EnemyCardPath
 @onready var EnemyHandCardsManager: Node2D = %EnemyHandCardsManager
 @onready var PlayCardLineEdit: LineEdit = %PlayCardLineEdit
 @onready var AIManager: Node = %AIManager
@@ -12,11 +11,14 @@ extends Screen
 @onready var ActionSender: ActionManager = %ActionSender
 @onready var HandCardsManager: Node2D = %HandCardsManager
 
+const CARD_UI_TRIGGERED_Z_INDEX: int = 100
 const CARD_TRIGGERED_DISPLAY_END_SCALE: float = 2.0
 
+@export var card_trigger_curve: Curve2D
 @export var PauseMenuPacked: PackedScene
 @export var CardUIPacked: PackedScene
 
+var card_trigger_mirror_curve: Curve2D
 var PauseMenu: Control
 func onProcessAction(action: Action) -> void:
 	if action.isPost():
@@ -65,7 +67,9 @@ func onPlayCard(action: PlayCardAction) -> void:
 	card_ui.skew = deg_to_rad(-43)
 	card_ui.rotation = deg_to_rad(-25)
 	CardSpot.add_child(card_ui)
+	
 	card_ui.setCard(action.getCard())
+	card_ui.setTooltipSelf(true)
 	
 	if !action.getCard().isPlayers(): EnemyHandCardsManager.onUpdateAmount()
 	else: HandCardsManager.onHandCardRemoved()
@@ -81,6 +85,7 @@ func _ready() -> void:
 	onInitialiseEnemy()
 	PointsDisplay.setInfo()
 	onPush([StartGameAction.new()])
+	setMirroredCardTriggerCurve()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Escape") and !isPauseMenu():
@@ -119,7 +124,7 @@ func onTurnTimerTimeout() -> void:
 	onCardPlayed(Board.getCharacter(true).getHandCards().pick_random()) # This will break if no cards
 	
 func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
-	var field_card_uis: Array = getFieldCardUis()
+	var field_card_uis: Array = action.getFieldCards().map(func(x: Card): return getFieldCardUI(x))
 	assert(field_card_uis.size() == 2, "Invalid field size")
 	for card_ui: CardUI in field_card_uis:
 		onCardTriggeredDisplay(card_ui, action.getTravelDelay())
@@ -130,26 +135,40 @@ func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
 		card_ui.setDisabled(false)
 		other_card_ui.setDisabled(true)
 		await get_tree().create_timer(action.getFlashDelay() / 2.0).timeout
+	
+	var destroy_delay: float = action.getDestroyDelay()
+	var end_scale: float = CARD_TRIGGERED_DISPLAY_END_SCALE
+	for card_ui: CardUI in field_card_uis:
+		var tween := create_tween()
+		tween.tween_property(card_ui, "rotation", PI * 2, destroy_delay).as_relative()
 		
-	for card_ui: CardUI in field_card_uis: card_ui.queue_free()
+		var ntween := create_tween()
+		ntween.tween_property(card_ui, "scale", -Vector2(end_scale, end_scale), destroy_delay)\
+			.as_relative().set_trans(Tween.TRANS_SINE)
+		ntween.finished.connect(func(): card_ui.queue_free())
 	
 func onCardTriggeredDisplay(card_ui: CardUI, travel_delay: float) -> void:
 	card_ui.setDisabled(true)
-	var path: Path2D = (PlayerCardPath if card_ui.getCard().isPlayers() else EnemyCardPath)
+	card_ui.setZIndex(CARD_UI_TRIGGERED_Z_INDEX)
+	var players: bool = card_ui.getCard().isPlayers()
+	var curve: Curve2D = (card_trigger_mirror_curve if players else card_trigger_curve)
 	var tween: Tween = create_tween()
-	tween.tween_method(onCardTriggeredDisplayTween.bind(path, card_ui), 0.0, 1.0, travel_delay)
+	tween.tween_method(onCardTriggeredDisplayTween.bind(curve, card_ui), 0.0, 1.0, travel_delay)
 	
-func onCardTriggeredDisplayTween(p: float, path: Path2D, card_ui: CardUI) -> void:
-	var curve: Curve2D = path.curve
+func onCardTriggeredDisplayTween(p: float, curve: Curve2D, card_ui: CardUI) -> void:
 	var length: float = curve.get_baked_length()
 	var distance: float = length * p
 	card_ui.transform = curve.sample_baked_with_rotation(distance)
-	card_ui.position += path.position
+	if card_ui.getCard().isPlayers(): card_ui.rotation += PI
+	
 	var end_scale: float = lerp(1.0, CARD_TRIGGERED_DISPLAY_END_SCALE, p)
 	card_ui.scale = Vector2(end_scale, end_scale)
 	
 func getFieldCardUis() -> Array: return CardSpot.get_children()
-	
+func getFieldCardUI(card: Card) -> CardUI:
+	for card_ui: CardUI in getFieldCardUis():
+		if card_ui.getCard() == card: return card_ui
+	return null
 func onCreateEnemyHandCard() -> void:
 	EnemyHandCardsManager.onUpdateAmount()
 
@@ -159,13 +178,17 @@ func onEndGame(action: EndGameAction) -> void:
 		EndGameAction.Type.WIN: load_screen.emit(Screen.Type.WIN)
 		EndGameAction.Type.COLLAB: load_screen.emit(Screen.Type.COLLAB)
 
-
 func _on_blink_animation_finished() -> void:
 	if isPauseMenu():
 		add_child(PauseMenu)
 		PauseMenu.load_screen.connect(on_leave)
 	Blink.visible=false
 	
-	
 func on_leave(type: Screen.Type) -> void:
 		load_screen.emit(type)
+		
+func setMirroredCardTriggerCurve() -> void:
+	card_trigger_mirror_curve = Curve2D.new()
+	var points: PackedVector2Array = card_trigger_curve.get_baked_points()
+	for point: Vector2 in points:
+		card_trigger_mirror_curve.add_point(Vector2(-point.x, point.y))
