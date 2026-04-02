@@ -106,11 +106,11 @@ func onCreatePauseMenu() -> void:
 	PauseMenu = PauseMenuPacked.instantiate()
 	
 func onActionChainStarted() -> void:
-	PlayCardLineEdit.editable = false
+	PlayCardLineEdit.setActionChained(true)
 	for card_ui: CardUI in getCardUis(): card_ui.setDisabled(true)
 	
 func onActionChainEnded() -> void:
-	PlayCardLineEdit.editable = true
+	PlayCardLineEdit.setActionChained(false)
 	for card_ui: CardUI in getCardUis(): card_ui.setDisabled(false)
 	
 func getCardUis() -> Array: return HandCardsManager.getCardUis()

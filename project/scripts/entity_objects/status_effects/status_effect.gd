@@ -1,5 +1,6 @@
 class_name StatusEffect extends EntityObject
 
+signal triggered
 signal update_display_amount
 var character: Character
 func _init(_info: ResourceInfo, _character: Character) -> void:
@@ -8,14 +9,21 @@ func _init(_info: ResourceInfo, _character: Character) -> void:
 	onConnectToActions()
 	onStatusEffectCreated()
 	
-func onProcessAction(action: Action) -> void:
+func onConnectToActions() -> void:
+	super()
+	Actions.process_action.connect(onProcessActionDefault)
+	
+func onProcessActionDefault(action: Action) -> void:
 	if !action.isPost():
 		if action is UpdatePointsAction and action.isPlayers() == isPlayers():
 			if isDoubler():
 				onForce([DoublerTriggerStatusEffectAction.new(self, action)])
 			elif isNullifier():
 				onForce([NullifierTriggerStatusEffectAction.new(self, action)])
+		elif action is TriggerStatusEffectAction and action.getStatusEffect() == self:
+			onTriggered()
 
+func onTriggered() -> void: triggered.emit()
 func onDoubler(action: UpdatePointsAction) -> void: action.onDouble()
 func onNullifier(action: UpdatePointsAction) -> void: action.onNullify()
 func onStatusEffectCreated() -> void: pass

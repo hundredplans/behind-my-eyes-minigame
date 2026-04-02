@@ -25,12 +25,13 @@ func onCreateStatusEffect(status_effect: StatusEffect) -> void:
 	var curve: Curve2D = StatusEffectPath.curve
 	var distance: float = status_effect_ui_offset * (getUisAmount() - 1)
 	var trans: Transform2D = curve.sample_baked_with_rotation(distance)
-	status_effect_ui.transform = trans
+	status_effect_ui.position = trans.get_origin()
+	status_effect_ui.rotation = trans.get_rotation()
 	
 func onRemoveStatusEffect(status_effect: StatusEffect) -> void:
 	var status_effect_ui: Node2D = getStatusEffectUI(status_effect)
 	if status_effect_ui == null: return
-	status_effect_ui.queue_free()
+	status_effect_ui.onDeath()
 	
 func getStatusEffectUI(status_effect: StatusEffect) -> Node2D:
 	for status_effect_ui: Node2D in getStatusEffectUis():

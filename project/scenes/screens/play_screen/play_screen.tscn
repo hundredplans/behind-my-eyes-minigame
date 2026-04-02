@@ -20,9 +20,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_xqjcl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -14, -35, 0, 0, 0, 0, -37, -65, 0, 0, 0, 0, -73, -77, 0, 0, 0, 0, -113, -77, 0, 0, 0, 0, -149, -72, 0, 0, 0, 0, -174, -56, 0, 0, 0, 0, -174, -29, 0, 0, 0, 0, -158, -10, 0, 0, 0, 0, -140, -5, 0, 0, 0, 0, -111, -1, 0, 0, 0, 0, -88, 0, 0, 0, 0, 0, -59, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5, 0, 0, 0, 0, -1.8724594, -10.997186, 0, 0, 0, 0, -3, -17, 0, 0, 0, 0, -5, -23, 0, 0, 0, 0, -8, -29, 0, 0, 0, 0, -15, -39, 0, 0, 0, 0, -21, -47, 0, 0, 0, 0, -28, -56, 0, 0, 0, 0, -37, -65, 0, 0, 0, 0, -47, -71, 0, 0, 0, 0, -58, -74, 0, 0, 0, 0, -71, -76, 0, 0, 0, 0, -81.825615, -74.840805, 0, 0, 0, 0, -88, -70, 0, 0, 0, 0, -91, -62, 0, 0, 0, 0, -92, -52, 0, 0, 0, 0, -92, -43, 0, 0, 0, 0, -91, -35, 0, 0, 0, 0, -88, -26, 0, 0, 0, 0, -83, -18, 0, 0, 0, 0, -77, -12, 0, 0, 0, 0, -71, -7, 0, 0, 0, 0, -65, -3, 0, 0, 0, 0, -59, 0, 0, 0, 0, 0, -52, 0)
 }
-point_count = 13
+point_count = 26
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
 atlas = ExtResource("14_6keno")
@@ -210,6 +210,7 @@ theme_override_styles/read_only = SubResource("StyleBoxTexture_6keno")
 theme_override_styles/focus = SubResource("StyleBoxTexture_6keno")
 placeholder_text = "Type Card Here"
 alignment = 1
+keep_editing_on_text_submit = true
 script = ExtResource("8_hisnf")
 metadata/_edit_lock_ = true
 

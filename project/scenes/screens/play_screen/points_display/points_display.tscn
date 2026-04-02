@@ -26,12 +26,9 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0scbe"]
-load_path = "res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y145m"]
-atlas = SubResource("CompressedTexture2D_0scbe")
-region = Rect2(352, 64, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hlbe"]
+atlas = ExtResource("3_y145m")
+region = Rect2(320, 64, 16, 16)
 
 [sub_resource type="Curve2D" id="Curve2D_2renx"]
 _data = {
@@ -39,9 +36,12 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3hlbe"]
-atlas = ExtResource("3_y145m")
-region = Rect2(320, 64, 16, 16)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0scbe"]
+load_path = "res://.godot/imported/combat_atlas.png-dfe0a3adf1b5105b91932f2ee0c62908.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y145m"]
+atlas = SubResource("CompressedTexture2D_0scbe")
+region = Rect2(352, 64, 16, 16)
 
 [node name="PointsDisplay" type="Node2D" unique_id=806983574]
 script = ExtResource("1_2renx")
@@ -72,28 +72,28 @@ texture = SubResource("AtlasTexture_x3vil")
 unique_name_in_owner = true
 curve = SubResource("Curve2D_3hlbe")
 
-[node name="EnemyPathFollow" type="PathFollow2D" parent="PlayerPath" unique_id=1063680925]
+[node name="PlayerPathFollow" type="PathFollow2D" parent="PlayerPath" unique_id=379674508]
 unique_name_in_owner = true
-position = Vector2(0, 123)
+position = Vector2(0, 121)
 rotation = -1.5707964
 
-[node name="EnemySprite" type="Sprite2D" parent="PlayerPath/EnemyPathFollow" unique_id=284028358]
+[node name="PlayerSprite" type="Sprite2D" parent="PlayerPath/PlayerPathFollow" unique_id=1519299861]
 unique_name_in_owner = true
 texture_filter = 1
 rotation = 1.5707964
-texture = SubResource("AtlasTexture_y145m")
+texture = SubResource("AtlasTexture_3hlbe")
 
 [node name="EnemyPath" type="Path2D" parent="." unique_id=756108866]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_2renx")
 
-[node name="PlayerPathFollow" type="PathFollow2D" parent="EnemyPath" unique_id=379674508]
+[node name="EnemyPathFollow" type="PathFollow2D" parent="EnemyPath" unique_id=1063680925]
 unique_name_in_owner = true
-position = Vector2(0, 121)
+position = Vector2(0, 123)
 rotation = -1.5707964
 
-[node name="PlayerSprite" type="Sprite2D" parent="EnemyPath/PlayerPathFollow" unique_id=1519299861]
+[node name="EnemySprite" type="Sprite2D" parent="EnemyPath/EnemyPathFollow" unique_id=284028358]
 unique_name_in_owner = true
 texture_filter = 1
 rotation = 1.5707964
-texture = SubResource("AtlasTexture_3hlbe")
+texture = SubResource("AtlasTexture_y145m")
