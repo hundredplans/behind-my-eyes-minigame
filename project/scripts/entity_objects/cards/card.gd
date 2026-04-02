@@ -23,7 +23,9 @@ func onTriggerDefault(enemy_card: Card) -> void:
 		Data.PointType.LOSE:
 			delta *= Data.LOSS_POINT_MOVE_MULT
 			_is_players = !_is_players
-	var actions: Array = [UpdatePointsAction.new(_is_players, delta)]
+	var update_points_action := UpdatePointsAction.new(_is_players, delta)
+	update_points_action.setCardDefault(true)
+	var actions: Array = [update_points_action]
 	onPush(actions)
 	
 func onRemoveHandCard() -> void: remove_hand_card.emit()

@@ -7,7 +7,7 @@ var cards_remaining: int
 func onProcessAction(action: Action) -> void:
 	if !action.isPost():
 		if action is UpdatePointsAction and action.isCardDefault() and action.isPlayers() == isPlayers():
-			onForce([ExcitableTriggerStatusEffectAction.new(self)])
+			onForce([ExcitableTriggerStatusEffectAction.new(self, action)])
 
 func onStatusEffectCreated() -> void:
 	cards_remaining = START_CARDS_REMAINING

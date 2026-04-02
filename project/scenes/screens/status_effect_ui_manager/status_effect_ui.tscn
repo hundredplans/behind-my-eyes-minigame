@@ -2,16 +2,21 @@
 
 [ext_resource type="Script" uid="uid://uvl8pdigs23w" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui.gd" id="1_nrpuq"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_ndvkd"]
-[ext_resource type="LabelSettings" uid="uid://bgxfs62pokw5r" path="res://resources/ui/label_settings/jersey/jersey_24.tres" id="2_s3qth"]
 [ext_resource type="Script" uid="uid://b1qtu2bcvm30g" path="res://scripts/common/ui/default_control.gd" id="3_v6pqw"]
 [ext_resource type="Script" uid="uid://s2cxedp1lqal" path="res://scripts/common/ui/default_tooltip.gd" id="4_ndvkd"]
+[ext_resource type="LabelSettings" uid="uid://cn3kfhw3xcsw6" path="res://resources/ui/label_settings/jersey/jersey_12.tres" id="5_ndvkd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3qth"]
 atlas = ExtResource("2_ndvkd")
 region = Rect2(535, 207, 50, 18)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndvkd"]
+atlas = ExtResource("2_ndvkd")
+region = Rect2(416, 99, 7, 8)
+
 [node name="StatusEffectUI" type="Node2D" unique_id=14122200]
 script = ExtResource("1_nrpuq")
+triggered_color = Color(1.2574322, 1.2574322, 1.2574322, 1)
 
 [node name="Hitbox" type="Control" parent="." unique_id=920115396]
 layout_mode = 3
@@ -41,11 +46,18 @@ script = ExtResource("4_ndvkd")
 offset = Vector2(10, -25)
 metadata/_custom_type_script = "uid://s2cxedp1lqal"
 
-[node name="DisplayAmountLabel" type="Label" parent="." unique_id=808463749]
+[node name="TurnsSprite" type="Sprite2D" parent="." unique_id=769323610]
 unique_name_in_owner = true
-offset_left = 17.0
+texture_filter = 1
+position = Vector2(23, 8)
+texture = SubResource("AtlasTexture_ndvkd")
+
+[node name="DisplayAmountLabel" type="Label" parent="TurnsSprite" unique_id=808463749]
+unique_name_in_owner = true
+offset_left = -21.0
 offset_top = -7.0
-offset_right = 27.0
-offset_bottom = 20.0
-text = "2"
-label_settings = ExtResource("2_s3qth")
+offset_right = -5.0
+offset_bottom = 7.0
+text = "3"
+label_settings = ExtResource("5_ndvkd")
+horizontal_alignment = 2
