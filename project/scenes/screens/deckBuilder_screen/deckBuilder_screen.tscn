@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://cbqti0cq6td62"]
+
+[ext_resource type="Script" uid="uid://c5ca24kxl2wtp" path="res://scenes/screens/deckBuilder_screen/deck_builder_screen.gd" id="1_nik0h"]
+[ext_resource type="Texture2D" uid="uid://cwktyywpvtd5r" path="res://assets/sprites/Binder.png" id="2_3uojd"]
+[ext_resource type="Texture2D" uid="uid://cy7qnmoakmx11" path="res://assets/sprites/play/CardHolders.png" id="3_tu4l5"]
+[ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="4_ru4mf"]
+[ext_resource type="PackedScene" uid="uid://cgk8mnf70jwns" path="res://scenes/resource_objects/cards/card_ui/card_ui.tscn" id="5_v7lcs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03kmy"]
+atlas = ExtResource("4_ru4mf")
+region = Rect2(416, 303, 33, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piiqn"]
+atlas = ExtResource("4_ru4mf")
+region = Rect2(416, 329, 33, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n73sf"]
+atlas = ExtResource("4_ru4mf")
+region = Rect2(416, 409, 33, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yvxe"]
+atlas = ExtResource("4_ru4mf")
+region = Rect2(416, 382, 33, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b01lr"]
+atlas = ExtResource("4_ru4mf")
+region = Rect2(416, 355, 33, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_comgq"]
+atlas = ExtResource("4_ru4mf")
+region = Rect2(445, 443, 23, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddydv"]
+atlas = ExtResource("4_ru4mf")
+region = Rect2(416, 443, 23, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm70w"]
+atlas = ExtResource("4_ru4mf")
+region = Rect2(474, 443, 23, 22)
+
+[node name="DeckBuilderScreen" type="Node2D" unique_id=448603974]
+script = ExtResource("1_nik0h")
+
+[node name="UI" type="Sprite2D" parent="." unique_id=435420802]
+texture_filter = 1
+position = Vector2(320, 180)
+texture = ExtResource("2_3uojd")
+
+[node name="CardHolders" type="Sprite2D" parent="UI" unique_id=1374054851]
+texture_filter = 1
+position = Vector2(-96, -10)
+texture = ExtResource("3_tu4l5")
+
+[node name="SortNice" type="Sprite2D" parent="." unique_id=1110868130]
+texture_filter = 1
+position = Vector2(458, 36)
+texture = SubResource("AtlasTexture_03kmy")
+
+[node name="SortHappy" type="Sprite2D" parent="." unique_id=1198938318]
+texture_filter = 1
+position = Vector2(493, 36)
+texture = SubResource("AtlasTexture_piiqn")
+
+[node name="SortAngry" type="Sprite2D" parent="." unique_id=1248729685]
+texture_filter = 1
+position = Vector2(563, 36)
+texture = SubResource("AtlasTexture_n73sf")
+
+[node name="SortSad" type="Sprite2D" parent="." unique_id=405195305]
+texture_filter = 1
+position = Vector2(528, 36)
+texture = SubResource("AtlasTexture_5yvxe")
+
+[node name="SortSarcastic" type="Sprite2D" parent="." unique_id=1376055789]
+texture_filter = 1
+position = Vector2(598, 36)
+texture = SubResource("AtlasTexture_b01lr")
+
+[node name="Sort2star" type="Sprite2D" parent="." unique_id=1007377980]
+texture_filter = 1
+position = Vector2(478, 61)
+texture = SubResource("AtlasTexture_comgq")
+
+[node name="Sort1star" type="Sprite2D" parent="." unique_id=975293104]
+texture_filter = 1
+position = Vector2(453, 61)
+texture = SubResource("AtlasTexture_ddydv")
+
+[node name="Sort3star" type="Sprite2D" parent="." unique_id=1958190169]
+texture_filter = 1
+position = Vector2(503, 61)
+texture = SubResource("AtlasTexture_fm70w")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1730578366]
+offset_left = 439.0
+offset_top = 77.0
+offset_right = 619.0
+offset_bottom = 327.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=81948126]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer" unique_id=198640509]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 63
+theme_override_constants/v_separation = 92
+columns = 3
+
+[node name="Control3" type="Control" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1055312598]
+layout_mode = 2
+
+[node name="CardUI4" parent="ScrollContainer/MarginContainer/GridContainer/Control3" unique_id=1745416984 instance=ExtResource("5_v7lcs")]
+position = Vector2(28, 0)
+
+[node name="Control2" type="Control" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1927873509]
+layout_mode = 2
+
+[node name="CardUI4" parent="ScrollContainer/MarginContainer/GridContainer/Control2" unique_id=1851175238 instance=ExtResource("5_v7lcs")]
+position = Vector2(28, 0)
+
+[node name="Control" type="Control" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=429658210]
+layout_mode = 2
+
+[node name="CardUI4" parent="ScrollContainer/MarginContainer/GridContainer/Control" unique_id=1632004150 instance=ExtResource("5_v7lcs")]
+position = Vector2(28, 0)
+
+[node name="Control4" type="Control" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1465327974]
+layout_mode = 2
+
+[node name="CardUI4" parent="ScrollContainer/MarginContainer/GridContainer/Control4" unique_id=1168138151 instance=ExtResource("5_v7lcs")]
+position = Vector2(28, 0)

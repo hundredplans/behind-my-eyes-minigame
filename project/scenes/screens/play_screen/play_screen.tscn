@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cnrfa4drlq8ms" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui_manager.tscn" id="15_v3hmr"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="16_8t53l"]
 [ext_resource type="PackedScene" uid="uid://cq3bfwkqjvl7u" path="res://scenes/screens/play_screen/turn_timer_display/turn_timer_display.tscn" id="16_y8dr8"]
-[ext_resource type="LabelSettings" uid="uid://benuktnsetv7u" path="res://resources/ui/label_settings/jersey/jersey_16.tres" id="17_8jnos"]
+[ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="17_8jnos"]
 
 [sub_resource type="Curve2D" id="Curve2D_xqjcl"]
 _data = {
@@ -129,7 +129,7 @@ expand_margin_bottom = 3.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8jnos"]
 atlas = ExtResource("16_8t53l")
-region = Rect2(639, 147, 145, 77)
+region = Rect2(639, 147, 146, 78)
 
 [node name="PlayScreen" type="Control" unique_id=746952712]
 layout_mode = 3
@@ -177,6 +177,20 @@ mouse_filter = 2
 texture = ExtResource("3_k8syp")
 expand_mode = 3
 
+[node name="HandCardManagers" type="Node2D" parent="." unique_id=1831081516]
+z_index = 2
+
+[node name="HandCardsManager" parent="HandCardManagers" unique_id=2065525916 instance=ExtResource("11_tunfc")]
+unique_name_in_owner = true
+z_index = 20
+texture_filter = 1
+position = Vector2(320, 290)
+scale = Vector2(1.5, 1.5)
+
+[node name="EnemyHandCardsManager" parent="HandCardManagers" unique_id=477362272 instance=ExtResource("12_xqjcl")]
+unique_name_in_owner = true
+position = Vector2(320, 125)
+
 [node name="CardPlayZone" type="Node2D" parent="." unique_id=62960181]
 position = Vector2(320, 210)
 
@@ -189,7 +203,7 @@ curve = SubResource("Curve2D_xqjcl")
 
 [node name="PointsDisplay" parent="." unique_id=806983574 instance=ExtResource("5_eebmm")]
 unique_name_in_owner = true
-position = Vector2(84, 178)
+position = Vector2(84, 201)
 
 [node name="PlayerSpeechBubble" type="Node2D" parent="." unique_id=1414662779]
 position = Vector2(473, 265)
@@ -230,19 +244,6 @@ StatusEffectPath = NodePath("Path2D")
 [node name="Path2D" type="Path2D" parent="StatusEffectManagers/EnemyEffectUiManager" unique_id=310904782]
 curve = SubResource("Curve2D_y8dr8")
 
-[node name="HandCardManagers" type="Node2D" parent="." unique_id=1831081516]
-
-[node name="HandCardsManager" parent="HandCardManagers" unique_id=2065525916 instance=ExtResource("11_tunfc")]
-unique_name_in_owner = true
-z_index = 1
-texture_filter = 1
-position = Vector2(320, 290)
-scale = Vector2(1.5, 1.5)
-
-[node name="EnemyHandCardsManager" parent="HandCardManagers" unique_id=477362272 instance=ExtResource("12_xqjcl")]
-unique_name_in_owner = true
-position = Vector2(320, 125)
-
 [node name="TurnTimerDisplay" parent="." unique_id=114330032 instance=ExtResource("16_y8dr8")]
 unique_name_in_owner = true
 texture_filter = 1
@@ -268,17 +269,21 @@ position = Vector2(24, 109)
 
 [node name="EnemySpeechBubbleSprite" type="Sprite2D" parent="EnemyIconBorder/EnemySpeechBubble" unique_id=2001539052]
 texture_filter = 1
+position = Vector2(8, -6)
 rotation = -3.1415927
 texture = SubResource("AtlasTexture_8jnos")
 
 [node name="EnemyWordLabel" type="Label" parent="EnemyIconBorder/EnemySpeechBubble" unique_id=1849089154]
 unique_name_in_owner = true
-offset_left = -59.0
-offset_top = -10.0
-offset_right = 61.0
-offset_bottom = 18.0
+texture_filter = 1
+offset_left = -60.0
+offset_top = -12.0
+offset_right = 60.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("17_8jnos")
+theme_override_font_sizes/font_size = 32
 text = "Word"
-label_settings = ExtResource("17_8jnos")
 horizontal_alignment = 1
 
 [connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]

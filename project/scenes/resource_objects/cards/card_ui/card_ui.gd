@@ -45,17 +45,15 @@ func onRemoveHandCard() -> void: queue_free()
 func setDisabled(_disabled: bool) -> void: CardUIButton.setDisabled(_disabled)
 func getCard() -> Card: return card
 
-func _on_area_2d_mouse_entered() -> void:
-	print("hello")
-	
-	CardSprite.scale=Vector2(1.5,1.5)
-	z_indexCopy=CardSprite.z_index
-	CardSprite.z_index=20
-
-func _on_area_2d_mouse_exited() -> void:
-	print("bye")
-	CardSprite.scale=Vector2(1,1) 
-	CardSprite.z_index=z_indexCopy
-	
 func setZIndex(_z_index: int) -> void:
 	z_index = _z_index
+
+
+func _on_control_mouse_entered() -> void:
+	print("hello")
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property(CardSprite, "rotation", -0.1 , 0.1)
+	tween.parallel().tween_property(CardSprite, "scale", Vector2(1.1,1.1), 0.2)
+	tween.tween_property(CardSprite, "rotation", 0.1 , 0.1)
+	tween.tween_property(CardSprite, "rotation", 0 , 0.1)
+	tween.tween_callback(CardSprite.queue_free)

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var offset: float = 20.0
+@export var offset: float = 60.0
 func onHandCardCreated(card_ui: CardUI) -> void:
 	add_child(card_ui)
 	onSortCardUis()
@@ -14,9 +14,9 @@ func onSortCardUis() -> void:
 	var step: float = (2 * offset) / (amount - 1)
 	for i: int in amount:
 		var card_ui: CardUI = children[i]
-		card_ui.rotation= -0.1 + 0.10*i
+		#card_ui.rotation= -0.1 + 0.10*i
 		card_ui.z_index= 14 - 2*i 
-		card_ui.position.y = +2 *i 
+		#card_ui.position.y = +2 *i 
 		card_ui.position.x = -offset + (i * step)
 	
 func getCardUis() -> Array:

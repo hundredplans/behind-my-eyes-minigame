@@ -11,9 +11,6 @@ resource_local_to_scene = true
 atlas = ExtResource("2_agjea")
 region = Rect2(16, 208, 48, 80)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_agjea"]
-size = Vector2(2.0000007, 14.360083)
-
 [sub_resource type="FontVariation" id="FontVariation_agjea"]
 base_font = ExtResource("3_3nsd1")
 
@@ -30,20 +27,9 @@ offset_bottom = 40.0
 
 [node name="CardSprite" type="Sprite2D" parent="Control" unique_id=1666206552]
 unique_name_in_owner = true
-y_sort_enabled = true
 texture_filter = 1
 position = Vector2(24, 40)
 texture = SubResource("AtlasTexture_3nsd1")
-
-[node name="Area2D" type="Area2D" parent="Control/CardSprite" unique_id=1192182817]
-position = Vector2(-1, -1)
-scale = Vector2(24, 5.571)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/CardSprite/Area2D" unique_id=1204744424]
-z_index = 1
-position = Vector2(0.041666668, 0.179501)
-scale = Vector2(0.99999964, 0.99999946)
-shape = SubResource("RectangleShape2D_agjea")
 
 [node name="NameLabel" type="Label" parent="Control/CardSprite" unique_id=1303983797]
 unique_name_in_owner = true
@@ -98,5 +84,4 @@ script = ExtResource("5_agjea")
 offset = Vector2(10, 20)
 metadata/_custom_type_script = "uid://s2cxedp1lqal"
 
-[connection signal="mouse_entered" from="Control/CardSprite/Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Control/CardSprite/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
