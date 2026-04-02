@@ -123,7 +123,9 @@ func onPlayCardLineEditTextSubmitted(new_text: String) -> void:
 	for card_ui: CardUI in getCardUis():
 		if card_ui.getCard().getName().to_lower() != new_text: continue
 		onCardPlayed(card_ui.getCard())
+		PlayCardLineEdit.onTextValid()
 		return
+	PlayCardLineEdit.onTextInvalid()
 	
 func onCardPlayed(card: Card) -> void:
 	onPush([PlayCardAction.new(card), TriggerCardEffectsAction.new()])
