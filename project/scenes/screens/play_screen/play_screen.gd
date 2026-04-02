@@ -13,7 +13,6 @@ extends Screen
 @onready var ActionSender: ActionManager = %ActionSender
 @onready var HandCardsManager: Node2D = %HandCardsManager
 
-const CARD_UI_TRIGGERED_Z_INDEX: int = 100
 const CARD_TRIGGERED_DISPLAY_END_SCALE: float = 2.0
 
 @export var card_trigger_curve: Curve2D
@@ -140,12 +139,15 @@ func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
 	for card_ui: CardUI in field_card_uis:
 		onCardTriggeredDisplay(card_ui, action.getTravelDelay())
 	await get_tree().create_timer(action.getTravelDelay()).timeout
+	var flash_delay: float = action.getFlashDelay() / 2.0
 	for i: int in field_card_uis.size():
 		var card_ui: CardUI = field_card_uis[i]
 		var other_card_ui: CardUI = field_card_uis[abs(i - 1)]
+		var point_type: Data.PointType = GameLogic.getMatchType(card_ui.getCard().getCardType(), other_card_ui.getCard().getCardType())
+		card_ui.onCardTriggeredDisplay(point_type)
 		card_ui.setDisabled(false)
 		other_card_ui.setDisabled(true)
-		await get_tree().create_timer(action.getFlashDelay() / 2.0).timeout
+		await get_tree().create_timer(flash_delay).timeout
 	
 	var destroy_delay: float = action.getDestroyDelay()
 	var end_scale: float = CARD_TRIGGERED_DISPLAY_END_SCALE
@@ -159,8 +161,7 @@ func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
 		ntween.finished.connect(func(): card_ui.queue_free())
 	
 func onCardTriggeredDisplay(card_ui: CardUI, travel_delay: float) -> void:
-	card_ui.setDisabled(true)
-	card_ui.setZIndex(CARD_UI_TRIGGERED_Z_INDEX)
+	card_ui.onCardTriggeredTravel()
 	var players: bool = card_ui.getCard().isPlayers()
 	var curve: Curve2D = (card_trigger_mirror_curve if players else card_trigger_curve)
 	var tween: Tween = create_tween()

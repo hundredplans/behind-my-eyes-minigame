@@ -3,8 +3,24 @@
 [ext_resource type="Script" uid="uid://baugun20xjivg" path="res://scenes/resource_objects/cards/card_ui/card_ui.gd" id="1_kkiuu"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_agjea"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="3_3nsd1"]
-[ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_1dmvx"]
+[ext_resource type="Script" uid="uid://b1qtu2bcvm30g" path="res://scripts/common/ui/default_control.gd" id="4_agjea"]
 [ext_resource type="Script" uid="uid://s2cxedp1lqal" path="res://scripts/common/ui/default_tooltip.gd" id="5_agjea"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agjea"]
+atlas = ExtResource("2_agjea")
+region = Rect2(340, 240, 23, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od6dt"]
+atlas = ExtResource("2_agjea")
+region = Rect2(353, 208, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jp0s"]
+atlas = ExtResource("2_agjea")
+region = Rect2(353, 177, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewehy"]
+atlas = ExtResource("2_agjea")
+region = Rect2(338, 272, 30, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3nsd1"]
 resource_local_to_scene = true
@@ -16,6 +32,10 @@ base_font = ExtResource("3_3nsd1")
 
 [node name="CardUI" type="Node2D" unique_id=1745416984]
 script = ExtResource("1_kkiuu")
+collab_icon = SubResource("AtlasTexture_agjea")
+win_icon = SubResource("AtlasTexture_od6dt")
+loss_icon = SubResource("AtlasTexture_8jp0s")
+none_icon = SubResource("AtlasTexture_ewehy")
 
 [node name="Control" type="Control" parent="." unique_id=890086645]
 layout_mode = 3
@@ -24,6 +44,13 @@ offset_left = -24.0
 offset_top = -40.0
 offset_right = 24.0
 offset_bottom = 40.0
+
+[node name="TriggerPointTypeSprite" type="Sprite2D" parent="Control" unique_id=642603997]
+unique_name_in_owner = true
+z_index = 1
+texture_filter = 1
+position = Vector2(24, 16)
+scale = Vector2(1.5, 1.5)
 
 [node name="CardSprite" type="Sprite2D" parent="Control" unique_id=1666206552]
 unique_name_in_owner = true
@@ -74,8 +101,7 @@ autowrap_mode = 3
 
 [node name="CardUIButton" type="Node" parent="Control" unique_id=953146956]
 unique_name_in_owner = true
-script = ExtResource("4_1dmvx")
-base_mouse_filter = 2
+script = ExtResource("4_agjea")
 metadata/_custom_type_script = "uid://b1qtu2bcvm30g"
 
 [node name="DefaultTooltipNode" type="Node" parent="Control/CardUIButton" unique_id=1444097386]

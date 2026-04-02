@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dregtbydnyyrb" path="res://scenes/screens/main_menu/main_menu.gd" id="1_wf0jh"]
 [ext_resource type="Texture2D" uid="uid://cevd4fmny51b4" path="res://assets/sprites/play/combat_atlas/MenuSpritesheet-Sheet.png" id="2_ht6f7"]
+[ext_resource type="Texture2D" uid="uid://cqelm1w3f51gu" path="res://assets/backgrounds/1055726.png" id="2_xibsw"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_0fmn3"]
 [ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_0urj7"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="5_g4j36"]
@@ -148,6 +149,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wf0jh")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1251124945]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_xibsw")
+expand_mode = 5
 
 [node name="Blink" type="AnimatedSprite2D" parent="." unique_id=575761315]
 unique_name_in_owner = true
