@@ -5,6 +5,9 @@
 [ext_resource type="AudioStream" uid="uid://dun513g8jkdc3" path="res://assets/sounds/pageflip.mp3" id="3_xibsw"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_0fmn3"]
 [ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_0urj7"]
+[ext_resource type="AudioStream" uid="uid://diww117wperr2" path="res://assets/sounds/scribble.mp3" id="4_4kug3"]
+[ext_resource type="Texture2D" uid="uid://cqelm1w3f51gu" path="res://assets/backgrounds/1055726.png" id="4_uamlo"]
+[ext_resource type="AudioStream" uid="uid://mkhk7epgedlc" path="res://assets/sounds/waves.mp3" id="5_8h7de"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="5_g4j36"]
 [ext_resource type="PackedScene" uid="uid://cbqti0cq6td62" path="res://scenes/screens/deckBuilder_screen/deckBuilder_screen.tscn" id="7_ht6f7"]
 [ext_resource type="Texture2D" uid="uid://cup5xmekk47mq" path="res://assets/sprites/play/Blink_Animation.png" id="8_xibsw"]
@@ -152,6 +155,21 @@ grow_vertical = 2
 script = ExtResource("1_wf0jh")
 DeckBuilder = ExtResource("7_ht6f7")
 pageflip_sfx = ExtResource("3_xibsw")
+scritching_sfx = ExtResource("4_4kug3")
+eyes_opening_sfx = ExtResource("5_8h7de")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1049347395]
+top_level = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_uamlo")
+expand_mode = 3
 
 [node name="Blink" type="AnimatedSprite2D" parent="." unique_id=575761315]
 unique_name_in_owner = true

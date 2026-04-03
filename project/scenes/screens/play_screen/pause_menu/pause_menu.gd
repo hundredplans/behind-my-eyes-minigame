@@ -14,6 +14,9 @@ extends Screen
 @onready var LowerRes: Button =%lowerResolution
 @onready var HigherRes: Button =%higherResolution
 
+@export var scritching_sfx: AudioStream
+@export var eyes_opening_sfx: AudioStream
+
 var inSettings: bool
 var exiting: bool
 var resolutionScale = 3
@@ -25,6 +28,7 @@ func _ready() -> void:
 	_on_Music_value_changed(Settings.getSettingsData().getMusicVolume())
 	_on_Master_value_changed(Settings.getSettingsData().getMasterVolume())
 	onUpdateWindowMode(Settings.getSettingsData().getWindowMode())
+	Audio.onPlaySFX(eyes_opening_sfx)
 
 func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
 	DisplayServer.window_set_mode(window_mode)
@@ -47,9 +51,7 @@ func _process(_delta: float) -> void:
 func onPlayPressed() -> void:
 	Blink.visible = true
 	Blink.play("CloseEyes");
-	
-	
-	
+	Audio.onPlaySFX(eyes_opening_sfx)
 
 func onSettingsPressed() -> void:
 	Sprite.play("OpenSettings")

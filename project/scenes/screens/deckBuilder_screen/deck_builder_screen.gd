@@ -46,8 +46,7 @@ func onUpdateSettings() -> void:
 		
 func _ready() -> void:
 	Actions.process_action.connect(onProcessAction)
-	for id in range(1,30):
-		var card_info: CardInfo = Info.getInfo(CardInfo, id)
+	for card_info: CardInfo in Info.getInfos(CardInfo):
 		var card: Card = card_info.getCard(false)
 		makeCardUi(card)
 	CostLabel.text= str(getCurrentCost()) +"/20"  
