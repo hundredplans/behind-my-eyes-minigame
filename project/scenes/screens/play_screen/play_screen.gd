@@ -28,6 +28,7 @@ const CARD_TRIGGERED_DISPLAY_END_SCALE: float = 2.0
 @export var turn_start_sfx: AudioStream
 @export var card_triggered_sfx: AudioStream
 
+var action_chained: bool
 var card_trigger_mirror_curve: Curve2D
 var PauseMenu: Control
 func onProcessAction(action: Action) -> void:
@@ -78,6 +79,7 @@ func onCreateHandCard(action: CreateHandCardAction) -> void:
 	var card_ui: CardUI = CardUIPacked.instantiate()
 	HandCardsManager.onHandCardCreated(card_ui)
 	card_ui.setCard(card)
+	card_ui.setDisabled(action_chained)
 	card_ui.onCreateHandCard()
 	
 func onPlayCard(action: PlayCardAction) -> void:
@@ -121,10 +123,12 @@ func onCreatePauseMenu() -> void:
 func onActionChainStarted() -> void:
 	PlayCardLineEdit.setActionChained(true)
 	for card_ui: CardUI in getCardUis(): card_ui.setDisabled(true)
+	action_chained = true
 	
 func onActionChainEnded() -> void:
 	PlayCardLineEdit.setActionChained(false)
 	for card_ui: CardUI in getCardUis(): card_ui.setDisabled(false)
+	action_chained = false
 	
 func getCardUis() -> Array: return HandCardsManager.getCardUis()
 func isPauseMenu() -> bool: return PauseMenu != null
@@ -151,13 +155,10 @@ func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
 	var field_card_uis: Array = action.getFieldCards().map(func(x: Card): return getFieldCardUI(x))
 	assert(field_card_uis.size() == 2, "Invalid field size")
 	for card_ui: CardUI in field_card_uis:
+		card_ui.setMouseFilter(Control.MOUSE_FILTER_IGNORE)
 		onCardTriggeredDisplay(card_ui, action.getTravelDelay())
 	await get_tree().create_timer(action.getTravelDelay()).timeout
 	var flash_delay: float = action.getFlashDelay() / 2.0
-	
-	for card_ui: CardUI in field_card_uis:
-		card_ui.setMouseFilter(Control.MOUSE_FILTER_IGNORE)
-	
 	for i: int in field_card_uis.size():
 		var card_ui: CardUI = field_card_uis[i]
 		var other_card_ui: CardUI = field_card_uis[abs(i - 1)]

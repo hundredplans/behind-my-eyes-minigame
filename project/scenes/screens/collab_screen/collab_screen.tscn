@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gmlv3adwyft1" path="res://scenes/screens/collab_screen/collab_screen.gd" id="1_2mou1"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="2_6bkth"]
+[ext_resource type="Texture2D" uid="uid://dh8xemnmsthoj" path="res://assets/backgrounds/collab_screen.png" id="2_s65hj"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_abc48"]
 
 [node name="CollabScreen" type="Control" unique_id=1713264168]
@@ -14,6 +15,17 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_2mou1")
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1491733636]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_s65hj")
+expand_mode = 3
 
 [node name="Label" type="Label" parent="." unique_id=271655918]
 texture_filter = 1
@@ -29,7 +41,7 @@ offset_right = 183.0
 offset_bottom = 67.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_color = Color(0.2627451, 0.49019608, 0.44313726, 1)
 theme_override_colors/font_shadow_color = Color(0.101343654, 0.101343654, 0.101343654, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 0
@@ -52,7 +64,7 @@ offset_right = 122.19998
 offset_bottom = 22.160004
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_colors/font_color = Color(0.2627451, 0.49019608, 0.44313726, 1)
 theme_override_colors/font_shadow_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 0

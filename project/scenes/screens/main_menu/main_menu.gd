@@ -17,6 +17,9 @@ extends Screen
 @export var deck_display_duration: float = 0.8
 @export var pageflip_sfx: AudioStream
 
+@export var scritching_sfx: AudioStream
+@export var eyes_opening_sfx: AudioStream
+
 var Deck: Node2D
 
 var inSettings: bool=false
@@ -29,7 +32,6 @@ func _ready() -> void:
 	_on_Music_value_changed(Settings.getSettingsData().getMusicVolume())
 	_on_Master_value_changed(Settings.getSettingsData().getMasterVolume())
 	onUpdateWindowMode(Settings.getSettingsData().getWindowMode())
-	
 	
 func leaveDeck() -> void:
 	var tween = create_tween()
@@ -69,7 +71,7 @@ func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
 func onPlayPressed() -> void:
 	Blink.visible = true
 	Blink.play("CloseEyes");
-	
+	Audio.onPlaySFX(eyes_opening_sfx)
 
 func onSettingsPressed() -> void:
 	Sprite.play("OpenSettings")
@@ -148,6 +150,7 @@ func _on_blink_animation_finished() -> void:
 	load_screen.emit(Screen.Type.PLAY)
 	
 func _on_SFX_value_changed(value: float) -> void:
+	
 	var width= value*87/100
 	Settings.getSettingsData().setSFXVolume(int(value))
 	Settings.onUpdateSettings()

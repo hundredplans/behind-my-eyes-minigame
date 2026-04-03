@@ -24,3 +24,4 @@ func setTooltipData(tooltip_data: TooltipData) -> void:
 	NameLabel.modulate = base_color.darkened(TOP_PANEL_DARKEN)
 	TopPanel.self_modulate = base_color.darkened(TOP_PANEL_DARKEN)
 	call_deferred("reset_size")
+	call_deferred("set_size", Vector2.ZERO)

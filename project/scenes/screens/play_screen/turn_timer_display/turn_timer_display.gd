@@ -28,7 +28,7 @@ func onDelayTimerEnd() -> void:
 
 func _process(_delta: float) -> void:
 	if TurnTimer.paused: return
-	ClockAnimatedSprite.frame = floor(abs(TurnTimer.time_left - Data.TURN_TIME))
+	ClockAnimatedSprite.frame = floor(abs((TurnTimer.time_left - Data.TURN_TIME)) / 3)
 	
 func onTurnTimerTimeout() -> void:
 	turn_timer_timeout.emit()

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d3ueb0vmfsofs"]
 
 [ext_resource type="Script" uid="uid://8g55ekffcnj2" path="res://scenes/screens/play_screen/pause_menu/pause_menu.gd" id="1_mkbq7"]
+[ext_resource type="AudioStream" uid="uid://mkhk7epgedlc" path="res://assets/sounds/waves.mp3" id="2_hsj5v"]
 [ext_resource type="Texture2D" uid="uid://dwesa0oj6duet" path="res://assets/sprites/play/combat_atlas/Pausemenu.png" id="3_fq2yx"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="3_pn633"]
 [ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_364fe"]
@@ -152,6 +153,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mkbq7")
+eyes_opening_sfx = ExtResource("2_hsj5v")
 
 [node name="Blink" type="AnimatedSprite2D" parent="." unique_id=215334517]
 unique_name_in_owner = true

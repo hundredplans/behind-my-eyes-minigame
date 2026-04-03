@@ -8,10 +8,12 @@ var extra_delta: int
 var doubled: bool
 var nullified: bool
 var card_default: int
+var card_type: Data.CardType
 
-func _init(_players: bool, _delta: int) -> void:
+func _init(_players: bool, _delta: int, _card_type: Data.CardType) -> void:
 	players = _players
 	delta = _delta
+	card_type = _card_type
 	
 func onPreAction() -> void: pass
 func onPostAction() -> void:
@@ -39,6 +41,7 @@ func isCardDefault() -> bool: return card_default
 func isPlayers() -> bool: return players
 func getDelta() -> int: return delta
 func onUpdateExtraDelta(_extra_delta: int) -> void: extra_delta = _extra_delta
+func getCardType() -> Data.CardType: return card_type
 
 func setCardDefault(_card_default: bool) -> void: card_default = _card_default
 	
