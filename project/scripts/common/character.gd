@@ -33,8 +33,8 @@ func onProcessAction(action: Action) -> void:
 		elif action is StartTurnAction and action.isPlayers() == players:
 			onStartTurn()
 			
-func isWin() -> bool: return points == Data.POINTS_TO_COLLABORATE + Data.POINTS_TO_WIN
-func isCollab() -> bool: return points == 0
+func isWin() -> bool: return points >= Data.POINTS_TO_COLLABORATE + Data.POINTS_TO_WIN
+func isCollab() -> bool: return points <= 0
 			
 func onCreateHandCard(action: CreateHandCardAction) -> void:
 	hand_cards.append(action.getCard())

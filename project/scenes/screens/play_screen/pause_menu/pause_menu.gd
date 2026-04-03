@@ -13,33 +13,18 @@ extends Screen
 @onready var ResolutionLabel: Label =%Resolution
 @onready var LowerRes: Button =%lowerResolution
 @onready var HigherRes: Button =%higherResolution
-var settings_data: SettingsData
+
 var inSettings: bool
 var exiting: bool
 var resolutionScale = 3
 
 func _ready() -> void:
 	Blink.play("OpenEyes")
-	onUpdateSettings()
 	Sprite.animation="OpenSettings"
-	
-func getSettingsData() -> SettingsData: return settings_data
-func onSaveSettingsData() -> void:
-	ResourceSaver.save(settings_data, SettingsData.getDefaultPath())
-
-func onUpdateSettings() -> void:
-	if !FileAccess.file_exists(SettingsData.getDefaultPath()):
-		settings_data = SettingsData.new()
-		ResourceSaver.save(settings_data, SettingsData.getDefaultPath())
-	else: 
-		settings_data = load(SettingsData.getDefaultPath())
-		
-	_on_SFX_value_changed(settings_data.getSFXVolume())
-	_on_Music_value_changed(settings_data.getMusicVolume())
-	_on_Master_value_changed(settings_data.getMasterVolume())
-	
-
-	onUpdateWindowMode(settings_data.getWindowMode())
+	_on_SFX_value_changed(Settings.getSettingsData().getSFXVolume())
+	_on_Music_value_changed(Settings.getSettingsData().getMusicVolume())
+	_on_Master_value_changed(Settings.getSettingsData().getMasterVolume())
+	onUpdateWindowMode(Settings.getSettingsData().getWindowMode())
 
 func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
 	DisplayServer.window_set_mode(window_mode)
@@ -79,7 +64,7 @@ func onSettingsPressed() -> void:
 	
 func onBackPressed() -> void:
 	inSettings=false
-	onSaveSettingsData()
+	Settings.onSaveSettingsData()
 	Sprite.play("CloseSettings")
 	Play.visible=true
 	SettingsButton.visible=true
@@ -125,44 +110,35 @@ func _on_blink_animation_finished() -> void:
 	
 	
 func _on_SFX_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(2, linear_to_db(value)
-	)
 	var width= value*87/100
-	settings_data.setSFXVolume(value)
+	Settings.getSettingsData().setSFXVolume(int(value))
+	Settings.onUpdateSettings()
 	SFX.region_rect = Rect2(3,0,width,22)
 	
 func _on_Music_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(
-		1,
-		linear_to_db(value)
-	)
 	var width= value*87/100
-	settings_data.setMusicVolume(value)
+	Settings.getSettingsData().setMusicVolume(int(value))
+	Settings.onUpdateSettings()
 	Music.region_rect = Rect2(3,0,width,22)
 	
 func _on_Master_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(
-		0,
-		linear_to_db(value)
-	)
 	var width= value*87/100
-	settings_data.setMasterVolume(value)
+	Settings.getSettingsData().setMasterVolume(int(value))
+	Settings.onUpdateSettings()
 	Master.region_rect = Rect2(3,0,width,22)
 	
 func _on_lower_resolution() -> void:
 	if resolutionScale>1:
 		resolutionScale -= 1
+	Settings.onUpdateResolutionScale(resolutionScale)
 	var x=640*resolutionScale
 	var y=360*resolutionScale
-	DisplayServer.window_set_size(Vector2i(x,y))
-	settings_data.set
 	ResolutionLabel.text = "" + str(x) + "x" + str(y)
-
 
 func _on_higher_resolution() -> void:
 	if resolutionScale<5:
-		resolutionScale += 1 
+		resolutionScale += 1
 	var x=640*resolutionScale
 	var y=360*resolutionScale
-	DisplayServer.window_set_size(Vector2i(x,y))
+	Settings.onUpdateResolutionScale(resolutionScale)
 	ResolutionLabel.text = "" + str(x) + "x" + str(y)

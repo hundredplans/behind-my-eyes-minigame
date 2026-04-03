@@ -21,6 +21,8 @@ func onUpdateSettings() -> void:
 	onUpdateWindowMode(settings_data.getWindowMode())
 	
 func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
+	if window_mode == settings_data.getWindowMode(): return
+	settings_data.setWindowMode(window_mode)
 	DisplayServer.window_set_mode(window_mode)
 	if window_mode == DisplayServer.WINDOW_MODE_WINDOWED:
 		var screen_rect: Rect2i = DisplayServer.screen_get_usable_rect()
@@ -30,3 +32,8 @@ func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
 		DisplayServer.window_set_size(Vector2(1920, 1080))
 		DisplayServer.window_set_position(Vector2.ZERO)
 	
+func onUpdateResolutionScale(resolution_scale: int) -> void:
+	settings_data.setResolutionScale(resolution_scale)
+	var x=640*resolution_scale
+	var y=360*resolution_scale
+	DisplayServer.window_set_size(Vector2i(x,y))

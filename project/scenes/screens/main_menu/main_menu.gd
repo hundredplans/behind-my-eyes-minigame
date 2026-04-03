@@ -12,37 +12,23 @@ extends Screen
 @onready var ResolutionLabel: Label =%Resolution
 @onready var LowerRes: Button =%lowerResolution
 @onready var HigherRes: Button =%higherResolution
-@onready var DeckButton: Button =%DeckButton
+@onready var DeckButton: DefaultButton =%DeckButton
 @export var DeckBuilder: PackedScene
+@export var deck_display_duration: float = 0.8
+@export var pageflip_sfx: AudioStream
 
 var Deck: Node2D
 
-var settings_data: SettingsData
 var inSettings: bool=false
 var inDeck: bool=false
 var resolutionScale: int=3
 
 func _ready() -> void:
-	onUpdateSettings()
 	Sprite.animation="OpenSettings"
-	
-func getSettingsData() -> SettingsData: return settings_data
-func onSaveSettingsData() -> void:
-	ResourceSaver.save(settings_data, SettingsData.getDefaultPath())
-
-func onUpdateSettings() -> void:
-	if !FileAccess.file_exists(SettingsData.getDefaultPath()):
-		settings_data = SettingsData.new()
-		ResourceSaver.save(settings_data, SettingsData.getDefaultPath())
-	else: 
-		settings_data = load(SettingsData.getDefaultPath())
-		
-	_on_SFX_value_changed(settings_data.getSFXVolume())
-	_on_Music_value_changed(settings_data.getMusicVolume())
-	_on_Master_value_changed(settings_data.getMasterVolume())
-	
-
-	onUpdateWindowMode(settings_data.getWindowMode())
+	_on_SFX_value_changed(Settings.getSettingsData().getSFXVolume())
+	_on_Music_value_changed(Settings.getSettingsData().getMusicVolume())
+	_on_Master_value_changed(Settings.getSettingsData().getMasterVolume())
+	onUpdateWindowMode(Settings.getSettingsData().getWindowMode())
 	
 	
 func leaveDeck() -> void:
@@ -50,17 +36,18 @@ func leaveDeck() -> void:
 	inDeck=false 
 	tween.set_ease(Tween.EASE_IN_OUT)
 
-	tween.tween_property(self, "position", Vector2(0,400), 1)
+	var delay: float = deck_display_duration / 2.0
+	tween.tween_property(self, "position", Vector2(0,400), delay)
 	await tween.finished
 
 # This runs AFTER the tween completes
 	Deck.free()
 	Sprite.visible=true
 	var tween2 = create_tween()
-	tween2.tween_property(self, "position", Vector2(0,0), 1)
+	tween2.tween_property(self, "position", Vector2(0,0), delay)
 	
 
-	DeckButton.visible=true
+	DeckButton.setDisabled(false)
 	Play.visible=true
 	SettingsButton.visible=true
 	Exit.visible=true
@@ -76,16 +63,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Escape") and inDeck :
 		leaveDeck()
 	
-		
 func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
-	DisplayServer.window_set_mode(window_mode)
-	if window_mode == DisplayServer.WINDOW_MODE_WINDOWED:
-		var screen_rect: Rect2i = DisplayServer.screen_get_usable_rect()
-		DisplayServer.window_set_size(screen_rect.size)
-		DisplayServer.window_set_position(screen_rect.position)
-	else: 
-		DisplayServer.window_set_size(Vector2(1920, 1080))
-		DisplayServer.window_set_position(Vector2.ZERO)
+	Settings.onUpdateWindowMode(window_mode)
 	
 func onPlayPressed() -> void:
 	Blink.visible = true
@@ -93,11 +72,9 @@ func onPlayPressed() -> void:
 	
 
 func onSettingsPressed() -> void:
-
-	
-	
 	Sprite.play("OpenSettings")
-	DeckButton.visible=false
+	Audio.onPlaySFX(pageflip_sfx)
+	DeckButton.setDisabled(true)
 	inSettings=true
 	Play.visible=false
 	SettingsButton.visible=false
@@ -112,20 +89,21 @@ func onDeckPressed() -> void:
 	Deck = DeckBuilder.instantiate()
 	var tween = create_tween()
 	
+	var delay: float = deck_display_duration / 2.0
 	tween.set_ease(Tween.EASE_IN_OUT)
 
-	tween.tween_property(self, "position", Vector2(0,400), 1)
+	tween.tween_property(self, "position", Vector2(0,400), delay)
 	await tween.finished
 
 # This runs AFTER the tween completes
 	Sprite.visible=false
 	self.add_child(Deck)
 	var tween2 = create_tween()
-	tween2.tween_property(self, "position", Vector2(0,0), 1)
+	tween2.tween_property(self, "position", Vector2(0,0), delay)
 	
 	
 
-	DeckButton.visible=false
+	DeckButton.setDisabled(true)
 	Play.visible=false
 	SettingsButton.visible=false
 	Exit.visible=false
@@ -133,14 +111,12 @@ func onDeckPressed() -> void:
 	LowerRes.visible=true
 	HigherRes.visible=true
 	
-	
-	
-	
 func onBackPressed() -> void:
 	inSettings=false
-	onSaveSettingsData()
+	Audio.onPlaySFX(pageflip_sfx)
+	Settings.onSaveSettingsData()
 	Sprite.play("CloseSettings")
-	DeckButton.visible=true
+	DeckButton.setDisabled(false)
 	Play.visible=true
 	SettingsButton.visible=true
 	Exit.visible=true
@@ -172,45 +148,35 @@ func _on_blink_animation_finished() -> void:
 	load_screen.emit(Screen.Type.PLAY)
 	
 func _on_SFX_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(2, linear_to_db(value)
-	)
 	var width= value*87/100
-	settings_data.setSFXVolume(value)
-	
+	Settings.getSettingsData().setSFXVolume(int(value))
+	Settings.onUpdateSettings()
 	SFX.region_rect =Rect2(3,0,width,22)
 	
 func _on_Music_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(
-		1,
-		linear_to_db(value)
-	)
 	var width= value*87/100
-	settings_data.setMusicVolume(value)
+	Settings.getSettingsData().setMusicVolume(int(value))
+	Settings.onUpdateSettings()
 	Music.region_rect = Rect2(3,0,width,22)
 	
 func _on_Master_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(
-		0,
-		linear_to_db(value)
-	)
 	var width= value*87/100
-	settings_data.setMasterVolume(value)
+	Settings.getSettingsData().setMasterVolume(int(value))
+	Settings.onUpdateSettings()
 	Master.region_rect = Rect2(3,0,width,22)
-
 
 func _on_lower_resolution() -> void:
 	if resolutionScale>1:
 		resolutionScale -= 1
+	Settings.onUpdateResolutionScale(resolutionScale)
 	var x=640*resolutionScale
 	var y=360*resolutionScale
-	DisplayServer.window_set_size(Vector2i(x,y))
 	ResolutionLabel.text = "" + str(x) + "x" + str(y)
-
 
 func _on_higher_resolution() -> void:
 	if resolutionScale<5:
-		resolutionScale += 1 
+		resolutionScale += 1
 	var x=640*resolutionScale
 	var y=360*resolutionScale
-	DisplayServer.window_set_size(Vector2i(x,y))
+	Settings.onUpdateResolutionScale(resolutionScale)
 	ResolutionLabel.text = "" + str(x) + "x" + str(y)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://baugun20xjivg" path="res://scenes/resource_objects/cards/card_ui/card_ui.gd" id="1_kkiuu"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_agjea"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="3_3nsd1"]
+[ext_resource type="AudioStream" uid="uid://bcr8goe8qgkj8" path="res://assets/sounds/card_hovered.mp3" id="3_od6dt"]
 [ext_resource type="Script" uid="uid://b1qtu2bcvm30g" path="res://scripts/common/ui/default_control.gd" id="4_agjea"]
 [ext_resource type="Script" uid="uid://s2cxedp1lqal" path="res://scripts/common/ui/default_tooltip.gd" id="5_agjea"]
 
@@ -36,6 +37,7 @@ collab_icon = SubResource("AtlasTexture_agjea")
 win_icon = SubResource("AtlasTexture_od6dt")
 loss_icon = SubResource("AtlasTexture_8jp0s")
 none_icon = SubResource("AtlasTexture_ewehy")
+card_hovered_sfx = ExtResource("3_od6dt")
 
 [node name="Control" type="Control" parent="." unique_id=890086645]
 layout_mode = 3
@@ -111,4 +113,4 @@ script = ExtResource("5_agjea")
 offset = Vector2(10, 20)
 metadata/_custom_type_script = "uid://s2cxedp1lqal"
 
-[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_in_ui" from="Control/CardUIButton" to="." method="onMouseInUI"]

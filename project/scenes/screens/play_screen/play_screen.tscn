@@ -4,7 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://d3ueb0vmfsofs" path="res://scenes/screens/play_screen/pause_menu/pause_menu.tscn" id="2_52dmg"]
 [ext_resource type="PackedScene" uid="uid://cgk8mnf70jwns" path="res://scenes/resource_objects/cards/card_ui/card_ui.tscn" id="3_e1r2e"]
 [ext_resource type="Texture2D" uid="uid://drissapkbomyv" path="res://assets/backgrounds/1138740.png" id="4_8jnos"]
+[ext_resource type="AudioStream" uid="uid://d3j41im18svi2" path="res://assets/sounds/gain_collab_point.mp3" id="4_c3pia"]
 [ext_resource type="PackedScene" uid="uid://d23jgtr4epto2" path="res://scenes/screens/play_screen/points_display/points_display.tscn" id="5_eebmm"]
+[ext_resource type="AudioStream" uid="uid://b5nrrlvjhvpqj" path="res://assets/sounds/gain_point.mp3" id="5_ihsqp"]
+[ext_resource type="AudioStream" uid="uid://bm6iuh67sjvu7" path="res://assets/sounds/lose_point.mp3" id="6_vmmgc"]
+[ext_resource type="AudioStream" uid="uid://bql5hny7g15ho" path="res://assets/sounds/turn_start.mp3" id="7_ihsqp"]
+[ext_resource type="AudioStream" uid="uid://dry6ub6i6ohpy" path="res://assets/sounds/card_triggered.mp3" id="7_witn7"]
 [ext_resource type="Script" uid="uid://0shmw2f5jneh" path="res://scripts/actions/action_manager.gd" id="8_eebmm"]
 [ext_resource type="Script" uid="uid://clnpatejya6yc" path="res://scenes/screens/play_screen/play_card_line_edit/play_card_line_edit.gd" id="8_hisnf"]
 [ext_resource type="PackedScene" uid="uid://difi5yni64h62" path="res://scenes/screens/play_screen/ai_manager/ai_manager.tscn" id="9_i1kik"]
@@ -145,6 +150,11 @@ PauseMenuPacked = ExtResource("2_52dmg")
 CardUIPacked = ExtResource("3_e1r2e")
 enemy_speech_bubble_start_position = Vector2(71, 63.999992)
 enemy_speech_bubble_end_position = Vector2(23, 113)
+gain_collab_point_sfx = ExtResource("4_c3pia")
+gain_point_sfx = ExtResource("5_ihsqp")
+lose_point_sfx = ExtResource("6_vmmgc")
+turn_start_sfx = ExtResource("7_ihsqp")
+card_triggered_sfx = ExtResource("7_witn7")
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=149097617]

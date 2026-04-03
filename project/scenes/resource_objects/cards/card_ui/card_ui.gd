@@ -19,11 +19,18 @@ const TRIGGERED_Z_INDEX: int = 100
 @export var none_icon: AtlasTexture
 @export var trigger_point_type_display_delay: float = 0.25
 
+@export var hover_scale_offset := Vector2(0.1, 0.1)
+@export var hover_rotation_offset: float = PI / 32.0
+@export var hover_animation_time: float = 0.3
+@export var card_hovered_sfx: AudioStream
+
+var HoverTween: Tween
 var deckBuilder: bool = false
 var inDeck: bool = false
 var z_indexCopy: int
 var card: Card
 var deckSlot: int
+var hovering: bool
 
 func setCard(_card: Card) -> void:
 	card = _card
@@ -61,12 +68,25 @@ func setZIndex(_z_index: int) -> void:
 	z_index = _z_index
 
 func _on_control_mouse_entered() -> void:
-	if !deckBuilder:
-		var tween = get_tree().create_tween()
-		tween.parallel().tween_property(CardSprite, "rotation", -0.1 , 0.1)
-		tween.parallel().tween_property(CardSprite, "scale", Vector2(1.1,1.1), 0.2)
-		tween.tween_property(CardSprite, "rotation", 0.1 , 0.1)
-		tween.tween_property(CardSprite, "rotation", 0 , 0.1)
+	if !deckBuilder and !hovering and CardSprite != null:
+		Audio.onPlaySFX(card_hovered_sfx)
+		hovering = true
+		if HoverTween: HoverTween.kill()
+		HoverTween = create_tween()
+		
+		var delay: float = hover_animation_time / 3.0
+		HoverTween.parallel().tween_property(CardSprite, "rotation", -hover_rotation_offset, delay)\
+			.as_relative().set_trans(Tween.TRANS_SINE)
+		HoverTween.parallel().tween_property(CardSprite, "scale", hover_scale_offset, delay * 2)\
+			.as_relative().set_trans(Tween.TRANS_SINE)
+		HoverTween.tween_property(CardSprite, "rotation", hover_rotation_offset * 2, delay)\
+			.as_relative().set_trans(Tween.TRANS_SINE)
+		HoverTween.tween_property(CardSprite, "scale", -hover_scale_offset, delay)\
+			.as_relative().set_trans(Tween.TRANS_SINE)
+		HoverTween.parallel().tween_property(CardSprite, "rotation", -hover_rotation_offset , delay)\
+			.as_relative().set_trans(Tween.TRANS_SINE)
+		await HoverTween.finished
+		hovering = false
 
 
 func onCardTriggeredTravel() -> void:
@@ -87,3 +107,9 @@ func onCardTriggeredDisplay(point_type: Data.PointType) -> void:
 		.as_relative().set_trans(Tween.TRANS_SINE)
 	TriggerPointTypeSprite.texture = icon
 	TriggerPointTypeSprite.visible = true
+
+func onMouseInUI(state: bool) -> void:
+	if state: _on_control_mouse_entered()
+
+func setMouseFilter(_mouse_filter: Control.MouseFilter) -> void:
+	CardUIButton.setMouseFilter(_mouse_filter)

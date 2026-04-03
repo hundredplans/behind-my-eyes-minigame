@@ -22,6 +22,12 @@ const CARD_TRIGGERED_DISPLAY_END_SCALE: float = 2.0
 @export var enemy_speech_bubble_start_position: Vector2
 @export var enemy_speech_bubble_end_position: Vector2
 
+@export var gain_collab_point_sfx: AudioStream
+@export var gain_point_sfx: AudioStream
+@export var lose_point_sfx: AudioStream
+@export var turn_start_sfx: AudioStream
+@export var card_triggered_sfx: AudioStream
+
 var card_trigger_mirror_curve: Curve2D
 var PauseMenu: Control
 func onProcessAction(action: Action) -> void:
@@ -40,12 +46,20 @@ func onProcessAction(action: Action) -> void:
 			onCreateEnemyHandCard()
 		elif action is EndGameAction:
 			onEndGame(action)
+		elif action is UpdatePointsAction:
+			onUpdatePoints(action)
+		elif action is TriggerCardAction:
+			onTriggerCard()
 			
 func onStartGame() -> void:
 	var actions: Array = [DrawCardAction.new(Data.MIN_HAND_SIZE, true)]
 	onPush(actions)
 	
+func onTriggerCard() -> void:
+	Audio.onPlaySFX(card_triggered_sfx)
+	
 func onStartTurn() -> void:
+	Audio.onPlaySFX(turn_start_sfx)
 	TurnTimerDisplay.onStart()
 	
 func onInitialisePlayer() -> void:
@@ -140,6 +154,10 @@ func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
 		onCardTriggeredDisplay(card_ui, action.getTravelDelay())
 	await get_tree().create_timer(action.getTravelDelay()).timeout
 	var flash_delay: float = action.getFlashDelay() / 2.0
+	
+	for card_ui: CardUI in field_card_uis:
+		card_ui.setMouseFilter(Control.MOUSE_FILTER_IGNORE)
+	
 	for i: int in field_card_uis.size():
 		var card_ui: CardUI = field_card_uis[i]
 		var other_card_ui: CardUI = field_card_uis[abs(i - 1)]
@@ -233,3 +251,10 @@ func onCreateEnemySpeechBubble(card: Card, delay: float) -> void:
 		.as_relative().set_trans(Tween.TRANS_SINE)
 	mtween.tween_property(EnemySpeechBubble, "scale", -Vector2.ONE, dissapear_delay)\
 		.as_relative().set_trans(Tween.TRANS_SINE)
+
+func onUpdatePoints(action: UpdatePointsAction) -> void:
+	var sfx: AudioStream
+	if action.isCollab(): sfx = gain_collab_point_sfx
+	elif action.isPlayers() and !action.isCollab(): sfx = gain_point_sfx
+	else: sfx = lose_point_sfx
+	Audio.onPlaySFX(sfx, true)

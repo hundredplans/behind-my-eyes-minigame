@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dregtbydnyyrb" path="res://scenes/screens/main_menu/main_menu.gd" id="1_wf0jh"]
 [ext_resource type="Texture2D" uid="uid://cevd4fmny51b4" path="res://assets/sprites/play/combat_atlas/MenuSpritesheet-Sheet.png" id="2_ht6f7"]
+[ext_resource type="AudioStream" uid="uid://dun513g8jkdc3" path="res://assets/sounds/pageflip.mp3" id="3_xibsw"]
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_0fmn3"]
 [ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_0urj7"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="5_g4j36"]
@@ -150,6 +151,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wf0jh")
 DeckBuilder = ExtResource("7_ht6f7")
+pageflip_sfx = ExtResource("3_xibsw")
 
 [node name="Blink" type="AnimatedSprite2D" parent="." unique_id=575761315]
 unique_name_in_owner = true
@@ -186,9 +188,9 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -114.0
-offset_top = -42.0
+offset_top = 18.0
 offset_right = -25.236923
-offset_bottom = -19.785
+offset_bottom = 40.215
 scale = Vector2(1.070265, 0.9433686)
 
 [node name="settingsButton" type="Node" parent="AnimatedSprite2D/Button2" unique_id=1673305772]
@@ -201,11 +203,25 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -112.0
-offset_top = 18.0
-offset_right = -50.0
-offset_bottom = 38.0
+offset_top = -43.0
+offset_right = -60.0
+offset_bottom = -23.0
 
-[node name="exitButton" type="Node" parent="AnimatedSprite2D/Button3" unique_id=335872276]
+[node name="DeckButton" type="Node" parent="AnimatedSprite2D/Button3" unique_id=335872276]
+unique_name_in_owner = true
+script = ExtResource("4_0fmn3")
+metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
+
+[node name="Button5" type="Button" parent="AnimatedSprite2D" unique_id=1310756026]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -108.0
+offset_top = 78.0
+offset_right = -46.0
+offset_bottom = 98.0
+
+[node name="exitButton" type="Node" parent="AnimatedSprite2D/Button5" unique_id=1905317066]
 script = ExtResource("4_0fmn3")
 autoscale = true
 metadata/_custom_type_script = "uid://c6p0g5g5icfd5"
@@ -317,23 +333,15 @@ offset_top = 4.0
 offset_right = 86.0
 offset_bottom = 20.0
 
-[node name="DeckButton" type="Button" parent="." unique_id=1116558103]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 255.0
-offset_top = 111.0
-offset_right = 263.0
-offset_bottom = 119.0
-
 [connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_frame_changed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button4/playButton" to="." method="onPlayPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button2/settingsButton" to="." method="onSettingsPressed"]
-[connection signal="pressed" from="AnimatedSprite2D/Button3/exitButton" to="." method="onExitPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button3/DeckButton" to="." method="onDeckPressed"]
+[connection signal="pressed" from="AnimatedSprite2D/Button5/exitButton" to="." method="onExitPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button/backButton" to="." method="onBackPressed"]
 [connection signal="pressed" from="AnimatedSprite2D/Resolution/lowerResolution" to="." method="_on_lower_resolution"]
 [connection signal="pressed" from="AnimatedSprite2D/Resolution/higherResolution" to="." method="_on_higher_resolution"]
 [connection signal="value_changed" from="AnimatedSprite2D/SFXVolume/SFXSlider" to="." method="_on_SFX_value_changed"]
 [connection signal="value_changed" from="AnimatedSprite2D/MusicVolume/MusicSlider" to="." method="_on_Music_value_changed"]
 [connection signal="value_changed" from="AnimatedSprite2D/GeneralVolume/MasterSlider" to="." method="_on_Master_value_changed"]
-[connection signal="pressed" from="DeckButton" to="." method="onDeckPressed"]

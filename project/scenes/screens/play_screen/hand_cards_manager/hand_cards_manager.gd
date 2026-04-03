@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var offset: float = 50.0
+@export var offset: float = 55.0
 func onHandCardCreated(card_ui: CardUI) -> void:
 	add_child(card_ui)
 	onSortCardUis()

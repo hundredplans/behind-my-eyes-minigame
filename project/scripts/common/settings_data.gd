@@ -20,7 +20,9 @@ func setSFXVolume(_sfx_volume: int) -> void: sfx_volume = _sfx_volume
 func setWindowMode(_window_mode: DisplayServer.WindowMode) -> void: window_mode = _window_mode
 func setGameSpeed(_game_speed: float) -> void: game_speed = _game_speed
 func setEnglish(_english: bool) -> void: english = _english
+func setResolutionScale(_resolution_scale: int) -> void: resolutionScale = _resolution_scale
 
+func getResolutionScale() -> int: return resolutionScale
 func getMasterVolumeDb() -> float: return toDb(master_volume)
 func getMusicVolumeDb() -> float: return toDb(music_volume)
 func getSFXVolumeDb() -> float: return toDb(sfx_volume)

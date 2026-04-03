@@ -28,8 +28,6 @@ var settings_data: SettingsData
 @onready var ButtonTWO: Button =%TWO
 @onready var ButtonTHREE: Button =%THREE
 
-
-
 var CardClicked: CardUI
 var maxDeckCost: int = 20
 var DeckSize: int = 10

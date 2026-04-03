@@ -1,5 +1,7 @@
 class_name UpdatePointsAction extends Action
 
+const END_DELAY: float = 1.5
+
 var players: bool
 var delta: int
 var extra_delta: int
@@ -26,7 +28,9 @@ func onPostAction() -> void:
 		else: end_game_type = EndGameAction.Type.LOSS
 	elif main_char.isCollab() and other_char.isCollab():
 		end_game_type = EndGameAction.Type.COLLAB
-	onPush([EndGameAction.new(end_game_type)])
+	
+	if end_game_type == EndGameAction.Type.NULL: return
+	onPush([DelayAction.new(END_DELAY), EndGameAction.new(end_game_type)])
 	
 func getLogInfo() -> Array:
 	return ["Players: %s" % players, "Delta: %s" % delta]
