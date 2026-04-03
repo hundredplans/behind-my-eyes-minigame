@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8h0psix8t0o5" path="res://scripts/infos/cards/card_info.gd" id="1_da7up"]
 [ext_resource type="Script" uid="uid://dqwr2na5wfc5y" path="res://scripts/entity_objects/cards/handshake.gd" id="1_mi45o"]
+[ext_resource type="Script" uid="uid://dpgrgtmv0foug" path="res://scripts/common/tooltip_data.gd" id="3_fjak2"]
 
 [resource]
 script = ExtResource("1_da7up")
@@ -10,6 +11,6 @@ rarity = 1
 gdscript = ExtResource("1_mi45o")
 name = "Handshake"
 id = 19
-description = "+2 to collaboration and add Handshake to your opponent’s hand 
+description = "+2 to collaboration and add Handshake to your opponents hand 
 "
 metadata/_custom_type_script = "uid://c8h0psix8t0o5"
