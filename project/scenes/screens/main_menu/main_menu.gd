@@ -47,7 +47,7 @@ func onUpdateSettings() -> void:
 	
 func leaveDeck() -> void:
 	var tween = create_tween()
-	
+	inDeck=false 
 	tween.set_ease(Tween.EASE_IN_OUT)
 
 	tween.tween_property(self, "position", Vector2(0,400), 1)
@@ -58,7 +58,16 @@ func leaveDeck() -> void:
 	Sprite.visible=true
 	var tween2 = create_tween()
 	tween2.tween_property(self, "position", Vector2(0,0), 1)
-	pass
+	
+
+	DeckButton.visible=true
+	Play.visible=true
+	SettingsButton.visible=true
+	Exit.visible=true
+	Back.visible=false
+	LowerRes.visible=false
+	HigherRes.visible=false
+	
 	
 	
 func _process(_delta: float) -> void:

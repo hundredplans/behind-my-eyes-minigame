@@ -1,12 +1,114 @@
 [gd_scene format=3 uid="uid://cq3bfwkqjvl7u"]
 
 [ext_resource type="Script" uid="uid://dxxmrgws7mx84" path="res://scenes/screens/play_screen/turn_timer_display/turn_timer_display.gd" id="1_pq7ej"]
-[ext_resource type="Texture2D" uid="uid://dn3k2g5ivmkof" path="res://assets/sprites/play/circle.png" id="2_pq7ej"]
 [ext_resource type="LabelSettings" uid="uid://cn3kfhw3xcsw6" path="res://resources/ui/label_settings/jersey/jersey_12.tres" id="2_ycg4i"]
-[ext_resource type="Shader" uid="uid://dwt66b13x3fq0" path="res://resources/shaders/circle_alpha.gdshader" id="3_pq7ej"]
+[ext_resource type="Texture2D" uid="uid://sxa3kmxi4pct" path="res://assets/sprites/play/clock_atlas.png" id="5_bmkel"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycg4i"]
-shader = ExtResource("3_pq7ej")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmkel"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwi78"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvsuo"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs3mi"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5fu7"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_786w0"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6og4u"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt1ne"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tijdb"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uatna"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjbg3"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ah0u"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e81o"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56aia"]
+atlas = ExtResource("5_bmkel")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycg4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmkel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwi78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvsuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs3mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5fu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_786w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6og4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt1ne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tijdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uatna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjbg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ah0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e81o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56aia")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [node name="TurnTimerDisplay" type="Node2D" unique_id=114330032]
 script = ExtResource("1_pq7ej")
@@ -28,30 +130,10 @@ one_shot = true
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1775917151]
-texture_filter = 1
-
-[node name="BorderCircleSprite" type="Sprite2D" parent="Sprites" unique_id=1904916684]
-unique_name_in_owner = true
-self_modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-scale = Vector2(1.1, 1.1)
-texture = ExtResource("2_pq7ej")
-metadata/_edit_lock_ = true
-
-[node name="BackgroundCircle" type="Sprite2D" parent="Sprites" unique_id=1695595115]
-self_modulate = Color(0.13333334, 0.13333334, 0.13333334, 1)
-texture_filter = 1
-texture = ExtResource("2_pq7ej")
-metadata/_edit_lock_ = true
-
-[node name="InnerCircleSprite" type="Sprite2D" parent="Sprites" unique_id=639881213]
+[node name="ClockAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1250624615]
 unique_name_in_owner = true
 texture_filter = 1
-material = SubResource("ShaderMaterial_ycg4i")
-instance_shader_parameters/progress = 0.0
-texture = ExtResource("2_pq7ej")
-metadata/_edit_lock_ = true
+sprite_frames = SubResource("SpriteFrames_ycg4i")
 
 [connection signal="timeout" from="TurnTimer" to="." method="onTurnTimerTimeout"]
 [connection signal="timeout" from="FlashingStartTimer" to="." method="onFlashingStartTimerTimeout"]

@@ -2,14 +2,22 @@ class_name CardUI extends Node2D
 
 const DEFAULT_Z: int = 1
 const DRAG_Z: int = 80
+const TRIGGERED_Z_INDEX: int = 100
 
+@onready var TriggerPointTypeSprite: Sprite2D = %TriggerPointTypeSprite
 @onready var DefaultTooltipNode: DefaultTooltip = %DefaultTooltipNode
 @onready var CardSprite: Sprite2D = %CardSprite
 @onready var atlas = %CardSprite.texture as AtlasTexture
 @onready var CardUIButton: DefaultControl = %CardUIButton
 @onready var DescriptionLabel: Label = %DescriptionLabel
 @onready var NameLabel: Label = %NameLabel
+
 @export var name_lightened: float = 0.2
+@export var collab_icon: AtlasTexture
+@export var win_icon: AtlasTexture
+@export var loss_icon: AtlasTexture
+@export var none_icon: AtlasTexture
+@export var trigger_point_type_display_delay: float = 0.25
 
 var deckBuilder: bool = false
 var inDeck: bool = false
@@ -28,10 +36,10 @@ func setCard(_card: Card) -> void:
 	if(NameLabel.text.length()>8):
 		NameLabel.add_theme_font_size_override("font_size", 16)
 	var shadow_color: Color = Data.getColorFromCardType(card.getCardType())
-	NameLabel.add_theme_color_override("font_shadow_color",shadow_color) 
+	NameLabel.add_theme_color_override("font_shadow_color",shadow_color)
 	#DescriptionLabel.add_theme_color_override("font_shadow_color",shadow_color)
 	DescriptionLabel.text = card.getInfo().getDescription()
-	#DefaultTooltipNode.onUpdateTooltipDatas(card.getInfo().getTooltipDatas())
+	DefaultTooltipNode.onUpdateTooltipDatas(card.getInfo().getTooltipDatas())
 	setTooltipSelf(false)
 	
 func setTooltipSelf(tooltip_self: bool) -> void:
@@ -52,22 +60,30 @@ func getCard() -> Card: return card
 func setZIndex(_z_index: int) -> void:
 	z_index = _z_index
 
-
 func _on_control_mouse_entered() -> void:
-	print("hello")
-	var tween = get_tree().create_tween()
-	tween.parallel().tween_property(CardSprite, "rotation", -0.1 , 0.1)
-	tween.parallel().tween_property(CardSprite, "scale", Vector2(1.1,1.1), 0.2)
-	tween.tween_property(CardSprite, "rotation", 0.1 , 0.1)
-	tween.tween_property(CardSprite, "rotation", 0 , 0.1)
-	tween.tween_callback(CardSprite.queue_free)
+	if !deckBuilder:
+		var tween = get_tree().create_tween()
+		tween.parallel().tween_property(CardSprite, "rotation", -0.1 , 0.1)
+		tween.parallel().tween_property(CardSprite, "scale", Vector2(1.1,1.1), 0.2)
+		tween.tween_property(CardSprite, "rotation", 0.1 , 0.1)
+		tween.tween_property(CardSprite, "rotation", 0 , 0.1)
 
 
-func _on_card_ui_button_pressed() -> void:
-	if deckBuilder and !inDeck:
-		inDeck=true
+func onCardTriggeredTravel() -> void:
+	setDisabled(true)
+	setZIndex(TRIGGERED_Z_INDEX)
 
-
-func _on_card_ui_button_right_clicked() -> void:
-	if deckBuilder and inDeck:
-		inDeck=false
+func onCardTriggeredDisplay(point_type: Data.PointType) -> void:
+	var icon: AtlasTexture = null
+	match point_type:
+		Data.PointType.LOSE: icon = loss_icon
+		Data.PointType.WIN: icon = win_icon
+		Data.PointType.COLLAB: icon = collab_icon
+		Data.PointType.NONE: icon = none_icon
+	
+	TriggerPointTypeSprite.scale = Vector2.ZERO
+	var tween := create_tween()
+	tween.tween_property(TriggerPointTypeSprite, "scale", Vector2.ONE, trigger_point_type_display_delay)\
+		.as_relative().set_trans(Tween.TRANS_SINE)
+	TriggerPointTypeSprite.texture = icon
+	TriggerPointTypeSprite.visible = true

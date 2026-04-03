@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bg5xgpi3gorum" path="res://scenes/screens/play_screen/play_screen.gd" id="1_fefi0"]
 [ext_resource type="PackedScene" uid="uid://d3ueb0vmfsofs" path="res://scenes/screens/play_screen/pause_menu/pause_menu.tscn" id="2_52dmg"]
 [ext_resource type="PackedScene" uid="uid://cgk8mnf70jwns" path="res://scenes/resource_objects/cards/card_ui/card_ui.tscn" id="3_e1r2e"]
-[ext_resource type="Texture2D" uid="uid://ejd4xtfseh6b" path="res://assets/backgrounds/temp_pixel_art_wallpaper.png" id="3_k8syp"]
+[ext_resource type="Texture2D" uid="uid://drissapkbomyv" path="res://assets/backgrounds/1138740.png" id="4_8jnos"]
 [ext_resource type="PackedScene" uid="uid://d23jgtr4epto2" path="res://scenes/screens/play_screen/points_display/points_display.tscn" id="5_eebmm"]
 [ext_resource type="Script" uid="uid://0shmw2f5jneh" path="res://scripts/actions/action_manager.gd" id="8_eebmm"]
 [ext_resource type="Script" uid="uid://clnpatejya6yc" path="res://scenes/screens/play_screen/play_card_line_edit/play_card_line_edit.gd" id="8_hisnf"]
@@ -144,8 +144,19 @@ card_trigger_curve = SubResource("Curve2D_xqjcl")
 PauseMenuPacked = ExtResource("2_52dmg")
 CardUIPacked = ExtResource("3_e1r2e")
 enemy_speech_bubble_start_position = Vector2(71, 63.999992)
-enemy_speech_bubble_end_position = Vector2(35, 109)
+enemy_speech_bubble_end_position = Vector2(23, 113)
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=149097617]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_8jnos")
+expand_mode = 3
 
 [node name="Blink" type="AnimatedSprite2D" parent="." unique_id=1611334765]
 unique_name_in_owner = true
@@ -166,17 +177,6 @@ metadata/_custom_type_script = "uid://0shmw2f5jneh"
 [node name="AIManager" parent="." unique_id=218810832 instance=ExtResource("9_i1kik")]
 unique_name_in_owner = true
 
-[node name="BackgroundTxRect" type="TextureRect" parent="." unique_id=136554596]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("3_k8syp")
-expand_mode = 3
-
 [node name="HandCardManagers" type="Node2D" parent="." unique_id=1831081516]
 z_index = 2
 
@@ -192,7 +192,7 @@ unique_name_in_owner = true
 position = Vector2(320, 125)
 
 [node name="CardPlayZone" type="Node2D" parent="." unique_id=62960181]
-position = Vector2(320, 210)
+position = Vector2(320, 198)
 
 [node name="CardSpot" type="Node2D" parent="CardPlayZone" unique_id=1615483396]
 unique_name_in_owner = true
@@ -266,7 +266,8 @@ texture = ExtResource("13_y8dr8")
 
 [node name="EnemySpeechBubble" type="Node2D" parent="EnemyIconBorder" unique_id=965455065]
 unique_name_in_owner = true
-position = Vector2(24, 109)
+z_index = 50
+position = Vector2(23, 113)
 
 [node name="EnemySpeechBubbleSprite" type="Sprite2D" parent="EnemyIconBorder/EnemySpeechBubble" unique_id=2001539052]
 texture_filter = 1
@@ -279,11 +280,11 @@ unique_name_in_owner = true
 texture_filter = 1
 offset_left = -60.0
 offset_top = -12.0
-offset_right = 60.0
-offset_bottom = 16.0
+offset_right = 78.0
+offset_bottom = 5.0
 theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
 theme_override_fonts/font = ExtResource("17_8jnos")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Word"
 horizontal_alignment = 1
 
