@@ -22,16 +22,21 @@ extends Screen
 
 var Deck: Node2D
 
+var scritching: bool
 var inSettings: bool=false
 var inDeck: bool=false
 var resolutionScale: int=3
 
 func _ready() -> void:
+	Actions.onRemoveChildren()
+	Actions.onClearActionChain()
 	Sprite.animation="OpenSettings"
+	scritching = true
 	_on_SFX_value_changed(Settings.getSettingsData().getSFXVolume())
 	_on_Music_value_changed(Settings.getSettingsData().getMusicVolume())
 	_on_Master_value_changed(Settings.getSettingsData().getMasterVolume())
 	onUpdateWindowMode(Settings.getSettingsData().getWindowMode())
+	scritching = false
 	
 func leaveDeck() -> void:
 	var tween = create_tween()
@@ -150,23 +155,25 @@ func _on_blink_animation_finished() -> void:
 	load_screen.emit(Screen.Type.PLAY)
 	
 func _on_SFX_value_changed(value: float) -> void:
-	
 	var width= value*87/100
 	Settings.getSettingsData().setSFXVolume(int(value))
 	Settings.onUpdateSettings()
 	SFX.region_rect =Rect2(3,0,width,22)
+	onPlayScritching()
 	
 func _on_Music_value_changed(value: float) -> void:
 	var width= value*87/100
 	Settings.getSettingsData().setMusicVolume(int(value))
 	Settings.onUpdateSettings()
 	Music.region_rect = Rect2(3,0,width,22)
+	onPlayScritching()
 	
 func _on_Master_value_changed(value: float) -> void:
 	var width= value*87/100
 	Settings.getSettingsData().setMasterVolume(int(value))
 	Settings.onUpdateSettings()
 	Master.region_rect = Rect2(3,0,width,22)
+	onPlayScritching()
 
 func _on_lower_resolution() -> void:
 	if resolutionScale>1:
@@ -183,3 +190,10 @@ func _on_higher_resolution() -> void:
 	var y=360*resolutionScale
 	Settings.onUpdateResolutionScale(resolutionScale)
 	ResolutionLabel.text = "" + str(x) + "x" + str(y)
+
+func onPlayScritching() -> void:
+	if scritching: return
+	scritching = true
+	await Audio.onPlaySFX(scritching_sfx).finished
+	scritching = false
+	

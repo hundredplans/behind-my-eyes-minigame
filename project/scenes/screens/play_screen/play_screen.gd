@@ -15,6 +15,7 @@ extends Screen
 
 const CARD_TRIGGERED_DISPLAY_END_SCALE: float = 2.0
 
+@export var word_success_sfx: AudioStream
 @export var card_trigger_curve: Curve2D
 @export var PauseMenuPacked: PackedScene
 @export var CardUIPacked: PackedScene
@@ -83,6 +84,7 @@ func onCreateHandCard(action: CreateHandCardAction) -> void:
 	card_ui.onCreateHandCard()
 	
 func onPlayCard(action: PlayCardAction) -> void:
+	Audio.onPlaySFX(word_success_sfx)
 	var card_ui: CardUI = CardUIPacked.instantiate()
 	card_ui.skew = deg_to_rad(-43)
 	card_ui.rotation = deg_to_rad(-25)
@@ -105,6 +107,7 @@ func _ready() -> void:
 	Actions.action_chain_started.connect(onActionChainStarted)
 	Actions.action_chain_ended.connect(onActionChainEnded)
 	TurnTimerDisplay.turn_timer_timeout.connect(onTurnTimerTimeout)
+	Board.setFieldCards([])
 	onInitialisePlayer()
 	onInitialiseEnemy()
 	PointsDisplay.setInfo()

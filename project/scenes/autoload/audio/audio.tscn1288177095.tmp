@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://crxjerogs8p3r"]
+
+[ext_resource type="Script" uid="uid://bfqr2xtyxfxv0" path="res://scenes/autoload/audio/audio.gd" id="1_fcuq5"]
+[ext_resource type="AudioStream" uid="uid://bb4an57pp4phm" path="res://assets/music/loss_theme.mp3" id="2_12kw2"]
+[ext_resource type="AudioStream" uid="uid://rxlskirnw2th" path="res://assets/music/play_theme.mp3" id="2_q0yip"]
+[ext_resource type="AudioStream" uid="uid://16jq2brpxygj" path="res://assets/music/main_menu_theme.mp3" id="3_j02fe"]
+[ext_resource type="AudioStream" uid="uid://b40s6b6xvsh4v" path="res://assets/music/win_theme.mp3" id="5_bf7yu"]
+[ext_resource type="AudioStream" uid="uid://biddejigq1brd" path="res://assets/music/collab_music.mp3" id="5_t3asg"]
+
+[node name="Audio" type="Node" unique_id=1460279595]
+script = ExtResource("1_fcuq5")
+loss_music = ExtResource("2_12kw2")
+main_menu_music = ExtResource("3_j02fe")
+combat_music = ExtResource("2_q0yip")
+collab_music = ExtResource("5_t3asg")
+win_music = ExtResource("5_bf7yu")
+music_volume = -12.0
+music_fade_time = 1.5
+music_faded_volume = -50.0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=823367050]
+unique_name_in_owner = true
+bus = &"Music"

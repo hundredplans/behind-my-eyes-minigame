@@ -1,5 +1,6 @@
 extends LineEdit
 
+@export var fail_sfx: AudioStream
 @export var uneditable_color := Color.GRAY
 
 const INVALID_DELAY: float = 1.0
@@ -37,6 +38,7 @@ func onTextValid() -> void:
 	text = ""
 	
 func onTextInvalid() -> void:
+	Audio.onPlaySFX(fail_sfx)
 	setInvalidCooldown(true)
 	text = ""
 	

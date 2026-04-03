@@ -12,6 +12,7 @@ func onPreAction() -> void: if card == null: onFailAction()
 func onPostAction() -> void:
 	if deck_card != null:
 		Board.getCharacter(players).getDeckCards().erase(deck_card)
+		print("Deck Cards: %s" % Board.getCharacter(players).getDeckCards().size())
 	onPush([CreateHandCardAction.new(card)])
 	
 func getLogInfo() -> Array:

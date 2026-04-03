@@ -23,6 +23,7 @@ func _ready() -> void:
 	else: onLoadScreen(Screen.Type.PLAY)
 	
 	onUpdateSettings()
+	Settings.onUpdateResolutionScale(Settings.getSettingsData().getResolutionScale())
 	
 func onLoadScreen(type: Screen.Type) -> void:
 	if active_screen != null: active_screen.queue_free()
@@ -33,6 +34,8 @@ func onLoadScreen(type: Screen.Type) -> void:
 	
 	match type:
 		Screen.Type.PLAY: Audio.setPlace(Audio.Places.COMBAT)
+		Screen.Type.COLLAB: Audio.setPlace(Audio.Places.COLLAB)
+		Screen.Type.WIN: Audio.setPlace(Audio.Places.WIN)
 		Screen.Type.LOSS: Audio.setPlace(Audio.Places.LOSS)
 		_: Audio.setPlace(Audio.Places.MAIN_MENU)
 	

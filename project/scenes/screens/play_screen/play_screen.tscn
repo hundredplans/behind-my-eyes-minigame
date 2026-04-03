@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="16_8t53l"]
 [ext_resource type="PackedScene" uid="uid://cq3bfwkqjvl7u" path="res://scenes/screens/play_screen/turn_timer_display/turn_timer_display.tscn" id="16_y8dr8"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="17_8jnos"]
+[ext_resource type="AudioStream" uid="uid://cu54y0ej27xui" path="res://assets/sounds/word_right.mp3" id="18_witn7"]
+[ext_resource type="AudioStream" uid="uid://yq13xke7sddq" path="res://assets/sounds/word_wrong.mp3" id="19_jfxel"]
 
 [sub_resource type="Curve2D" id="Curve2D_xqjcl"]
 _data = {
@@ -145,6 +147,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_fefi0")
+word_success_sfx = ExtResource("18_witn7")
 card_trigger_curve = SubResource("Curve2D_xqjcl")
 PauseMenuPacked = ExtResource("2_52dmg")
 CardUIPacked = ExtResource("3_e1r2e")
@@ -236,6 +239,7 @@ placeholder_text = "Type Card Here"
 alignment = 1
 keep_editing_on_text_submit = true
 script = ExtResource("8_hisnf")
+fail_sfx = ExtResource("19_jfxel")
 metadata/_edit_lock_ = true
 
 [node name="StatusEffectManagers" type="Node2D" parent="." unique_id=1658503946]

@@ -1,12 +1,14 @@
 extends Node
 
-enum Places {NULL, MAIN_MENU, COMBAT, LOSS}
-@onready var MusicTimer: Timer = %MusicTimer
+enum Places {NULL, MAIN_MENU, COMBAT, LOSS, WIN, COLLAB}
 @onready var MusicPlayer: AudioStreamPlayer = %MusicPlayer
 
 @export var loss_music: AudioStream
 @export var main_menu_music: AudioStream
 @export var combat_music: AudioStream
+@export var collab_music: AudioStream
+@export var win_music: AudioStream
+
 @export var music_volume: float
 @export var music_fade_time: float
 @export var music_faded_volume: float
@@ -18,8 +20,7 @@ var place: Places
 
 func _ready() -> void:
 	MusicPlayer.volume_db = music_volume
-	MusicTimer.timeout.connect(onMusicTimerTimeout)
-
+	
 func onPlaySFX(sfx: AudioStream, use_offset: bool = false, custom_pitch: float = 1.0) -> AudioStreamPlayer:
 	var audio_stream_player := AudioStreamPlayer.new()
 	audio_stream_player.bus = "SFX"
@@ -31,29 +32,17 @@ func onPlaySFX(sfx: AudioStream, use_offset: bool = false, custom_pitch: float =
 	return audio_stream_player
 	
 func onPlayMusic() -> void:
-	MusicPlayer.stream = getMusicFromPlace()
-	MusicPlayer.volume_db = music_faded_volume
-	if MusicPlayer.stream == null: return
+	var delay: float = music_fade_time / 2.0
 	if MusicVolumeTween: MusicVolumeTween.kill()
 	MusicVolumeTween = create_tween()
+	MusicVolumeTween.tween_property(MusicPlayer, "volume_db", music_faded_volume, delay)
+	MusicVolumeTween.tween_callback(func(): MusicPlayer.stream = getMusicFromPlace(); MusicPlayer.play())
+	MusicVolumeTween.tween_property(MusicPlayer, "volume_db", music_volume, delay)
 	
-	MusicVolumeTween.tween_property(MusicPlayer, "volume_db", music_volume, music_fade_time)
-	MusicTimer.wait_time = MusicPlayer.stream.get_length() - music_fade_time
-	MusicTimer.start()
-	
-	MusicPlayer.play()
-
 func onPlayWithOffset(audio_stream_player: Variant, use_offset: bool) -> void:
 	if use_offset:
 		await get_tree().create_timer(randf_range(0.0, SFX_OFFSET)).timeout
 	audio_stream_player.play()
-
-func onMusicTimerTimeout() -> void:
-	if MusicVolumeTween: MusicVolumeTween.kill()
-	MusicVolumeTween = create_tween()
-	MusicVolumeTween.tween_property(MusicPlayer, "volume_db", music_faded_volume, music_fade_time)
-	await MusicVolumeTween.finished
-	onPlayMusic()
 
 func setPlace(_place: Places) -> void:
 	if place == _place: return
@@ -65,4 +54,6 @@ func getMusicFromPlace() -> AudioStream:
 		Places.COMBAT: return combat_music
 		Places.MAIN_MENU: return main_menu_music
 		Places.LOSS: return loss_music
+		Places.WIN: return win_music
+		Places.COLLAB: return collab_music
 	return null

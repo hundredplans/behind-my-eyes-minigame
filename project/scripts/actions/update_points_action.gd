@@ -1,6 +1,6 @@
 class_name UpdatePointsAction extends Action
 
-const END_DELAY: float = 1.5
+const END_DELAY: float = 3.0
 
 var players: bool
 var delta: int

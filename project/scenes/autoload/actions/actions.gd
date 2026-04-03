@@ -75,3 +75,6 @@ func onPrintDebug(action: Action) -> void:
 
 func onClearActionChain() -> void:
 	actions = []
+	
+func onRemoveChildren() -> void:
+	for child: Node in get_children(): child.queue_free()

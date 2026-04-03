@@ -11,6 +11,9 @@ extends Node2D
 @export var triggered_color: Color
 @export var triggered_extra_scale := Vector2(0.1, 0.1)
 
+@export var created_sfx: AudioStream
+@export var removed_sfx: AudioStream
+
 var NTriggeredTween: Tween
 var TriggeredTween: Tween
 var status_effect: StatusEffect
@@ -26,6 +29,8 @@ func setStatusEffect(_status_effect: StatusEffect) -> void:
 	status_effect.triggered.connect(onStatusEffectTriggered)
 	onStartAnimation()
 	onUpdateDisplayAmount()
+	
+	Audio.onPlaySFX(created_sfx)
 	
 func getStatusEffect() -> StatusEffect: return status_effect
 	
@@ -43,6 +48,7 @@ func onStartAnimation() -> void:
 	tween.tween_property(self, "scale", Vector2.ONE, start_animation_time).as_relative().set_trans(Tween.TRANS_SINE)
 
 func onDeath() -> void:
+	Audio.onPlaySFX(removed_sfx)
 	if TriggeredTween: TriggeredTween.kill()
 	if NTriggeredTween: NTriggeredTween.kill()
 	

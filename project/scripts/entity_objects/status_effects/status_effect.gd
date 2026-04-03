@@ -16,9 +16,9 @@ func onConnectToActions() -> void:
 func onProcessActionDefault(action: Action) -> void:
 	if !action.isPost():
 		if action is UpdatePointsAction and action.isPlayers() == isPlayers():
-			if isDoubler():
+			if isDoubler() and action.getCardType() == getInfo().getCardType():
 				onForce([DoublerTriggerStatusEffectAction.new(self, action)])
-			elif isNullifier():
+			elif isNullifier() and action.getCardType() == getInfo().getCardType():
 				onForce([NullifierTriggerStatusEffectAction.new(self, action)])
 		elif action is TriggerStatusEffectAction and action.getStatusEffect() == self:
 			onTriggered()

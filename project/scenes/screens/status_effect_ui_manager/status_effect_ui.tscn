@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dbsw6hf6vm6dh"]
 
 [ext_resource type="Script" uid="uid://uvl8pdigs23w" path="res://scenes/screens/status_effect_ui_manager/status_effect_ui.gd" id="1_nrpuq"]
+[ext_resource type="AudioStream" uid="uid://dl2wu1ju7ryxv" path="res://assets/sounds/status_effect_gain.mp3" id="2_7xrqy"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_ndvkd"]
 [ext_resource type="Script" uid="uid://b1qtu2bcvm30g" path="res://scripts/common/ui/default_control.gd" id="3_v6pqw"]
+[ext_resource type="AudioStream" uid="uid://b7ov0hlxmslsh" path="res://assets/sounds/status_effect_removed.mp3" id="3_wwqej"]
 [ext_resource type="Script" uid="uid://s2cxedp1lqal" path="res://scripts/common/ui/default_tooltip.gd" id="4_ndvkd"]
 [ext_resource type="LabelSettings" uid="uid://cn3kfhw3xcsw6" path="res://resources/ui/label_settings/jersey/jersey_12.tres" id="5_ndvkd"]
 
@@ -17,6 +19,8 @@ region = Rect2(416, 99, 7, 8)
 [node name="StatusEffectUI" type="Node2D" unique_id=14122200]
 script = ExtResource("1_nrpuq")
 triggered_color = Color(1.2574322, 1.2574322, 1.2574322, 1)
+created_sfx = ExtResource("2_7xrqy")
+removed_sfx = ExtResource("3_wwqej")
 
 [node name="Hitbox" type="Control" parent="." unique_id=920115396]
 layout_mode = 3

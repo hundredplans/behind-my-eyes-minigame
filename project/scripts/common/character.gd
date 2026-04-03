@@ -48,7 +48,21 @@ func onUpdatePoints(delta: int) -> void:
 	
 func isPlayers() -> bool: return players
 func onCreateStatusEffect(action: CreateStatusEffectAction) -> void:
-	status_effects.append(action.getStatusEffect())
+	var status_effect: StatusEffect = action.getStatusEffect()
+	var nullifier: bool = status_effect.getInfo().getType() == StatusEffectInfo.Type.NULLIFIER
+	var doubler: bool = status_effect.getInfo().getType() == StatusEffectInfo.Type.DOUBLER
+	
+	var removables: Array = []
+	if nullifier and status_effects.any(func(x: StatusEffect): return x.getInfo().getType() == StatusEffectInfo.Type.NULLIFIER):
+		removables = status_effects.filter(func(x: StatusEffect): return x.getInfo().getType() == StatusEffectInfo.Type.NULLIFIER)
+	
+	if doubler and status_effects.any(func(x: StatusEffect): return x.getInfo().getType() == StatusEffectInfo.Type.DOUBLER):
+		removables = status_effects.filter(func(x: StatusEffect): return x.getInfo().getType() == StatusEffectInfo.Type.DOUBLER)
+		
+	if !removables.is_empty():
+		onPush(removables.map(func(x: StatusEffect): return RemoveStatusEffectAction.new(x.getInfo(), self)))
+	status_effects.append(status_effect)
+	
 	
 func onRemoveStatusEffect(action: RemoveStatusEffectAction) -> void:
 	var status_effect_info: StatusEffectInfo = action.getInfo()

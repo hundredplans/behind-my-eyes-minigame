@@ -127,6 +127,7 @@ position = Vector2(285, 171)
 position = Vector2(357, 171)
 
 [node name="CardHolders" type="Sprite2D" parent="." unique_id=1374054851]
+self_modulate = Color(1, 1, 1, 0.5176471)
 texture_filter = 1
 position = Vector2(224, 170)
 texture = ExtResource("3_tu4l5")

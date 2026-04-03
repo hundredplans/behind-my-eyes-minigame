@@ -17,6 +17,7 @@ extends Screen
 @export var scritching_sfx: AudioStream
 @export var eyes_opening_sfx: AudioStream
 
+var scritching: bool
 var inSettings: bool
 var exiting: bool
 var resolutionScale = 3
@@ -24,11 +25,13 @@ var resolutionScale = 3
 func _ready() -> void:
 	Blink.play("OpenEyes")
 	Sprite.animation="OpenSettings"
+	scritching = true
 	_on_SFX_value_changed(Settings.getSettingsData().getSFXVolume())
 	_on_Music_value_changed(Settings.getSettingsData().getMusicVolume())
 	_on_Master_value_changed(Settings.getSettingsData().getMasterVolume())
 	onUpdateWindowMode(Settings.getSettingsData().getWindowMode())
 	Audio.onPlaySFX(eyes_opening_sfx)
+	scritching = false
 
 func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
 	DisplayServer.window_set_mode(window_mode)
@@ -39,8 +42,6 @@ func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
 	else:
 		DisplayServer.window_set_size(Vector2(1920, 1080))
 		DisplayServer.window_set_position(Vector2.ZERO)
-	
-
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Escape") and inSettings:
@@ -116,18 +117,21 @@ func _on_SFX_value_changed(value: float) -> void:
 	Settings.getSettingsData().setSFXVolume(int(value))
 	Settings.onUpdateSettings()
 	SFX.region_rect = Rect2(3,0,width,22)
+	onPlayScritching()
 	
 func _on_Music_value_changed(value: float) -> void:
 	var width= value*87/100
 	Settings.getSettingsData().setMusicVolume(int(value))
 	Settings.onUpdateSettings()
 	Music.region_rect = Rect2(3,0,width,22)
+	onPlayScritching()
 	
 func _on_Master_value_changed(value: float) -> void:
 	var width= value*87/100
 	Settings.getSettingsData().setMasterVolume(int(value))
 	Settings.onUpdateSettings()
 	Master.region_rect = Rect2(3,0,width,22)
+	onPlayScritching()
 	
 func _on_lower_resolution() -> void:
 	if resolutionScale>1:
@@ -144,3 +148,10 @@ func _on_higher_resolution() -> void:
 	var y=360*resolutionScale
 	Settings.onUpdateResolutionScale(resolutionScale)
 	ResolutionLabel.text = "" + str(x) + "x" + str(y)
+
+func onPlayScritching() -> void:
+	if scritching: return
+	scritching = true
+	await Audio.onPlaySFX(scritching_sfx).finished
+	scritching = false
+	
