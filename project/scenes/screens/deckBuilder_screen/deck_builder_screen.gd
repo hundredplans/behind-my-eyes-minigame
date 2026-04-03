@@ -100,7 +100,7 @@ func makeCardUi(card: Card) -> void:
 	card_ui.deckBuilder=true
 	var button: Button = Button.new()
 	card_ui.add_child(button)
-	CardsCatalog.append(card_ui)
+	CardsCatalog.append(card_ui) 
 	button.size=card_ui.atlas.get_size()
 	button.position=card_ui.position-card_ui.atlas.get_size()/2
 	button.pressed.connect(sendPutAction.bind(button))
