@@ -165,7 +165,10 @@ func onTriggerCardEffects(action: TriggerCardEffectsAction) -> void:
 	for i: int in field_card_uis.size():
 		var card_ui: CardUI = field_card_uis[i]
 		var other_card_ui: CardUI = field_card_uis[abs(i - 1)]
-		var point_type: Data.PointType = GameLogic.getMatchType(card_ui.getCard().getCardType(), other_card_ui.getCard().getCardType())
+		
+		var point_type: Data.PointType = Data.PointType.NONE
+		if card_ui.getCard() != null and other_card_ui.getCard() != null:
+			GameLogic.getMatchType(card_ui.getCard().getCardType(), other_card_ui.getCard().getCardType())
 		card_ui.onCardTriggeredDisplay(point_type)
 		card_ui.setDisabled(false)
 		other_card_ui.setDisabled(true)
