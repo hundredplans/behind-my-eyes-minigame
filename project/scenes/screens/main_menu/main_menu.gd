@@ -12,10 +12,14 @@ extends Screen
 @onready var ResolutionLabel: Label =%Resolution
 @onready var LowerRes: Button =%lowerResolution
 @onready var HigherRes: Button =%higherResolution
+@onready var DeckButton: Button =%DeckButton
+@export var DeckBuilder: PackedScene
 
+var Deck: Node2D
 
 var settings_data: SettingsData
 var inSettings: bool=false
+var inDeck: bool=false
 var resolutionScale: int=3
 
 func _ready() -> void:
@@ -40,9 +44,28 @@ func onUpdateSettings() -> void:
 
 	onUpdateWindowMode(settings_data.getWindowMode())
 	
+	
+func leaveDeck() -> void:
+	var tween = create_tween()
+	
+	tween.set_ease(Tween.EASE_IN_OUT)
+
+	tween.tween_property(self, "position", Vector2(0,400), 1)
+	await tween.finished
+
+# This runs AFTER the tween completes
+	Deck.free()
+	Sprite.visible=true
+	var tween2 = create_tween()
+	tween2.tween_property(self, "position", Vector2(0,0), 1)
+	pass
+	
+	
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Escape") and inSettings:
+	if Input.is_action_just_pressed("Escape") and inSettings :
 		onBackPressed()
+	if Input.is_action_just_pressed("Escape") and inDeck :
+		leaveDeck()
 	
 		
 func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
@@ -61,7 +84,11 @@ func onPlayPressed() -> void:
 	
 
 func onSettingsPressed() -> void:
+
+	
+	
 	Sprite.play("OpenSettings")
+	DeckButton.visible=false
 	inSettings=true
 	Play.visible=false
 	SettingsButton.visible=false
@@ -71,11 +98,40 @@ func onSettingsPressed() -> void:
 	HigherRes.visible=true
 	
 	
+func onDeckPressed() -> void:
+	inDeck=true
+	Deck = DeckBuilder.instantiate()
+	var tween = create_tween()
+	
+	tween.set_ease(Tween.EASE_IN_OUT)
+
+	tween.tween_property(self, "position", Vector2(0,400), 1)
+	await tween.finished
+
+# This runs AFTER the tween completes
+	Sprite.visible=false
+	self.add_child(Deck)
+	var tween2 = create_tween()
+	tween2.tween_property(self, "position", Vector2(0,0), 1)
+	
+	
+
+	DeckButton.visible=false
+	Play.visible=false
+	SettingsButton.visible=false
+	Exit.visible=false
+	Back.visible=true
+	LowerRes.visible=true
+	HigherRes.visible=true
+	
+	
+	
 	
 func onBackPressed() -> void:
 	inSettings=false
 	onSaveSettingsData()
 	Sprite.play("CloseSettings")
+	DeckButton.visible=true
 	Play.visible=true
 	SettingsButton.visible=true
 	Exit.visible=true

@@ -11,8 +11,12 @@ const DRAG_Z: int = 80
 @onready var NameLabel: Label = %NameLabel
 @export var name_lightened: float = 0.2
 
+var deckBuilder: bool = false
+var inDeck: bool = false
 var z_indexCopy: int
 var card: Card
+var deckSlot: int
+
 func setCard(_card: Card) -> void:
 	card = _card
 	var region_x: int = Data.getXFromCardType(card.getCardType())
@@ -57,3 +61,13 @@ func _on_control_mouse_entered() -> void:
 	tween.tween_property(CardSprite, "rotation", 0.1 , 0.1)
 	tween.tween_property(CardSprite, "rotation", 0 , 0.1)
 	tween.tween_callback(CardSprite.queue_free)
+
+
+func _on_card_ui_button_pressed() -> void:
+	if deckBuilder and !inDeck:
+		inDeck=true
+
+
+func _on_card_ui_button_right_clicked() -> void:
+	if deckBuilder and inDeck:
+		inDeck=false

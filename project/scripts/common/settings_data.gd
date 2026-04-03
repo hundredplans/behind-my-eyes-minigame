@@ -7,6 +7,7 @@ class_name SettingsData extends Resource
 @export_storage var resolutionScale: int=3
 @export_storage var window_mode: DisplayServer.WindowMode
 @export_storage var english: bool
+@export_storage var DeckCards: Array[int] = [1,2,3,4,5,6,7,8,9,10]
 
 func getMasterVolume() -> int: return master_volume
 func getMusicVolume() -> int: return music_volume

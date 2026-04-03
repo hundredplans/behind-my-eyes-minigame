@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://dpgrgtmv0foug"
 
 [resource]
 script = ExtResource("1_iia6c")
-type = 5
+type = 4
 rarity = 2
 gdscript = ExtResource("1_s4k34")
 tooltips = Array[ExtResource("3_qjkdi")]([SubResource("Resource_47tcd")])

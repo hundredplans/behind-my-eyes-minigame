@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c6p0g5g5icfd5" path="res://scripts/common/ui/default_button.gd" id="4_0fmn3"]
 [ext_resource type="Texture2D" uid="uid://cqnrg7u4b22c0" path="res://assets/sprites/VolumeSlider.png" id="4_0urj7"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="5_g4j36"]
+[ext_resource type="PackedScene" uid="uid://cbqti0cq6td62" path="res://scenes/screens/deckBuilder_screen/deckBuilder_screen.tscn" id="7_ht6f7"]
 [ext_resource type="Texture2D" uid="uid://cup5xmekk47mq" path="res://assets/sprites/play/Blink_Animation.png" id="8_xibsw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8h7de"]
@@ -148,6 +149,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wf0jh")
+DeckBuilder = ExtResource("7_ht6f7")
 
 [node name="Blink" type="AnimatedSprite2D" parent="." unique_id=575761315]
 unique_name_in_owner = true
@@ -163,7 +165,7 @@ unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(338, 180)
 sprite_frames = SubResource("SpriteFrames_0urj7")
-animation = &"CloseSettings"
+animation = &"OpenSettings"
 
 [node name="Button4" type="Button" parent="AnimatedSprite2D" unique_id=1216902504]
 unique_name_in_owner = true
@@ -315,6 +317,14 @@ offset_top = 4.0
 offset_right = 86.0
 offset_bottom = 20.0
 
+[node name="DeckButton" type="Button" parent="." unique_id=1116558103]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 255.0
+offset_top = 111.0
+offset_right = 263.0
+offset_bottom = 119.0
+
 [connection signal="animation_finished" from="Blink" to="." method="_on_blink_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_frame_changed"]
 [connection signal="pressed" from="AnimatedSprite2D/Button4/playButton" to="." method="onPlayPressed"]
@@ -326,3 +336,4 @@ offset_bottom = 20.0
 [connection signal="value_changed" from="AnimatedSprite2D/SFXVolume/SFXSlider" to="." method="_on_SFX_value_changed"]
 [connection signal="value_changed" from="AnimatedSprite2D/MusicVolume/MusicSlider" to="." method="_on_Music_value_changed"]
 [connection signal="value_changed" from="AnimatedSprite2D/GeneralVolume/MasterSlider" to="." method="_on_Master_value_changed"]
+[connection signal="pressed" from="DeckButton" to="." method="onDeckPressed"]

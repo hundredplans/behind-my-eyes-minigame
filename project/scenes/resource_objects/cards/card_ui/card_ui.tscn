@@ -85,3 +85,5 @@ offset = Vector2(10, 20)
 metadata/_custom_type_script = "uid://s2cxedp1lqal"
 
 [connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="pressed" from="Control/CardUIButton" to="." method="_on_card_ui_button_pressed"]
+[connection signal="right_clicked" from="Control/CardUIButton" to="." method="_on_card_ui_button_right_clicked"]
