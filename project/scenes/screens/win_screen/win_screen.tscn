@@ -17,6 +17,7 @@ script = ExtResource("1_6cc0q")
 metadata/_custom_type_script = "uid://5qy6jkgf2qhn"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1031706519]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

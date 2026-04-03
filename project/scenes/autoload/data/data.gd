@@ -41,9 +41,19 @@ func getColorFromCardType(card_type: CardType) -> Color:
 		CardType.ANGRY: return Color("e83b3b")
 		CardType.KIND: return Color("1ebc73")
 		CardType.SAD: return Color("8fd3ff")
-		CardType.HAPPY: return Color("f79617")
-		CardType.SARCASTIC: return Color("c32454")
+		CardType.HAPPY: return Color("f9c22b")
+		CardType.SARCASTIC: return Color("831c5d")
 	return Color.WHITE
+	
+func getDarkenedColorFromCardType(card_type: CardType) -> Color:
+	match card_type:
+		CardType.ANGRY: return Color("#ae2334")
+		CardType.KIND: return Color("#239063")
+		CardType.SAD: return Color("4d65b4")
+		CardType.ANGRY: return Color("#f79617")
+		CardType.SARCASTIC: return Color("6b3e75")
+	return Color.WHITE
+
 
 func getPlayerStartingDeck() -> Array[DeckCard]:
 	return getRandomDeck()
