@@ -8,6 +8,7 @@ extends Control
 
 const TOP_PANEL_DARKEN: float = 0.25
 var base_color: Color
+var daker_color: Color
 func setTooltipData(tooltip_data: TooltipData) -> void:
 	var info: ResourceInfo = tooltip_data.getInfo()
 	NameLabel.text = info.getName()
@@ -19,9 +20,9 @@ func setTooltipData(tooltip_data: TooltipData) -> void:
 		var card_type: Data.CardType = info.getCardType()
 		if card_type != Data.CardType.NULL:
 			base_color = Data.getColorFromCardType(card_type)
+			daker_color=Data.getDarkenedColorFromCardType(card_type)
 			
 	MainPanel.self_modulate = base_color
-	NameLabel.modulate = base_color.darkened(TOP_PANEL_DARKEN)
-	TopPanel.self_modulate = base_color.darkened(TOP_PANEL_DARKEN)
+	NameLabel.modulate = daker_color
+	TopPanel.self_modulate = daker_color
 	call_deferred("reset_size")
-	call_deferred("set_size", Vector2.ZERO)

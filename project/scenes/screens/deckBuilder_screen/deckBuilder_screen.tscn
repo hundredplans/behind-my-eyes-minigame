@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c5ca24kxl2wtp" path="res://scenes/screens/deckBuilder_screen/deck_builder_screen.gd" id="1_nik0h"]
 [ext_resource type="Texture2D" uid="uid://cwktyywpvtd5r" path="res://assets/sprites/Binder.png" id="2_3uojd"]
+[ext_resource type="AudioStream" uid="uid://cbtq1xovwlk2l" path="res://assets/sounds/card_selected_deck.mp3" id="3_piiqn"]
 [ext_resource type="Script" uid="uid://0shmw2f5jneh" path="res://scripts/actions/action_manager.gd" id="3_ru4mf"]
 [ext_resource type="Texture2D" uid="uid://cy7qnmoakmx11" path="res://assets/sprites/play/CardHolders.png" id="3_tu4l5"]
+[ext_resource type="AudioStream" uid="uid://bnlgr6tahn71c" path="res://assets/sounds/key_pressed.mp3" id="4_n73sf"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="4_ru4mf"]
 [ext_resource type="PackedScene" uid="uid://cgk8mnf70jwns" path="res://scenes/resource_objects/cards/card_ui/card_ui.tscn" id="5_v7lcs"]
 [ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="7_ru4mf"]
@@ -56,6 +58,8 @@ region = Rect2(432, 100, 5, 5)
 [node name="DeckBuilderScreen" type="Node2D" unique_id=448603974]
 script = ExtResource("1_nik0h")
 CardUIPacked = ExtResource("5_v7lcs")
+card_selected_deck = ExtResource("3_piiqn")
+key_pressed = ExtResource("4_n73sf")
 
 [node name="ActionSender" type="Node" parent="." unique_id=654236761]
 unique_name_in_owner = true
@@ -327,6 +331,11 @@ theme_override_fonts/font = ExtResource("7_ru4mf")
 text = "1"
 horizontal_alignment = 2
 
+[node name="LoadTimer" type="Timer" parent="." unique_id=1055490037]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
 [connection signal="pressed" from="SortNice/NICE" to="." method="_on_nice_pressed"]
 [connection signal="pressed" from="SortNice/NICE" to="SortNice/NICE" method="_on_pressed"]
 [connection signal="pressed" from="SortHappy/HAPPY" to="SortHappy/HAPPY" method="_on_pressed"]
@@ -336,3 +345,4 @@ horizontal_alignment = 2
 [connection signal="pressed" from="Sort2star/TWO" to="Sort2star/TWO" method="_on_pressed"]
 [connection signal="pressed" from="Sort1star/ONE" to="Sort1star/ONE" method="_on_pressed"]
 [connection signal="pressed" from="Sort3star/THREE" to="Sort3star/THREE" method="_on_pressed"]
+[connection signal="timeout" from="LoadTimer" to="." method="onLoadTimerTimeout"]

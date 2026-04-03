@@ -11,6 +11,6 @@ rarity = 1
 gdscript = ExtResource("1_mi45o")
 name = "Handshake"
 id = 19
-description = "+2 to collaboration and add Handshake to your opponents hand 
+description = "+2 to collab,  add this card to the opponent’s hand 
 "
 metadata/_custom_type_script = "uid://c8h0psix8t0o5"

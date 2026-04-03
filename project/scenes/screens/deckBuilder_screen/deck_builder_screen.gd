@@ -27,10 +27,15 @@ var settings_data: SettingsData
 @onready var ButtonONE: Button =%ONE
 @onready var ButtonTWO: Button =%TWO
 @onready var ButtonTHREE: Button =%THREE
+@onready var LoadTimer: Timer
+
+@export var card_selected_deck: AudioStream
+@export var key_pressed: AudioStream
 
 var CardClicked: CardUI
 var maxDeckCost: int = 20
 var DeckSize: int = 10
+var allow_playing_sfx: bool
 
 func onUpdateSettings() -> void:
 	if !FileAccess.file_exists(SettingsData.getDefaultPath()):
@@ -99,7 +104,7 @@ func makeCardUi(card: Card) -> void:
 	card_ui.deckBuilder=true
 	var button: Button = Button.new()
 	card_ui.add_child(button)
-	CardsCatalog.append(card_ui)
+	CardsCatalog.append(card_ui) 
 	button.size=card_ui.atlas.get_size()
 	button.position=card_ui.position-card_ui.atlas.get_size()/2
 	button.pressed.connect(sendPutAction.bind(button))
@@ -108,6 +113,7 @@ func makeCardUi(card: Card) -> void:
 	
 
 func sendPutAction(button: Button) -> void:
+	if allow_playing_sfx: Audio.onPlaySFX(card_selected_deck)
 	button.pressed.disconnect(sendPutAction.bind(button))
 	button.pressed.connect(sendRemoveAction.bind(button))
 	
@@ -116,7 +122,7 @@ func sendPutAction(button: Button) -> void:
 	return
 	
 func sendRemoveAction(button: Button) -> void:
-
+	Audio.onPlaySFX(card_selected_deck)
 	button.pressed.disconnect(sendRemoveAction.bind(button))
 	button.pressed.connect(sendPutAction.bind(button))
 	var cardUi: CardUI = button.get_parent()
@@ -124,7 +130,8 @@ func sendRemoveAction(button: Button) -> void:
 	onPush([RemoveCardFromDeckAction.new(cardUi)])
 	return
 
-func sendFilterAction(filter: int) -> void:		
+func sendFilterAction(filter: int) -> void:	
+	Audio.onPlaySFX(key_pressed)
 	if filter<=5:
 		if !emotionFilters.has(filter):
 			emotionFilters.append(filter)
@@ -205,3 +212,6 @@ func getCurrentCost() -> int:
 func getCardUis() -> Array: return CardsCatalog
 func onPush(actions: Array) -> void: ActionSender.onPush(actions)
 func onAppend(actions: Array) -> void: ActionSender.onAppend(actions)
+
+func onLoadTimerTimeout() -> void:
+	allow_playing_sfx = true

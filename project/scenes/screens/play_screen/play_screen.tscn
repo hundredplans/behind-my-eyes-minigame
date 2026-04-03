@@ -262,7 +262,7 @@ curve = SubResource("Curve2D_y8dr8")
 [node name="TurnTimerDisplay" parent="." unique_id=114330032 instance=ExtResource("16_y8dr8")]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(595, 165)
+position = Vector2(595.51, 165)
 
 [node name="EnemyIconBorder" type="PanelContainer" parent="." unique_id=49374493]
 layout_mode = 0

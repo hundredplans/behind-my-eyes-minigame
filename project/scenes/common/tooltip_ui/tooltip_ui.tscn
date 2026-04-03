@@ -4,13 +4,10 @@
 [ext_resource type="StyleBox" uid="uid://bvyjrrrh0cbej" path="res://resources/ui/styleboxes/flat_border_two.tres" id="2_ovgqa"]
 [ext_resource type="Texture2D" uid="uid://cea33pwj2g7dt" path="res://assets/sprites/play/combat_atlas/combat_atlas.png" id="2_ruh6l"]
 [ext_resource type="StyleBox" uid="uid://buw0l2eayxjtq" path="res://resources/ui/styleboxes/flat_border_four.tres" id="2_xn2jy"]
-[ext_resource type="LabelSettings" uid="uid://cn3kfhw3xcsw6" path="res://resources/ui/label_settings/jersey/jersey_12.tres" id="3_gb3h7"]
-[ext_resource type="LabelSettings" uid="uid://xnj1fb1xgvng" path="res://resources/ui/label_settings/spicyrice/spicyrice_8.tres" id="6_ovgqa"]
+[ext_resource type="FontFile" uid="uid://c0fvdxagmvbj5" path="res://assets/fonts/ByteBounce.ttf" id="4_gb3h7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovgqa"]
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lu0cb"]
 atlas = ExtResource("2_ruh6l")
@@ -21,8 +18,8 @@ self_modulate = Color(0, 0, 0, 1)
 top_level = true
 z_index = 100
 custom_minimum_size = Vector2(100, 0)
-offset_right = 100.0
-offset_bottom = 40.0
+offset_right = 85.0
+offset_bottom = 46.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = ExtResource("2_xn2jy")
@@ -66,8 +63,9 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="MarginContainer/MainPanel/VBoxContainer/TopPanel/MarginContainer/HBoxContainer" unique_id=1750950968]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("4_gb3h7")
 text = "Sunny"
-label_settings = ExtResource("3_gb3h7")
 
 [node name="IconTxRect" type="TextureRect" parent="MarginContainer/MainPanel/VBoxContainer/TopPanel/MarginContainer/HBoxContainer" unique_id=1623213913]
 unique_name_in_owner = true
@@ -90,4 +88,6 @@ theme_override_constants/margin_bottom = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-label_settings = ExtResource("6_ovgqa")
+theme_override_colors/font_color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("4_gb3h7")
+autowrap_mode = 2

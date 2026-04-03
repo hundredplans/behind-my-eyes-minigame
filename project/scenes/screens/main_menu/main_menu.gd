@@ -67,7 +67,7 @@ func leaveDeck() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Escape") and inSettings :
 		onBackPressed()
-	if Input.is_action_just_pressed("Escape") and inDeck :
+	if Input.is_action_just_pressed("Escape") and inDeck and Deck.DeckCards.size()==10:
 		leaveDeck()
 	
 func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
