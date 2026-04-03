@@ -19,3 +19,10 @@ Each player makes a deck of up to 10 cards with a total star cost of 20.
 - Card effects can be gaining extra points, creating status effects or a completely unique effect.
 - Every time you play a card it goes to the discard pile for 2 turns then is shuffled back into your deck
 - You have 45 seconds to play each card.
+
+## Screenshots
+![Main Menu](/project/assets/main_menu.png)
+![Settings Screen](/project/assets/settings_menu.png)
+![Deck Screen](/project/assets/deck_screen.png)
+![Play Screen 1](/project/assets/play_screen1.png)
+![Play Screen 2](/project/assets/play_screen2.png)
