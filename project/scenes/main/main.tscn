@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b0oeqgy6yx1vb" path="res://scenes/screens/win_screen/win_screen.tscn" id="5_hujxm"]
 [ext_resource type="PackedScene" uid="uid://d4iuck8v0b4yp" path="res://scenes/screens/collab_screen/collab_screen.tscn" id="6_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://cbqti0cq6td62" path="res://scenes/screens/deckBuilder_screen/deckBuilder_screen.tscn" id="7_hujxm"]
+[ext_resource type="PackedScene" uid="uid://cmj7peiqb2xnt" path="res://scenes/screens/over_world/over_world.tscn" id="8_yyfjg"]
 
 [node name="Main" type="Node" unique_id=964971304]
 script = ExtResource("1_hyk8p")
@@ -16,3 +17,4 @@ LossScreenPacked = ExtResource("4_ow5a4")
 WinScreenPacked = ExtResource("5_hujxm")
 CollabScreenPacked = ExtResource("6_yyfjg")
 DeckScreenPacked = ExtResource("7_hujxm")
+OverWorldScreenPacked = ExtResource("8_yyfjg")

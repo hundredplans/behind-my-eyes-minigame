@@ -69,6 +69,8 @@ func _process(_delta: float) -> void:
 		onBackPressed()
 	if Input.is_action_just_pressed("Escape") and inDeck and Deck.DeckCards.size()==10:
 		leaveDeck()
+	if Input.is_action_just_pressed("go_to_over_world"):
+		load_screen.emit(Screen.Type.OVER_WORLD)
 	
 func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
 	Settings.onUpdateWindowMode(window_mode)

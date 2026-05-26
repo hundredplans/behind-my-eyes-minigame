@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cmj7peiqb2xnt"]
+
+[ext_resource type="Script" uid="uid://doaynvo03p45s" path="res://scenes/screens/over_world/over_world.gd" id="1_n1htg"]
+[ext_resource type="Script" uid="uid://0s3gyiw0bbcp" path="res://scenes/screens/over_world/over_world_background.gd" id="2_8iu2b"]
+[ext_resource type="Script" uid="uid://byywdmfl1eyvb" path="res://scenes/screens/over_world/over_world_player.gd" id="2_ulnt2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8iu2b"]
+size = Vector2(32, 32)
+
+[node name="OverWorld" type="Control" unique_id=1068823784]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_n1htg")
+
+[node name="WorldRoot" type="Node2D" parent="." unique_id=1010273947]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="WorldRoot" unique_id=917947718]
+
+[node name="Background" type="Node2D" parent="WorldRoot" unique_id=1442496773]
+script = ExtResource("2_8iu2b")
+
+[node name="Player" type="CharacterBody2D" parent="WorldRoot" unique_id=131582610]
+position = Vector2(160, 160)
+script = ExtResource("2_ulnt2")
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldRoot/Player" unique_id=1384790957]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/Player" unique_id=1098676233]
+shape = SubResource("RectangleShape2D_8iu2b")
+
+[node name="Camera2D" type="Camera2D" parent="WorldRoot/Player" unique_id=446740032]
