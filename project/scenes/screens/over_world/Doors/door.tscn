@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b21lgourxkca2"]
+
+[ext_resource type="Script" uid="uid://gjvk5bb8o7ml" path="res://scenes/screens/over_world/Doors/door.gd" id="1_otmri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmunk"]
+size = Vector2(16, 16)
+
+[node name="Door" type="Area2D" unique_id=1606180574]
+script = ExtResource("1_otmri")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=410112833]
+shape = SubResource("RectangleShape2D_gmunk")

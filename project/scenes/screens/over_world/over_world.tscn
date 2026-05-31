@@ -3,9 +3,13 @@
 [ext_resource type="Script" uid="uid://doaynvo03p45s" path="res://scenes/screens/over_world/over_world.gd" id="1_n1htg"]
 [ext_resource type="Script" uid="uid://0s3gyiw0bbcp" path="res://scenes/screens/over_world/over_world_background.gd" id="2_8iu2b"]
 [ext_resource type="Script" uid="uid://byywdmfl1eyvb" path="res://scenes/screens/over_world/over_world_player.gd" id="2_ulnt2"]
+[ext_resource type="PackedScene" uid="uid://b21lgourxkca2" path="res://scenes/screens/over_world/Doors/door.tscn" id="3_2w6l1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8iu2b"]
-size = Vector2(32, 32)
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2w6l1"]
+radius = 20.0
 
 [node name="OverWorld" type="Control" unique_id=1068823784]
 layout_mode = 3
@@ -19,6 +23,23 @@ script = ExtResource("1_n1htg")
 [node name="Background" type="Node2D" parent="WorldRoot" unique_id=1442496773]
 script = ExtResource("2_8iu2b")
 
+[node name="Door" parent="WorldRoot" unique_id=932255529 instance=ExtResource("3_2w6l1")]
+position = Vector2(64, 64)
+target_spawn_id = "main_spawn"
+
+[node name="DoorToHouse" parent="WorldRoot" unique_id=1606180574 instance=ExtResource("3_2w6l1")]
+position = Vector2(128, 65)
+target_screen = 8
+target_spawn_id = "house_entry_spawn"
+
+[node name="SpawnPoints" type="Node2D" parent="WorldRoot" unique_id=1252035786]
+
+[node name="main_spawn" type="Node2D" parent="WorldRoot/SpawnPoints" unique_id=2020327523]
+position = Vector2(80, 64)
+
+[node name="house_exit_spawn" type="Node2D" parent="WorldRoot/SpawnPoints" unique_id=1763667368]
+position = Vector2(144, 64)
+
 [node name="Player" type="CharacterBody2D" parent="WorldRoot" unique_id=131582610]
 position = Vector2(160, 160)
 script = ExtResource("2_ulnt2")
@@ -29,3 +50,8 @@ script = ExtResource("2_ulnt2")
 shape = SubResource("RectangleShape2D_8iu2b")
 
 [node name="Camera2D" type="Camera2D" parent="WorldRoot/Player" unique_id=446740032]
+
+[node name="InteractionArea" type="Area2D" parent="WorldRoot/Player" unique_id=1364118579]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/Player/InteractionArea" unique_id=738356064]
+shape = SubResource("CircleShape2D_2w6l1")

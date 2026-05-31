@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var tile_size: int = 32
+@export var tile_size: int = 16
 @export var grid_width: int = 40
 @export var grid_height: int = 30
 

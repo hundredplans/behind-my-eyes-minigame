@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b3lco12n8h074"]
+
+[ext_resource type="Script" uid="uid://cspvgc65nq276" path="res://scenes/screens/House/house.gd" id="1_625hp"]
+[ext_resource type="Script" uid="uid://byywdmfl1eyvb" path="res://scenes/screens/over_world/over_world_player.gd" id="2_fkvwy"]
+[ext_resource type="PackedScene" uid="uid://b21lgourxkca2" path="res://scenes/screens/over_world/Doors/door.tscn" id="3_fkvwy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v6re"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j6q5o"]
+radius = 20.0
+
+[node name="House" type="Control" unique_id=1727405189]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_625hp")
+
+[node name="Label" type="Label" parent="." unique_id=1791385629]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 1.0
+offset_right = 97.0
+offset_bottom = 24.0
+text = "HOUSE"
+
+[node name="WorldRoot" type="Node2D" parent="." unique_id=1379808245]
+
+[node name="Background" type="Node2D" parent="WorldRoot" unique_id=1608452645]
+
+[node name="DoorToOverWorld" parent="WorldRoot" unique_id=1606180574 instance=ExtResource("3_fkvwy")]
+position = Vector2(25, 48)
+target_screen = 7
+target_spawn_id = "house_exit_spawn"
+
+[node name="SpawnPoints" type="Node2D" parent="WorldRoot" unique_id=644807700]
+
+[node name="house_entry_spawn" type="Node2D" parent="WorldRoot/SpawnPoints" unique_id=423821851]
+position = Vector2(44, 48)
+
+[node name="Player" type="CharacterBody2D" parent="WorldRoot" unique_id=1124323937]
+script = ExtResource("2_fkvwy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/Player" unique_id=442858347]
+shape = SubResource("RectangleShape2D_2v6re")
+
+[node name="InteractionArea" type="Area2D" parent="WorldRoot/Player" unique_id=1636174484]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/Player/InteractionArea" unique_id=268270538]
+shape = SubResource("CircleShape2D_j6q5o")
+
+[node name="Camera2D" type="Camera2D" parent="WorldRoot/Player" unique_id=1455413838]

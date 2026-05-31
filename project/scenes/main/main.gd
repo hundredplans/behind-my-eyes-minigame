@@ -8,6 +8,7 @@ extends Node
 @export var DeckScreenPacked: PackedScene
 
 @export var OverWorldScreenPacked: PackedScene 
+@export var HouseScreenPacked: PackedScene
 
 var active_screen: Screen
 func getScreenPacked(type: Screen.Type) -> PackedScene:
@@ -19,6 +20,7 @@ func getScreenPacked(type: Screen.Type) -> PackedScene:
 		Screen.Type.COLLAB: return CollabScreenPacked
 		Screen.Type.DECK: return DeckScreenPacked
 		Screen.Type.OVER_WORLD: return OverWorldScreenPacked
+		Screen.Type.HOUSE: return HouseScreenPacked
 	return null
 	
 func _ready() -> void:
