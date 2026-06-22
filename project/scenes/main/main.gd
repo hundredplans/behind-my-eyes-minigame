@@ -6,11 +6,13 @@ extends Node
 @export var WinScreenPacked: PackedScene
 @export var CollabScreenPacked: PackedScene
 @export var DeckScreenPacked: PackedScene
+@export var NotepadPacked: PackedScene
 
 var active_screen: Screen
 func getScreenPacked(type: Screen.Type) -> PackedScene:
 	match type:
 		Screen.Type.MAIN_MENU: return MainMenuPacked
+		Screen.Type.NOTEPAD: return NotepadPacked
 		Screen.Type.PLAY: return PlayScreenPacked
 		Screen.Type.LOSS: return LossScreenPacked
 		Screen.Type.WIN: return WinScreenPacked

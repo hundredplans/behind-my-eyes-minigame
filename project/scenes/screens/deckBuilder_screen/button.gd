@@ -8,14 +8,14 @@ var on=false
 func _ready() -> void:
 	modulate=0
 	self_modulate=0
+	
+	var sprite: Sprite2D = get_parent()
+	var atlas = sprite.texture as AtlasTexture
+	atlas.region.position.x = 416
+	
 	pass # Replace with function body.
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if on :
-		var sprite: Sprite2D = get_parent()
-		var atlas = sprite.texture as AtlasTexture
 
 func _on_pressed() -> void:
 	#sendFilterAction()

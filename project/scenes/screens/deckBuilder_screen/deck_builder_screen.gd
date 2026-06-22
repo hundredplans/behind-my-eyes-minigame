@@ -39,16 +39,21 @@ func onUpdateSettings() -> void:
 	else: 
 		settings_data = load(SettingsData.getDefaultPath())
 		for card in settings_data.DeckCards:
-			print(CardsCatalog.size())
 			CardsCatalog[card-1].get_child(1).pressed.emit()
 		
 		
 		
+func sortCatalog(a,b):
+	if a.card.getInfo().getId() < b.card.getInfo().getId():
+		return true
+	return false
 func _ready() -> void:
 	Actions.process_action.connect(onProcessAction)
 	for card_info: CardInfo in Info.getInfos(CardInfo):
+		
 		var card: Card = card_info.getCard(false)
 		makeCardUi(card)
+	CardsCatalog.sort_custom(sortCatalog)
 	CostLabel.text= str(getCurrentCost()) +"/20"  
 	CardAmountLabel.text= str(getCurrentDeckSize()) +"/10"  
 	
@@ -60,6 +65,7 @@ func _ready() -> void:
 	ButtonONE.pressed.connect(sendFilterAction.bind(6))
 	ButtonTWO.pressed.connect(sendFilterAction.bind(7))
 	ButtonTHREE.pressed.connect(sendFilterAction.bind(8))
+	
 	onUpdateSettings()
 
 
@@ -77,9 +83,9 @@ func onProcessAction(action: Action) -> void:
  #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Escape"):
-		CardsCatalog.clear()
 		if DeckCards.size()==10:
 			var DeckIds: Array[int]
+			
 			for card in DeckCards:
 				DeckIds.append(card.card.getInfo().getId())
 			
@@ -120,7 +126,7 @@ func sendRemoveAction(button: Button) -> void:
 	button.pressed.disconnect(sendRemoveAction.bind(button))
 	button.pressed.connect(sendPutAction.bind(button))
 	var cardUi: CardUI = button.get_parent()
-	print(cardUi.NameLabel.text)
+	
 	onPush([RemoveCardFromDeckAction.new(cardUi)])
 	return
 
@@ -135,6 +141,9 @@ func sendFilterAction(filter: int) -> void:
 			rarityFilters.append(filter-5)
 		else:
 			rarityFilters.erase(filter-5)
+	applyFilters()
+			
+func applyFilters():
 	for card in CardsCatalog:
 		var matches_type = emotionFilters.has(card.getCard().getInfo().getType()) or emotionFilters.is_empty()
 		var matches_rarity = rarityFilters.has(card.getCard().getInfo().getRarity()) or rarityFilters.is_empty()
@@ -143,9 +152,11 @@ func sendFilterAction(filter: int) -> void:
 	
 	#onPush([PutCardInDeckAction.new(action.card)])
 func onPutCardInDeck(action: PutCardInDeckAction) -> void:
+	
 	Warning.visible=false
 	var UINode: CardUI = action.card	
 	
+
 	var control: Control = UINode.get_parent()
 	var global_pos = control.global_position
 	
@@ -180,6 +191,7 @@ func onRemoveCardFromDeck(action: RemoveCardFromDeckAction) -> void:
 	CatalogGrid.add_child(UINode.get_parent())
 	CostLabel.text= str(getCurrentCost()) +"/20"  
 	CardAmountLabel.text= str(getCurrentDeckSize()) +"/10"  
+	applyFilters()
 	
 func onFilterCardsInCatalogAction(action: FilterCardsInCatalogAction) -> void:
 	pass
