@@ -19,7 +19,8 @@ func getScreenPacked(type: Screen.Type) -> PackedScene:
 	return null
 	
 func _ready() -> void:
-	if !Admin.isAutoload(): onLoadScreen(Screen.Type.MAIN_MENU)
+	if WorldManager.consumeCombatRequest(): onLoadScreen(Screen.Type.PLAY) # started from the overworld
+	elif !Admin.isAutoload(): onLoadScreen(Screen.Type.MAIN_MENU)
 	else: onLoadScreen(Screen.Type.PLAY)
 	
 	onUpdateSettings()

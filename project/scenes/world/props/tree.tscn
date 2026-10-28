@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/world/outside/tree.png" id="1_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sprite"]
+atlas = ExtResource("1_tex")
+region = Rect2(0, 0, 64, 78)
+
+[sub_resource type="RectangleShape2D" id="Shape_0"]
+size = Vector2(32, 16)
+
+[node name="Tree" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_sprite")
+centered = false
+offset = Vector2(-32, -78)
+
+[node name="Collision0" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("Shape_0")

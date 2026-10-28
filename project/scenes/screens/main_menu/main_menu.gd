@@ -151,8 +151,17 @@ func _on_frame_changed() -> void:
 	if Sprite.frame == 3 and Sprite.animation =="CloseSettings" :
 		ResolutionLabel.visible=false
 	
+const START_LOCATION: String = "res://scenes/screens/MC_Room/MC_Room.tscn"
+
 func _on_blink_animation_finished() -> void:
-	load_screen.emit(Screen.Type.PLAY)
+	# Hide the buttons first so their hover-exit (cursor update) runs while the
+	# menu is still in the tree, not after the scene change removed it.
+	Play.visible = false
+	SettingsButton.visible = false
+	Exit.visible = false
+	Back.visible = false
+	%Button3.visible = false
+	WorldManager.changeLocation(START_LOCATION, &"default")
 	
 func _on_SFX_value_changed(value: float) -> void:
 	var width= value*87/100

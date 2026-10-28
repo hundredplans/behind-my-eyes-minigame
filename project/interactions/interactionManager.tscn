@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bb3ng5lw0vvlc"]
+
+[ext_resource type="Script" uid="uid://d31xpx4tldvpt" path="res://interactions/interaction_manager.gd" id="1_8woth"]
+[ext_resource type="LabelSettings" uid="uid://cn3kfhw3xcsw6" path="res://resources/ui/label_settings/jersey/jersey_12.tres" id="2_label"]
+
+[node name="InteractionManager" type="Node2D"]
+script = ExtResource("1_8woth")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 14.0
+text = "[E] Check"
+label_settings = ExtResource("2_label")
+horizontal_alignment = 1
+vertical_alignment = 1

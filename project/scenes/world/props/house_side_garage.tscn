@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/world/outside/houses_side.png" id="1_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sprite"]
+atlas = ExtResource("1_tex")
+region = Rect2(428, 63, 183, 177)
+
+[sub_resource type="RectangleShape2D" id="Shape_0"]
+size = Vector2(192, 144)
+
+[node name="HouseSideGarage" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_sprite")
+centered = false
+offset = Vector2(-91, -177)
+
+[node name="Collision0" type="CollisionShape2D" parent="."]
+position = Vector2(0, -72)
+shape = SubResource("Shape_0")
