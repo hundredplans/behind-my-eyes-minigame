@@ -1,208 +1,126 @@
 extends Screen
 
-@onready var Blink: AnimatedSprite2D = %Blink
-@onready var Sprite: AnimatedSprite2D = %AnimatedSprite2D
-@onready var Play: Button = %Button4
-@onready var SettingsButton: Button = %Button2
-@onready var Exit: Button = %Button3
-@onready var Back: Button = %Button
-@onready var SFX: Sprite2D =%SFXVolume
-@onready var Music: Sprite2D =%MusicVolume
-@onready var Master: Sprite2D =%GeneralVolume
-@onready var ResolutionLabel: Label =%Resolution
-@onready var LowerRes: Button =%lowerResolution
-@onready var HigherRes: Button =%higherResolution
-@onready var DeckButton: DefaultButton =%DeckButton
-@export var DeckBuilder: PackedScene
-@export var deck_display_duration: float = 0.8
-@export var pageflip_sfx: AudioStream
+@onready var viewport = $SubViewport
+@onready var Background_Sprite:  AnimatedSprite2D  = $Background
+@onready var Background_Shader:  AnimatedSprite2D  = $SubViewport/BackgroundShader
+@onready var Foreground:  AnimatedSprite2D  = $Foreground
+@onready var Leaves:  AnimatedSprite2D  = $Leaves
+@onready var Petals:  AnimatedSprite2D  =  $Petals
+@onready var Otis:  AnimatedSprite2D  = $Otis
+@onready var timer: Timer = $SubViewport/BackgroundShader/Timer
+@onready var Grass_Shader:  AnimatedSprite2D  = $SubViewport2/GrassShader
+@onready var foreground_Viewport = $SubViewport2
+@onready var Ground_Shader:  AnimatedSprite2D  = $SubViewport2/GroundShader
+@onready var ContinueLabel: Label = $Continue/ContinueLabel
 
-@export var scritching_sfx: AudioStream
-@export var eyes_opening_sfx: AudioStream
+@onready var NewGameLabel: Label = $NewGameButton/NewGameLabel
+@onready var SettingsLabel: Label = $SettingsButton/SettingsLabel
+@onready var ExitLabel: Label = $ExitButton/ExitLabel
 
-var Deck: Node2D
+var labels: Array[Label]
+var PlayPressed: bool = false
+func _ready():
+	var mat = Background_Sprite.material as ShaderMaterial
+	mat.set_shader_parameter(
+		"mask_texture",
+		viewport.get_texture()
+	)
+	var mat2 = Foreground.material as ShaderMaterial
+	mat2.set_shader_parameter(
+		"mask_texture",
+		foreground_Viewport.get_texture()
+	)
+	var mat3 = Leaves.material as ShaderMaterial
+	mat3.set_shader_parameter(
+		"mask_texture",
+		foreground_Viewport.get_texture()
+	)
+	labels.append(ContinueLabel)
+	labels.append(NewGameLabel)
+	labels.append(SettingsLabel)
+	labels.append(ExitLabel)
+	
+	#start Idle animations
+	#Grass_Shader.play("default")
+	Background_Sprite.play("default")
+	#Ground_Shader.play("default")
+	Foreground.play("default")
+	Leaves.play("default")
+	Petals.play("default")
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 
-var scritching: bool
-var inSettings: bool=false
-var inDeck: bool=false
-var resolutionScale: int=3
-
-func _ready() -> void:
-	Actions.onRemoveChildren()
-	Actions.onClearActionChain()
-	Sprite.animation="OpenSettings"
-	scritching = true
-	_on_SFX_value_changed(Settings.getSettingsData().getSFXVolume())
-	_on_Music_value_changed(Settings.getSettingsData().getMusicVolume())
-	_on_Master_value_changed(Settings.getSettingsData().getMasterVolume())
-	onUpdateWindowMode(Settings.getSettingsData().getWindowMode())
-	scritching = false
-	
-func leaveDeck() -> void:
-	var tween = create_tween()
-	inDeck=false 
-	tween.set_ease(Tween.EASE_IN_OUT)
-
-	var delay: float = deck_display_duration / 2.0
-	tween.tween_property(self, "position", Vector2(0,400), delay)
-	await tween.finished
-
-# This runs AFTER the tween completes
-	Deck.free()
-	Sprite.visible=true
-	var tween2 = create_tween()
-	tween2.tween_property(self, "position", Vector2(0,0), delay)
-	
-
-	DeckButton.setDisabled(false)
-	Play.visible=true
-	SettingsButton.visible=true
-	Exit.visible=true
-	Back.visible=false
-	LowerRes.visible=false
-	HigherRes.visible=false
-	
-	
-	
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Escape") and inSettings :
-		onBackPressed()
-	if Input.is_action_just_pressed("Escape") and inDeck and Deck.DeckCards.size()==10:
-		leaveDeck()
-	
-func onUpdateWindowMode(window_mode: DisplayServer.WindowMode) -> void:
-	Settings.onUpdateWindowMode(window_mode)
-	
-func onPlayPressed() -> void:
-	Blink.visible = true
-	Blink.play("CloseEyes");
-	Audio.onPlaySFX(eyes_opening_sfx)
-
-func onSettingsPressed() -> void:
-	Sprite.play("OpenSettings")
-	Audio.onPlaySFX(pageflip_sfx)
-	DeckButton.setDisabled(true)
-	inSettings=true
-	Play.visible=false
-	SettingsButton.visible=false
-	Exit.visible=false
-	Back.visible=true
-	LowerRes.visible=true
-	HigherRes.visible=true
-	
-	
-func onDeckPressed() -> void:
-	inDeck=true
-	Deck = DeckBuilder.instantiate()
-	var tween = create_tween()
-	
-	var delay: float = deck_display_duration / 2.0
-	tween.set_ease(Tween.EASE_IN_OUT)
-
-	tween.tween_property(self, "position", Vector2(0,400), delay)
-	await tween.finished
-
-# This runs AFTER the tween completes
-	Sprite.visible=false
-	self.add_child(Deck)
-	var tween2 = create_tween()
-	tween2.tween_property(self, "position", Vector2(0,0), delay)
-	
+func _process(delta: float) -> void:
+	Grass_Shader.frame = Foreground.frame + 2 *Ground_Shader.frame + 2* int(PlayPressed)
 	
 
-	DeckButton.setDisabled(true)
-	Play.visible=false
-	SettingsButton.visible=false
-	Exit.visible=false
-	Back.visible=true
-	LowerRes.visible=true
-	HigherRes.visible=true
-	
-func onBackPressed() -> void:
-	inSettings=false
-	Audio.onPlaySFX(pageflip_sfx)
-	Settings.onSaveSettingsData()
-	Sprite.play("CloseSettings")
-	DeckButton.setDisabled(false)
-	Play.visible=true
-	SettingsButton.visible=true
-	Exit.visible=true
-	Back.visible=false
-	LowerRes.visible=false
-	HigherRes.visible=false
 
-func onExitPressed() -> void:
+#autoplay idle animationg every x seconds
+func _on_timer_timeout() -> void:
+	Background_Shader.play("Idle")
+
+func _on_continue_pressed() -> void:
+	if(PlayPressed):
+		return
+	PlayPressed=true
+	timer.paused=true
+	Otis.play("Play")
+	Background_Shader.play("Play")
+	Ground_Shader.play("Play")
+
+
+func _on_new_game_button_pressed() -> void:
+	if(PlayPressed):
+		return
+#	Need save system for this
+	pass # Replace with function body.
+
+
+func _on_settings_button_pressed() -> void:
+	if(PlayPressed):
+		return
+	pass # Replace with function body.
+
+
+func _on_exit_button_pressed() -> void:
+	if(PlayPressed):
+		return
 	get_tree().quit()
 
-func _on_frame_changed() -> void:
-	if Sprite.frame == 2 and Sprite.animation == "OpenSettings" :
-		ResolutionLabel.visible=true
-		ResolutionLabel.visible_characters=6
-	if Sprite.frame == 3 and Sprite.animation == "OpenSettings" :
-		ResolutionLabel.visible_characters=-1
-		SFX.visible=true
-		Music.visible=true
-		Master.visible=true
-	if Sprite.frame == 2 and Sprite.animation =="CloseSettings" :
-		ResolutionLabel.visible_characters=6
-		SFX.visible=false
-		Music.visible=false
-		Master.visible=false
-	if Sprite.frame == 3 and Sprite.animation =="CloseSettings" :
-		ResolutionLabel.visible=false
-	
-const START_LOCATION: String = "res://scenes/screens/MC_Room/MC_Room.tscn"
 
-func _on_blink_animation_finished() -> void:
-	# Hide the buttons first so their hover-exit (cursor update) runs while the
-	# menu is still in the tree, not after the scene change removed it.
-	Play.visible = false
-	SettingsButton.visible = false
-	Exit.visible = false
-	Back.visible = false
-	%Button3.visible = false
-	WorldManager.changeLocation(START_LOCATION, &"default")
+func look_at_buttons() -> void:
+	if(PlayPressed):
+		return
+	timer.paused=true
+	Otis.play("Buttons")
+	Background_Shader.play("LookAtButton")
+	Grass_Shader.play("default")
+	Grass_Shader.pause()
+	Ground_Shader.play("Button")
 	
-func _on_SFX_value_changed(value: float) -> void:
-	var width= value*87/100
-	Settings.getSettingsData().setSFXVolume(int(value))
-	Settings.onUpdateSettings()
-	SFX.region_rect =Rect2(3,0,width,22)
-	onPlayScritching()
-	
-func _on_Music_value_changed(value: float) -> void:
-	var width= value*87/100
-	Settings.getSettingsData().setMusicVolume(int(value))
-	Settings.onUpdateSettings()
-	Music.region_rect = Rect2(3,0,width,22)
-	onPlayScritching()
-	
-func _on_Master_value_changed(value: float) -> void:
-	var width= value*87/100
-	Settings.getSettingsData().setMasterVolume(int(value))
-	Settings.onUpdateSettings()
-	Master.region_rect = Rect2(3,0,width,22)
-	onPlayScritching()
+func return_to_idle() -> void:
+	if(PlayPressed):
+		return  
+	timer.paused=false
+	Otis.play_backwards("Buttons")
+	Background_Shader.play_backwards("LookAtButton")
+	Grass_Shader.play("default")
+	Grass_Shader.pause()
+	Ground_Shader.play_backwards("Button")
 
-func _on_lower_resolution() -> void:
-	if resolutionScale>1:
-		resolutionScale -= 1
-	Settings.onUpdateResolutionScale(resolutionScale)
-	var x=640*resolutionScale
-	var y=360*resolutionScale
-	ResolutionLabel.text = "" + str(x) + "x" + str(y)
-
-func _on_higher_resolution() -> void:
-	if resolutionScale<5:
-		resolutionScale += 1
-	var x=640*resolutionScale
-	var y=360*resolutionScale
-	Settings.onUpdateResolutionScale(resolutionScale)
-	ResolutionLabel.text = "" + str(x) + "x" + str(y)
-
-func onPlayScritching() -> void:
-	if scritching: return
-	scritching = true
-	await Audio.onPlaySFX(scritching_sfx).finished
-	scritching = false
+	timer.paused=true
 	
+func _on_button_mouse_entered(labelnum: int) -> void:
+	labels[labelnum].add_theme_color_override("font_color",Color.DARK_GRAY)
+	look_at_buttons()
+
+func _on_button_mouse_exited() -> void:
+	for label in labels:
+		label.remove_theme_color_override("font_color")
+	return_to_idle()
+
+
+func _on_ground_shader_animation_finished() -> void:
+	if(Ground_Shader.animation=="Play"):
+		load_screen.emit(Screen.Type.NOTEPAD)
+	pass # Replace with function body.
