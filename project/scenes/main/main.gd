@@ -18,6 +18,7 @@ func getScreenPacked(type: Screen.Type) -> PackedScene:
 		Screen.Type.COLLAB: return CollabScreenPacked
 		Screen.Type.DECK: return DeckScreenPacked
 		Screen.Type.WORLD: return WorldScreenPacked
+		
 	return null
 	
 func _ready() -> void:

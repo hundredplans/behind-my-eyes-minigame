@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://clfib82x1xbtg"]
+
+[ext_resource type="Script" uid="uid://bhmqm4kgm4ami" path="res://scenes/screens/world/world.gd" id="1_hmqkk"]
+[ext_resource type="PackedScene" uid="uid://dhx7n6ugj8rgu" path="res://scenes/screens/MC_Room/MC_Room.tscn" id="2_om4gb"]
+
+[node name="World" type="Control" unique_id=915156175]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hmqkk")
+location = ExtResource("2_om4gb")
